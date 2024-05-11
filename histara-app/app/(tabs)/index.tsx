@@ -1,26 +1,42 @@
-import { Image, StyleSheet, Platform } from "react-native";
+import { Image, StyleSheet, Platform, View, Text } from "react-native";
 
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { Colors } from "@/constants/Colors";
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={
-        <Image
-          source={require("@/assets/images/partial-react-logo.png")}
-          style={styles.reactLogo}
-        />
-      }
+    <View
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        paddingTop: 60,
+      }}
     >
-      <ThemedText style={{ fontFamily: "PoppinsRegular" }}>PoppinsRegular</ThemedText>
-      <ThemedText style={{ fontFamily: "PoppinsMedium" }}>PoppinsMedium</ThemedText>
-      <ThemedText style={{ fontFamily: "PoppinsBold" }}>PoppinsBold</ThemedText>
-      <ThemedText style={{ fontFamily: "PoppinsBlack" }}>PoppinsBlack</ThemedText>
-    </ParallaxScrollView>
+      <View style={{ position: "relative", alignItems: "center" }}>
+        <Image
+          source={require("@/assets/images/logo.png")}
+          style={{
+            width: 194,
+            height: 115,
+          }}
+        />
+        <Text
+          style={{
+            fontFamily: "PoppinsSemiBold",
+            position: "absolute",
+            bottom: -10,
+            fontSize: 16,
+            color: Colors.orange.main,
+          }}
+        >
+          Let's Explore the History of Nusantara
+        </Text>
+      </View>
+
+    </View>
   );
 }
 
