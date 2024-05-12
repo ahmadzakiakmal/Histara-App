@@ -19,7 +19,7 @@ export default function Button({
   return (
     <TouchableOpacity
       style={[
-        { backgroundColor: Colors.orange.main, width: "100%", borderRadius: 8 },
+        { backgroundColor: Colors.orange.main, width: "100%", borderRadius: 8, paddingVertical: 9 },
         style,
         touched && buttonStyles.touched,
       ]}
@@ -31,9 +31,9 @@ export default function Button({
       }}
       onPressOut={() => {
         setTouched(false);
-      }}
+      }} 
     >
-      <Text style={{ color: "#FFF", paddingVertical: 9, textAlign: "center", fontFamily: "PoppinsBold", fontSize: 16 }}>
+      <Text style={{ color: "#FFF", textAlign: "center", fontFamily: "PoppinsBold", fontSize: 16, lineHeight: 1.4 * 16 }}>
         {text}
       </Text>
     </TouchableOpacity>
