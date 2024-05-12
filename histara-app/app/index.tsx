@@ -3,9 +3,12 @@ import { Colors } from "@/constants/Colors";
 import Button from "@/components/Button";
 import CustomText from "@/components/CustomText";
 import { useState } from "react";
+import { useRouter } from "expo-router";
 
 export default function HomeScreen() {
+  const router = useRouter()
   const [touched, setTouched] = useState(false);
+
   return (
     <ScrollView
       contentContainerStyle={{
@@ -39,7 +42,7 @@ export default function HomeScreen() {
       </View>
 
       <View style={{ width: "100%", marginTop: 42, gap: 16 }}>
-        <Button text="Create Account" />
+        <Button text="Create Account" onPress={() => router.navigate("auth")} />
         <View style={{ alignItems: "center", flexDirection: "row", justifyContent: "center" }}>
           <CustomText
             weight={400}
