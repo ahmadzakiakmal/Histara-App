@@ -1,14 +1,14 @@
-import { Image, View, Text, TouchableOpacity } from "react-native";
+import { Image, View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { Colors } from "@/constants/Colors";
 import Button from "@/components/Button";
 import CustomText from "@/components/CustomText";
 import { useState } from "react";
 
 export default function HomeScreen() {
-  const [touched, setTouched] = useState(false)
-  return ( 
-    <View
-      style={{
+  const [touched, setTouched] = useState(false);
+  return (
+    <ScrollView
+      contentContainerStyle={{
         justifyContent: "flex-start",
         alignItems: "center",
         paddingTop: 60,
@@ -82,13 +82,13 @@ export default function HomeScreen() {
               alignItems: "center",
               justifyContent: "center",
               paddingVertical: 9,
-              gap: 8
+              gap: 8,
             },
             touched && {
               backgroundColor: "rgba(0,0,0,.2)",
               opacity: 1,
-              borderColor: Colors.orange.dark
-            }
+              borderColor: Colors.orange.dark,
+            },
           ]}
           onPress={() => {
             console.log("Google");
@@ -109,14 +109,48 @@ export default function HomeScreen() {
               color: Colors.blue.dark,
               fontFamily: "PoppinsBold",
               fontSize: 16,
-              lineHeight: 1.4 * 16
+              lineHeight: 1.4 * 16,
             }}
           >
             Continue with Google
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+
+      <View
+        style={{
+          marginTop: 100,
+          borderColor: "#DADADA",
+          borderWidth: 2,
+          width: "100%",
+          borderRadius: 6,
+          paddingVertical: 37,
+          justifyContent: "center",
+          alignItems: "center",
+          position: "relative",
+          paddingHorizontal: 9,
+        }}
+      >
+        <Image
+          source={require("@/assets/images/Handshake.png")}
+          style={{ position: "absolute", top: 0, transform: [{ translateY: -37 }] }}
+          width={74}
+          height={74}
+        />
+        <CustomText
+          weight={700}
+          style={[{ color: "#DADADA", fontSize: 18 }]}
+        >
+          We Promise
+        </CustomText>
+        <CustomText
+          weight={400}
+          style={[{ color: "#828282", textAlign: "center", fontSize: 12 }]}
+        >
+          We respect your privacy and will never share your email with 3rd parties
+        </CustomText>
+      </View>
+    </ScrollView>
   );
 }
 
