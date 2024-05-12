@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { View, ScrollView, Image, Pressable, Animated } from "react-native";
 import { useRouter } from "expo-router";
 import CustomText from "@/components/CustomText";
 import { gs } from "@/constants/Styles";
 import { Colors } from "@/constants/Colors";
-import { Utilities } from '@/utilities/Utilities';
+import { Utilities } from "@/utilities/Utilities";
+import SignUpTab from "@/components/auth/SignUp";
 
 export default function AuthScreen() {
   const router = useRouter();
@@ -67,14 +68,11 @@ export default function AuthScreen() {
           </Pressable>
         </View>
         <Animated.View
-          style={[
-            { width: "50%", backgroundColor: "#FFF", height: 4 },
-            { transform: [{ translateX }] }
-          ]}
+          style={[{ width: "50%", backgroundColor: "#FFF", height: 4 }, { transform: [{ translateX }] }]}
         />
       </View>
-      <ScrollView>
-        <CustomText weight={400}>{onTab1 ? "1" : "2"}</CustomText>
+      <ScrollView contentContainerStyle={{ width: "100%", paddingTop: 40 }}>
+        {onTab1 ? <SignUpTab /> : <CustomText weight={600}>2</CustomText>}
       </ScrollView>
     </>
   );
