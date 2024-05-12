@@ -8,7 +8,7 @@ interface Props {
   type?: "text" | "password" | "email";
 }
 
-type autoCapitalizeT = "none" | "sentences" | "words" | "characters" | undefined;
+
 
 export default function FormTextInput({
   state,
@@ -20,7 +20,7 @@ export default function FormTextInput({
 }: Props) {
   let keyboardType = "default";
   let autoComplete = "off";
-  let autoCapitalize: autoCapitalizeT = "none";
+  let autoCapitalize = "none";
 
   if (type === "email") {
     keyboardType = "email-address";
@@ -52,6 +52,7 @@ export default function FormTextInput({
           fontSize: 16,
           lineHeight: 1 * 16
         }}
+        secureTextEntry={type === "password"}
       />
     </View>
   );

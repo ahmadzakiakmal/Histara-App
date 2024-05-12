@@ -50,6 +50,7 @@ export default function SignUpTab() {
         setState={(text) => {
           setPassword(text)
         }}
+        type="password"
       />
       <FormTextInput
         placeholder="Confirm Password"
@@ -57,6 +58,7 @@ export default function SignUpTab() {
         setState={(text) => {
           setConfirmPassword(text)
         }}
+        type="password"
       />
       <Button text="SIGN UP" />
     </View>
