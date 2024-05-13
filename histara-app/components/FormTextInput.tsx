@@ -50,8 +50,9 @@ export default function FormTextInput({
           paddingTop: 10,
           paddingBottom: 8,
           fontSize: 16,
-          lineHeight: 1 * 16
+          color: "#000"
         }}
+        placeholderTextColor="#DADADA"
         secureTextEntry={type === "password"}
       />
     </View>
