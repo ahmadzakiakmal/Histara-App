@@ -1,19 +1,23 @@
-import { Image, View } from "react-native";
+import { Image, Platform, Pressable, View } from "react-native";
 import FormTextInput from "../FormTextInput";
 import { Dispatch, useState } from "react";
 import CustomText from "../CustomText";
 import Button from "../Button";
 import FormDropdown from "../FormDropdown";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { Colors } from "@/constants/Colors";
 
 export default function SignUpTab() {
   const [name, setName]: [string, Dispatch<string>] = useState("");
   const [email, setEmail]: [string, Dispatch<string>] = useState("");
   const [phoneNumber, setPhoneNumber]: [string, Dispatch<string>] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [birthday, setBirthday] = useState(new Date());
   const [gender, setGender] = useState("");
   const [work, setWork] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [open, setOpen] = useState(false);
 
   return (
     <View style={{ paddingHorizontal: 24, width: "100%", gap: 10, paddingBottom: 40 }}>
@@ -38,6 +42,45 @@ export default function SignUpTab() {
           setPhoneNumber(text);
         }}
       />
+      <Pressable
+        style={{
+          borderColor: Colors.orange.main,
+          borderWidth: 2,
+          borderRadius: 8,
+          paddingHorizontal: 8,
+          paddingTop: 10,
+          paddingBottom: 8,
+          flexDirection: "row",
+        }}
+        onPress={() => setOpen(true)}
+      >
+        <CustomText
+          weight={700}
+          style={[
+            { color: new Date(birthday).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0) ? "#DADADA" : "#000", flex: 1 },
+          ]}
+        >
+          {new Date(birthday).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0)
+            ? "Birthday"
+            : birthday.toDateString()}
+        </CustomText>
+        <Image source={require("@/assets/images/CeretDown.png")} style={{width: 30 }} />
+      </Pressable>
+      {open && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={birthday}
+          // mode={mode}
+          is24Hour={true}
+          display="default"
+          onChange={(event, selectedDate) => {
+            const currentDate = selectedDate || birthday;
+            setOpen(Platform.OS === "ios");
+            setBirthday(currentDate);
+          }}
+        />
+      )}
+
       <FormDropdown
         state={gender}
         setState={(newValue: any) => setGender(newValue)}
