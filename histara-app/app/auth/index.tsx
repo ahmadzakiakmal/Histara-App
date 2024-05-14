@@ -6,6 +6,7 @@ import { gs } from "@/constants/Styles";
 import { Colors } from "@/constants/Colors";
 import { Utilities } from "@/utilities/Utilities";
 import SignUpTab from "@/components/auth/SignUp";
+import SignInTab from "@/components/auth/SignIn";
 
 export default function AuthScreen() {
   const router = useRouter();
@@ -72,7 +73,7 @@ export default function AuthScreen() {
         />
       </View>
       <ScrollView contentContainerStyle={{ width: "100%", paddingTop: 40 }}>
-        {onTab1 ? <SignUpTab /> : <CustomText weight={600}>2</CustomText>}
+        {onTab1 ? <SignUpTab /> : <SignInTab />}
       </ScrollView>
     </>
   );
