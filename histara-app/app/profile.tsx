@@ -1,5 +1,6 @@
 import CustomText from "@/components/CustomText";
 import Header from "@/components/Header";
+import MiniButton from "@/components/MiniButton";
 import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
 import { Pressable, ScrollView, View } from "react-native";
@@ -20,7 +21,7 @@ export default function ProfileScreen() {
             <CustomText
               weight={500}
               italic={true}
-              style={[{ fontSize: 15, lineHeigth: 1 * 15 }]}
+              style={[{ fontSize: 15, lineHeigth: 1 * 15, marginTop: -5 }]}
             >
               xy points
             </CustomText>
@@ -29,22 +30,8 @@ export default function ProfileScreen() {
         </View>
 
         <View style={[gs.flexRow, { marginTop: 22.5, gap: 15 }]}>
-          <Pressable style={{ backgroundColor: "#DADADA", borderRadius: 8, paddingVertical: 2.5, flex: 1 }}>
-            <CustomText
-              weight={400}
-              style={[{ textAlign: "center" }]}
-            >
-              Edit Profile
-            </CustomText>
-          </Pressable>
-          <Pressable style={{ backgroundColor: "#DADADA", borderRadius: 8, paddingVertical: 2.5, flex: 1 }}>
-            <CustomText
-              weight={400}
-              style={[{ textAlign: "center" }]}
-            >
-              Riwayat Tur
-            </CustomText>
-          </Pressable>
+          <MiniButton text="Edit Profile" onPress={() => {}} style={[{flex: 1}]} />
+          <MiniButton text="Riwayat Tur" onPress={() => {}} style={[{flex: 1}]} />
         </View>
 
         <View style={{ marginTop: 23, gap: 15 }}>
