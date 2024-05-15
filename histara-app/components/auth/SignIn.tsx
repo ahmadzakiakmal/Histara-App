@@ -31,7 +31,7 @@ export default function SignInTab() {
         }}
         type="password"
       />
-      <Button text="SIGN IN" onPress={() => router.navigate("profile")} />
+      <Button text="SIGN IN" onPress={() => router.navigate("home")} />
 
       <View
         style={{

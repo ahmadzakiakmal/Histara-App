@@ -6,6 +6,7 @@ import Button from "../Button";
 import FormDropdown from "../FormDropdown";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Colors } from "@/constants/Colors";
+import { Link, useRouter } from "expo-router";
 
 export default function SignUpTab() {
   const [name, setName]: [string, Dispatch<string>] = useState("");
@@ -18,6 +19,8 @@ export default function SignUpTab() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [open, setOpen] = useState(false);
+
+  const router = useRouter()
 
   return (
     <View style={{ paddingHorizontal: 24, width: "100%", gap: 10, paddingBottom: 40 }}>
@@ -113,7 +116,7 @@ export default function SignUpTab() {
         }}
         type="password"
       />
-      <Button text="SIGN UP" />
+      <Button text="SIGN UP" style={[{flex: 1}]} onPress={() => {router.navigate("home")}} />
 
       <View
         style={{
