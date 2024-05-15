@@ -1,17 +1,21 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, usePathname } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import Navbar from "@/components/Navbar";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const pathname = usePathname();
+  const [showNavbar, setShowNavbar] = useState(false);
+
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
     PoppinsBlack: require("../assets/fonts/Poppins-Black.ttf"),
@@ -41,17 +45,28 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
+  useEffect(() => {
+    console.log(pathname.slice(1));
+    const navbarPages = ["home", "explore", "points", "profile"];
+    if (pathname === "/") return setShowNavbar(false);
+    if (navbarPages.includes(pathname.slice(1))) {
+      setShowNavbar(true);
+      console.log("true");
+    }
+  }, [pathname]);
+
   if (!loaded) {
     return null;
   }
 
   return (
-    <Stack 
-      screenOptions={{ headerShown: false }}
-    >
-      <Stack.Screen name="index" />
-      <Stack.Screen name="+not-found" />
-    </Stack>
+    <>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+      {showNavbar && <Navbar />}
+    </>
   );
 }
 
