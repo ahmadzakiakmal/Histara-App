@@ -57,7 +57,7 @@ export default function HomeScreen() {
   );
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ backgroundColor: "#FFF" }}>
       <Header />
       <View style={{ position: "relative" }}>
         <SwiperFlatList
@@ -112,7 +112,16 @@ function PlacesPairItem({ pairPlace }) {
   return (
     <View style={{ flexDirection: "row", gap: 23, marginBottom: 13 }}>
       <View style={{ flex: 1, gap: 8 }}>
-        <View style={{ height: 163, backgroundColor: "#D9D9D9", borderRadius: 20 }}></View>
+        <View
+          style={{
+            height: 163,
+            backgroundColor: "#D9D9D9",
+            borderRadius: 20,
+            shadowColor: "#000",
+            shadowOffset: { width: 10, height: 5 },
+            elevation: 6,
+          }}
+        ></View>
         <CustomText
           style={{ textAlign: "center" }}
           weight={700}
@@ -122,7 +131,16 @@ function PlacesPairItem({ pairPlace }) {
       </View>
       {pairPlace[1] !== undefined && (
         <View style={{ flex: 1, gap: 8 }}>
-          <View style={{ height: 163, backgroundColor: "#D9D9D9", borderRadius: 20 }}></View>
+          <View
+            style={{
+              height: 163,
+              backgroundColor: "#D9D9D9",
+              borderRadius: 20,
+              shadowColor: "#000",
+              shadowOffset: { width: 10, height: 5 },
+              elevation: 6,
+            }}
+          ></View>
           <CustomText
             style={{ textAlign: "center" }}
             weight={700}
