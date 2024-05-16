@@ -4,6 +4,11 @@ import Header from "@/components/Header";
 import CustomText from "@/components/CustomText";
 import { useEffect, useState } from "react";
 
+interface Place {
+  id: number;
+  title: string;
+}
+
 export default function HomeScreen() {
   const colors = ["tomato", "thistle", "skyblue", "teal"];
   const { width } = Dimensions.get("window");
@@ -12,9 +17,9 @@ export default function HomeScreen() {
     child: { width, height: 200, justifyContent: "center" },
     text: { fontSize: 20, textAlign: "center" },
   });
-  const [places, setPlaces] = useState([]);
+  const [places, setPlaces] = useState<[Place, Place][]>([]);
 
-  const placesRaw = [
+  const placesRaw: Place[] = [
     {
       id: 1,
       title: "Yogyakarta",
@@ -38,10 +43,10 @@ export default function HomeScreen() {
   ];
 
   useEffect(() => {
-    const pairedPlaces = [];
+    const pairedPlaces:[Place, Place][] = [];
     placesRaw.forEach((place, index) => {
       if (index % 2 !== 1) {
-        const pairPlaces = [place, placesRaw[index + 1]];
+        const pairPlaces: [Place, Place] = [place, placesRaw[index + 1]];
         console.log(pairPlaces);
         pairedPlaces.push(pairPlaces);
       }
@@ -50,9 +55,9 @@ export default function HomeScreen() {
     console.log(pairedPlaces);
   }, []);
 
-  const Item = ({ title }) => (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
+  const Item = ({ title }: {title: string}) => (
+    <View>
+      <Text>{title}</Text>
     </View>
   );
 
@@ -63,7 +68,6 @@ export default function HomeScreen() {
         <SwiperFlatList
           autoplay
           autoplayDelay={5}
-          // autoplayLoop
           index={2}
           showPagination
           paginationStyle={{
@@ -108,7 +112,7 @@ export default function HomeScreen() {
   );
 }
 
-function PlacesPairItem({ pairPlace }) {
+function PlacesPairItem({ pairPlace }: {pairPlace: [Place, Place]}) {
   return (
     <View style={{ flexDirection: "row", gap: 23, marginBottom: 13 }}>
       <View style={{ flex: 1, gap: 8 }}>
@@ -123,7 +127,7 @@ function PlacesPairItem({ pairPlace }) {
           }}
         ></View>
         <CustomText
-          style={{ textAlign: "center" }}
+          style={[{ textAlign: "center" }]}
           weight={700}
         >
           {pairPlace[0]?.title}
@@ -142,14 +146,13 @@ function PlacesPairItem({ pairPlace }) {
             }}
           ></View>
           <CustomText
-            style={{ textAlign: "center" }}
+            style={[{ textAlign: "center" }]}
             weight={700}
           >
             {pairPlace[1]?.title}
           </CustomText>
         </View>
       )}
-      {/* <CustomText>{pairPlace[1]?.title}</CustomText> */}
     </View>
   );
 }
