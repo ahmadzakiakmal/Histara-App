@@ -13,7 +13,7 @@ export default function Header({ title }: Props) {
 
   if (!title) {
     return (
-      <View style={[gs.jc, gs.ic, { paddingTop: 30, borderColor: "#DADADA", borderBottomWidth: 1 }]}>
+      <View style={[gs.jc, gs.ic, { paddingTop: 30, borderColor: "#DADADA", borderBottomWidth: 1, backgroundColor: "#FFF" }]}>
         <Image
           source={require("@/assets/images/logo.png")}
           style={{ width: 120, height: 71 }}
