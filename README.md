@@ -1,50 +1,33 @@
-# Welcome to your Expo app 👋
+# Histara-App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## How to Run
 
-## Get started
+1. Clone or download the repository
+   - Clone with git: `git clone https://github.com/ahmadzakiakmal/histara-app.git`
+     
+   - Download:
+   
+     ![image](https://github.com/ahmadzakiakmal/histara-app/assets/87590846/b9f0b1c6-ca27-4cdf-a4b2-b5ad2cddfdac)
 
-1. Install dependencies
+   - Install NodeJS if not already installed
+  
+     [https://nodejs.org/en/download/prebuilt-installer](https://nodejs.org/en/download/prebuilt-installer)
+   
+2. Enter the directory of the app using any terminal
+   
+   ![image](https://github.com/ahmadzakiakmal/histara-app/assets/87590846/ae45b53a-3d0e-4b1a-8c05-33cc8bccc296)
 
-   ```bash
-   npm install
-   ```
+   ![image](https://github.com/ahmadzakiakmal/histara-app/assets/87590846/32ffec17-41de-4c45-b0c9-d0cf924587f7)
 
-2. Start the app
+3. Run these commands
 
-   ```bash
-    npx expo start
-   ```
+   - `npm install` → installs required libraries
 
-In the output, you'll find options to open the app in a
+     ![image](https://github.com/ahmadzakiakmal/histara-app/assets/87590846/c404197a-e2b7-4e9b-8018-ff1357b3ce67)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   - `npx expo start` → runs the app using expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+     ![image](https://github.com/ahmadzakiakmal/histara-app/assets/87590846/ad5d4a79-9c07-423d-8390-f6d59d9c47f4)
 
-## Get a fresh project
+4. Scan the QR Code using Expo Go app
 
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
