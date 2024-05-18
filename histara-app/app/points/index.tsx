@@ -15,7 +15,7 @@ export default function Points() {
           style={[
             gs.jc,
             gs.ic,
-            { backgroundColor: "#4A5379", position: "relative", paddingVertical: 14, overflow: "hidden" },
+            { backgroundColor: "#4A5379", position: "relative", paddingVertical: 20, overflow: "hidden" },
           ]}
         >
           <Image
@@ -109,7 +109,7 @@ function UmkmItem({ title = "Nama UMKM", city = "Nama Kota", cost = 150 }: UmkmI
       </CustomText>
       <CustomText
         weight={400}
-        style={[{ fontSize: 15, textAlign: "justify" }]}
+        style={[{ fontSize: 15, textAlign: "justify", marginTop: -5 }]}
       >
         {cutDesc(city)}
       </CustomText>
