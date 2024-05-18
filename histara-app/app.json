@@ -12,6 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#E9945B"
     },
+    "jsEngine": "hermes",
     "ios": {
       "supportsTablet": true
     },
