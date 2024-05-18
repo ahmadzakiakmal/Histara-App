@@ -27,7 +27,7 @@ export default function Points() {
             size={200}
             strokeWidth={15}
             percentage={60}
-            duration={200}
+            duration={800}
           />
         </View>
 
