@@ -129,13 +129,13 @@ function ArticleItem({
         weight={700}
         style={[{ marginTop: 18 }]}
       >
-        {cutTitle(title) ?? "ateasd"}
+        {cutTitle(title)}
       </CustomText>
       <CustomText
         weight={400}
         style={[{ fontSize: 15, textAlign: "justify" }]}
       >
-        {cutDesc(desc) ?? "sdadsa"}
+        {cutDesc(desc)}
       </CustomText>
     </Pressable>
   );
