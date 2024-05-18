@@ -158,10 +158,11 @@ function ArticleTray({ trayTitle, trayDesc, articles = [] }: ArticleTrayProps) {
       <CustomText weight={400} style={[{paddingHorizontal: 18}]}>{trayDesc}</CustomText>
       <ScrollView
         horizontal
+        showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
           gap: 14,
           paddingBottom: 5,
-          marginBottom: 5,
+          marginBottom: 8,
           paddingTop: 8,
           paddingHorizontal: 18
         }}

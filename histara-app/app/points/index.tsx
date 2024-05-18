@@ -39,9 +39,10 @@ export default function Points() {
         <View style={{ paddingHorizontal: 0, paddingBottom: 80 }}>
           <ScrollView
             horizontal
+            showsHorizontalScrollIndicator={false}
             contentContainerStyle={{
               gap: 14,
-              paddingBottom: 5,
+              paddingBottom: 8,
               marginBottom: 5,
               paddingTop: 8,
               paddingHorizontal: 18,
