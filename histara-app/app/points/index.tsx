@@ -36,7 +36,7 @@ export default function Points() {
           <CustomText weight={400}>Your reward after joining the historical tour</CustomText>
         </View>
 
-        <View style={{ paddingHorizontal: 18, paddingBottom: 80 }}>
+        <View style={{ paddingHorizontal: 0, paddingBottom: 80 }}>
           <ScrollView
             horizontal
             contentContainerStyle={{
@@ -44,7 +44,8 @@ export default function Points() {
               paddingBottom: 5,
               marginBottom: 5,
               paddingTop: 8,
-              paddingHorizontal: 4,
+              paddingHorizontal: 18,
+              overflow:"visible"
             }}
           >
             <UmkmItem

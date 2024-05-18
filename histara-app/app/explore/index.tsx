@@ -72,7 +72,7 @@ export default function Explore() {
   return (
     <>
       <Header />
-      <ScrollView contentContainerStyle={{ backgroundColor: "#FFF", paddingHorizontal: 18, paddingTop: 20 }}>
+      <ScrollView contentContainerStyle={{ backgroundColor: "#FFF", paddingTop: 20 }}>
         <View style={{ gap: 18, paddingBottom: 30 }}>
           <ArticleTray
             trayTitle="Tips Travel"
@@ -151,11 +151,11 @@ function ArticleTray({ trayTitle, trayDesc, articles = [] }: ArticleTrayProps) {
     <View>
       <CustomText
         weight={700}
-        style={[{ fontSize: 16 }]}
+        style={[{ fontSize: 16, paddingHorizontal: 18 }]}
       >
         {trayTitle}
       </CustomText>
-      <CustomText weight={400}>{trayDesc}</CustomText>
+      <CustomText weight={400} style={[{paddingHorizontal: 18}]}>{trayDesc}</CustomText>
       <ScrollView
         horizontal
         contentContainerStyle={{
@@ -163,7 +163,7 @@ function ArticleTray({ trayTitle, trayDesc, articles = [] }: ArticleTrayProps) {
           paddingBottom: 5,
           marginBottom: 5,
           paddingTop: 8,
-          paddingHorizontal: 4,
+          paddingHorizontal: 18
         }}
       >
         {articles?.map((article, index) => {
