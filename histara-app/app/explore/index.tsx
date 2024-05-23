@@ -1,8 +1,9 @@
 import CustomText from "@/components/CustomText";
 import Header from "@/components/Header";
-import { Dimensions, Pressable, ScrollView, View } from "react-native";
+import { Dimensions, Image, Pressable, ScrollView, View } from "react-native";
 import { Utilities } from "@/utilities/Utilities";
 import articles from "@/data/articles.json"
+import { useRouter } from "expo-router";
 
 export default function Explore() {
   const cafeArticles = articles.cafe;
@@ -33,15 +34,17 @@ export default function Explore() {
   );
 }
 
-interface ArticleItemProps {
+export interface ArticleItemProps {
   title: string;
   content: string[];
-  links: {}
+  links: {};
+  image: string;
 }
 
 function ArticleItem({
   title = "Lorem, ipsum dolor sit amet consectetur",
   content = ["Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, exercitationem."],
+  image
 }: ArticleItemProps) {
   const cutTitle = (title: string): string => {
     return title?.length < 35 ? title : title.slice(0, 30) + "...";
@@ -49,6 +52,7 @@ function ArticleItem({
   const cutDesc = (desc: string): string => {
     return desc?.length < 80 ? desc : desc.slice(0, 76) + "...";
   };
+  const router = useRouter()
   return (
     <Pressable
       style={{
@@ -61,9 +65,11 @@ function ArticleItem({
         width: 225,
         borderRadius: 10,
       }}
-      onPress={() => console.log(title)}
+      onPress={() => router.navigate("/explore/" + title)}
     >
-      <View style={{ width: "100%", height: 150, backgroundColor: "#D9D9D9" }} />
+      <View style={{ width: "100%", height: 150, backgroundColor: "#D9D9D9", position:"relative" }}>
+        <Image source={{uri: image}} style={{position: "absolute", width: "100%", height: "100%"}} />
+      </View>
       <CustomText
         weight={700}
         style={[{ marginTop: 18 }]}
@@ -113,6 +119,7 @@ function ArticleTray({ trayTitle, trayDesc, articles = [] }: ArticleTrayProps) {
               title={article?.title}
               content={article.content}
               links={article.links}
+              image={article.image}
             />
           );
         })}
