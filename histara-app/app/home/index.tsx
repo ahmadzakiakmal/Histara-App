@@ -47,12 +47,10 @@ export default function HomeScreen() {
     placesRaw.forEach((place, index) => {
       if (index % 2 !== 1) {
         const pairPlaces: [Place, Place] = [place, placesRaw[index + 1]];
-        console.log(pairPlaces);
         pairedPlaces.push(pairPlaces);
       }
     });
     setPlaces(pairedPlaces);
-    console.log(pairedPlaces);
   }, []);
 
   const Item = ({ title }: {title: string}) => (

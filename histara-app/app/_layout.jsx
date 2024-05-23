@@ -46,12 +46,10 @@ export default function RootLayout() {
   }, [loaded]);
 
   useEffect(() => {
-    console.log(pathname.slice(1));
     const navbarPages = ["home", "explore", "points", "profile"];
     if (pathname === "/") return setShowNavbar(false);
     if (navbarPages.includes(pathname.slice(1))) {
       setShowNavbar(true);
-      console.log("true");
     }
   }, [pathname]);
 
