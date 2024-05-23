@@ -2,16 +2,15 @@ import CustomText from "@/components/CustomText";
 import Header from "@/components/Header";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { ArticleItemProps } from "@/app/explore/index";
-import { Image, Linking, Pressable, ScrollView, Text, View } from "react-native";
+import { Image, Linking, Pressable, ScrollView, View } from "react-native";
 import { gs } from "@/constants/Styles";
-// import articles from "@/data/articles.json"
-const articles = require("@/data/articles.json").cafe as ArticleItemProps[];
+import { SubArticle } from "@/app/types";
+const articles = require("@/data/subarticles.json") as SubArticle[];
 
-export default function ArticleScreen() {
-  const { slug } = useLocalSearchParams();
+export default function SubArticleScreen() {
+  const { title } = useLocalSearchParams();
 
-  const [article, setArticle] = useState<ArticleItemProps>({
+  const [article, setArticle] = useState<SubArticle>({
     title: "",
     image: "",
     content: [""],
@@ -20,7 +19,7 @@ export default function ArticleScreen() {
 
   useEffect(() => {
     const articleToBeDisplayed = articles.filter((article) => {
-      return article.title === slug;
+      return article.title === title;
     })[0];
     // console.log(articleToBeDisplayed)
     setArticle(articleToBeDisplayed);
@@ -34,11 +33,11 @@ export default function ArticleScreen() {
           weight={700}
           style={[{ fontSize: 20, textAlign: "center", marginBottom: 12 }]}
         >
-          {slug}
+          {title}
         </CustomText>
         <View style={{ paddingHorizontal: 24 }}>
           <View style={{ width: "100%", height: 215, position: "relative" }}>
-            {article.image !== "" && (
+            {article?.image && article?.image !== "" && (
               <Image
                 source={{ uri: article.image }}
                 style={{ position: "absolute", width: "100%", height: "100%", borderRadius: 13 }}
@@ -50,11 +49,11 @@ export default function ArticleScreen() {
             italic={true}
             style={[{ color: "#918F8F", marginTop: 12, textAlign: "center", fontSize: 14 }]}
           >
-            {(article.links as any).instagram}
+            {(article?.links as any)?.instagram}
           </CustomText>
 
           <View style={{ marginBottom: 10 }}>
-            {article.content?.map((paragraph, index) => {
+            {article?.content?.map((paragraph, index) => {
               return (
                 <CustomText
                   weight={400}

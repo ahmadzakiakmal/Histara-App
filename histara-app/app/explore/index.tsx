@@ -1,32 +1,33 @@
 import CustomText from "@/components/CustomText";
 import Header from "@/components/Header";
-import { Dimensions, Image, Pressable, ScrollView, View } from "react-native";
+import { Image, Pressable, ScrollView, View } from "react-native";
 import { Utilities } from "@/utilities/Utilities";
-import articles from "@/data/articles.json"
 import { useRouter } from "expo-router";
+import { gs } from "@/constants/Styles";
+import { Article } from "../types";
 
 export default function Explore() {
-  const cafeArticles = articles.cafe;
+  const localCafes = require("@/data/localCafe.json") as Article[]
 
   return (
     <>
       <Header />
-      <ScrollView contentContainerStyle={{ backgroundColor: "#FFF", paddingTop: 20 }}>
+      <ScrollView contentContainerStyle={{ backgroundColor: "#FFF", paddingTop: 20, minHeight: "90%" }}>
         <View style={{ gap: 18, paddingBottom: 30 }}>
           <ArticleTray
             trayTitle="Tips Travel"
             trayDesc="Beberapa tips dalam travelling"
-            articles={cafeArticles}
+            articles={[]}
           />
           <ArticleTray
             trayTitle="Kafe Lokal"
             trayDesc="Beberapa rekomendasi kafe lokal"
-            articles={cafeArticles}
+            articles={localCafes}
           />
           <ArticleTray
             trayTitle="Makanan Lokal & Akomodasi"
-            trayDesc="Rekomendasi makanan lokal dan akomodasi perjalanan"
-            articles={cafeArticles}
+            trayDesc="Rekomendasi makanan lokal dan akomodasi "
+            articles={[]}
           />
         </View>
       </ScrollView>
@@ -34,25 +35,11 @@ export default function Explore() {
   );
 }
 
-export interface ArticleItemProps {
-  title: string;
-  content: string[];
-  links: {};
-  image: string;
-}
-
 function ArticleItem({
   title = "Lorem, ipsum dolor sit amet consectetur",
-  content = ["Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, exercitationem."],
-  image
-}: ArticleItemProps) {
-  const cutTitle = (title: string): string => {
-    return title?.length < 35 ? title : title.slice(0, 30) + "...";
-  };
-  const cutDesc = (desc: string): string => {
-    return desc?.length < 80 ? desc : desc.slice(0, 76) + "...";
-  };
-  const router = useRouter()
+  image,
+}: Article) {
+  const router = useRouter();
   return (
     <Pressable
       style={{
@@ -65,22 +52,19 @@ function ArticleItem({
         width: 225,
         borderRadius: 10,
       }}
-      onPress={() => router.navigate("/explore/" + title)}
+      onPress={() => router.navigate("/explore/article/" + title)}
     >
-      <View style={{ width: "100%", height: 150, backgroundColor: "#D9D9D9", position:"relative" }}>
-        <Image source={{uri: image}} style={{position: "absolute", width: "100%", height: "100%"}} />
+      <View style={{ width: "100%", height: 150, backgroundColor: "#D9D9D9", position: "relative" }}>
+        <Image
+          source={{ uri: image }}
+          style={{ position: "absolute", width: "100%", height: "100%" }}
+        />
       </View>
       <CustomText
         weight={700}
-        style={[{ marginTop: 18 }]}
+        style={[{ marginTop: 18, textAlign: "center" }]}
       >
-        {cutTitle(title)}
-      </CustomText>
-      <CustomText
-        weight={400}
-        style={[{ fontSize: 15, textAlign: "justify" }]}
-      >
-        {cutDesc(content[0])}
+        {title}
       </CustomText>
     </Pressable>
   );
@@ -89,18 +73,51 @@ function ArticleItem({
 interface ArticleTrayProps {
   trayTitle: string;
   trayDesc: string;
-  articles: ArticleItemProps[];
+  articles: Article[];
 }
 function ArticleTray({ trayTitle, trayDesc, articles = [] }: ArticleTrayProps) {
+  const router = useRouter();
   return (
     <View>
-      <CustomText
-        weight={700}
-        style={[{ fontSize: 16, paddingHorizontal: 18 }]}
-      >
-        {trayTitle}
-      </CustomText>
-      <CustomText weight={400} style={[{paddingHorizontal: 18}]}>{trayDesc}</CustomText>
+      <View style={[gs.flexRow, gs.ic, { flexShrink: 0}]}>
+        <View style={{maxWidth: Utilities.getScreenWidth() - 50}}>
+          <CustomText
+            weight={700}
+            style={[{ fontSize: 16, paddingHorizontal: 18 }]}
+          >
+            {trayTitle}
+          </CustomText>
+          <CustomText
+            weight={400}
+            style={[{ paddingHorizontal: 18 }]}
+          >
+            {trayDesc}
+          </CustomText>
+        </View>
+        {/* <Pressable
+          style={[
+            gs.ic,
+            gs.jc,
+            {
+              width: 34,
+              height: 34,
+              backgroundColor: "#FFF",
+              borderRadius: 999,
+              position: "relative",
+              shadowColor: "#000",
+              elevation: 5,
+            },
+          ]}
+          onPress={() => {
+            router.navigate("/explore/articleHeader")
+          }}
+        >
+          <Image
+            source={require("@/assets/images/CeretDown.png")}
+            style={{ transform: [{ rotate: "-90deg" }, { translateY: 1 }], position: "absolute" }}
+          />
+        </Pressable> */}
+      </View>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -109,7 +126,7 @@ function ArticleTray({ trayTitle, trayDesc, articles = [] }: ArticleTrayProps) {
           paddingBottom: 5,
           marginBottom: 8,
           paddingTop: 8,
-          paddingHorizontal: 18
+          paddingHorizontal: 18,
         }}
       >
         {articles?.map((article, index) => {
@@ -118,8 +135,8 @@ function ArticleTray({ trayTitle, trayDesc, articles = [] }: ArticleTrayProps) {
               key={index}
               title={article?.title}
               content={article.content}
-              links={article.links}
               image={article.image}
+              subarticles={article.subarticles}
             />
           );
         })}
