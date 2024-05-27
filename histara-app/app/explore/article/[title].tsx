@@ -24,7 +24,7 @@ export default function ArticleScreen() {
     const articleToBeDisplayed = articles.filter((article) => {
       return article.title === title;
     })[0];
-    console.log(articleToBeDisplayed);
+    // console.log(articleToBeDisplayed);
     setArticle(articleToBeDisplayed);
   }, []);
 
