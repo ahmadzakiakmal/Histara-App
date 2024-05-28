@@ -1,8 +1,9 @@
-import { Dimensions, ScrollView, StyleSheet, Text, View, FlatList } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, Text, View, FlatList, Pressable } from "react-native";
 import { SwiperFlatList } from "react-native-swiper-flatlist";
 import Header from "@/components/Header";
 import CustomText from "@/components/CustomText";
 import { useEffect, useState } from "react";
+import { useRouter } from "expo-router";
 
 interface Place {
   id: number;
@@ -111,9 +112,10 @@ export default function HomeScreen() {
 }
 
 function PlacesPairItem({ pairPlace }: {pairPlace: [Place, Place]}) {
+  const router = useRouter();
   return (
     <View style={{ flexDirection: "row", gap: 23, marginBottom: 13 }}>
-      <View style={{ flex: 1, gap: 8 }}>
+      <Pressable onPress={() => router.navigate("/home/menu-paket/" + pairPlace[0]?.title)} style={{ flex: 1, gap: 8 }}>
         <View
           style={{
             height: 163,
@@ -130,9 +132,9 @@ function PlacesPairItem({ pairPlace }: {pairPlace: [Place, Place]}) {
         >
           {pairPlace[0]?.title}
         </CustomText>
-      </View>
+      </Pressable>
       {pairPlace[1] !== undefined && (
-        <View style={{ flex: 1, gap: 8 }}>
+        <Pressable onPress={() => router.navigate("/home/menu-paket/" + pairPlace[0]?.title)} style={{ flex: 1, gap: 8 }}>
           <View
             style={{
               height: 163,
@@ -149,7 +151,7 @@ function PlacesPairItem({ pairPlace }: {pairPlace: [Place, Place]}) {
           >
             {pairPlace[1]?.title}
           </CustomText>
-        </View>
+        </Pressable>
       )}
     </View>
   );
