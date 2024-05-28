@@ -134,7 +134,7 @@ function PlacesPairItem({ pairPlace }: {pairPlace: [Place, Place]}) {
         </CustomText>
       </Pressable>
       {pairPlace[1] !== undefined && (
-        <Pressable onPress={() => router.navigate("/home/menu-paket/" + pairPlace[0]?.title)} style={{ flex: 1, gap: 8 }}>
+        <Pressable onPress={() => router.navigate("/home/menu-paket/" + pairPlace[1]?.title)} style={{ flex: 1, gap: 8 }}>
           <View
             style={{
               height: 163,
