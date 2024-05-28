@@ -5,12 +5,14 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 interface ButtonProps {
   text: string;
   style?: object[];
+  textStyle?: object[];
   onPress?: () => any;
 }
 
 export default function Button({
   style,
   text,
+  textStyle,
   onPress = () => {
     console.log("Pressed");
   },
@@ -33,7 +35,7 @@ export default function Button({
         setTouched(false);
       }} 
     >
-      <Text style={{ color: "#FFF", textAlign: "center", fontFamily: "PoppinsBold", fontSize: 16, lineHeight: 1.4 * 16 }}>
+      <Text style={[{ color: "#FFF", textAlign: "center", fontFamily: "PoppinsBold", fontSize: 16, lineHeight: 1.4 * 16 }, textStyle]}>
         {text}
       </Text>
     </TouchableOpacity>
