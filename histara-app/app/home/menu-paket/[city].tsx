@@ -4,8 +4,8 @@ import Header from "@/components/Header";
 import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
 import { Utilities } from "@/utilities/Utilities";
-import { useLocalSearchParams } from "expo-router";
-import { ScrollView, View } from "react-native";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { Pressable, ScrollView, View } from "react-native";
 import { panHandlerName } from "react-native-gesture-handler/lib/typescript/handlers/PanGestureHandler";
 
 export default function MenuPaketScreen() {
@@ -26,14 +26,17 @@ export default function MenuPaketScreen() {
           <Paket
             title="Paket Keraton Apa Gitu Ngabs"
             desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga quibusdam cum assumenda esse vel delectus quos aut odit cupiditate? Sapiente!"
+            id="1"
           />
           <Paket
             title="Paket Keraton"
             desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga quibusdam cum assumenda esse vel delectus quos aut odit cupiditate? Sapiente!"
+            id="2"
           />
           <Paket
             title="Paket Keraton"
             desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga quibusdam cum assumenda esse vel delectus quos aut odit cupiditate? Sapiente!"
+            id="3"
           />
         </View>
       </ScrollView>
@@ -41,7 +44,8 @@ export default function MenuPaketScreen() {
   );
 }
 
-function Paket({ title, desc }: { title: string; desc: string }) {
+function Paket({ title, desc, id }: { title: string; desc: string, id:string }) {
+  const router = useRouter()
   return (
     <View style={{ padding: 18 }}>
       <View style={{ backgroundColor: Colors.orange.main, height: 143, borderRadius: 20 }} />
@@ -58,6 +62,7 @@ function Paket({ title, desc }: { title: string; desc: string }) {
           style={[{ width: "auto", paddingHorizontal: 16, flexShrink: 0 }]}
           textStyle={[{ fontFamily: "PoppinsRegular" }]}
           text="See detail"
+          onPress={() => router.navigate("/home/detail-paket/" + title)} 
         />
       </View>
       <CustomText
