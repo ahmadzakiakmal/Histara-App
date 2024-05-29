@@ -1,6 +1,6 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
+import { DarkTheme, DefaultTheme, ThemeProvider, useIsFocused, useNavigation } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack, usePathname } from "expo-router";
+import { Stack, useFocusEffect, usePathname } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import "react-native-reanimated";
@@ -45,13 +45,17 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
+  const focus = useIsFocused();
   useEffect(() => {
+    console.log("focus effect")
     const navbarPages = ["home", "explore", "points", "profile"];
     if (pathname === "/") return setShowNavbar(false);
+    if (pathname.includes("detail")) return setShowNavbar(false)
+    if (pathname.includes("menu-paket")) return setShowNavbar(true)
     if (navbarPages.includes(pathname.slice(1))) {
       setShowNavbar(true);
     }
-  }, [pathname]);
+  }, [pathname, focus]);
 
   if (!loaded) {
     return null;
