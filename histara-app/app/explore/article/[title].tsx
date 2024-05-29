@@ -6,6 +6,7 @@ import { Image, Linking, Pressable, ScrollView, Text, View } from "react-native"
 import { gs } from "@/constants/Styles";
 import { Colors } from "@/constants/Colors";
 import { Article, SubArticle } from "@/app/types";
+import { Utilities } from "@/utilities/Utilities";
 const localCafes = require("@/data/localCafe.json") as Article[];
 
 const articles = [...localCafes];
@@ -82,6 +83,10 @@ export default function ArticleScreen() {
 function SubArticleItem({ title, image }: { title: string; image: string }) {
   const router = useRouter();
   const [touched, setTouched] = useState(false);
+  const cutTitle = (title:string):string => {
+    if(title.length < 25) return title
+    return title.slice(0, 23) + "..."
+  } 
   return (
     <Pressable
       onPress={() => router.navigate("/explore/subarticle/" + title)}
@@ -110,7 +115,7 @@ function SubArticleItem({ title, image }: { title: string; image: string }) {
         weight={700}
         style={[{ lineHeight: 1.5 * 16 }]}
       >
-        {title}
+        {cutTitle(title)}
       </CustomText>
     </Pressable>
   );
