@@ -4,13 +4,16 @@ import Header from "@/components/Header";
 import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
 import { Utilities } from "@/utilities/Utilities";
-import { useLocalSearchParams } from "expo-router";
-import { Image, ScrollView, View } from "react-native";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { useState } from "react";
+import { Image, Pressable, ScrollView, View } from "react-native";
 
 export default function MenuPaketScreen() {
   const { id } = useLocalSearchParams();
+  const [touched, setTouched] = useState(false);
+  const router = useRouter();
   return (
-    <View style={{ backgroundColor: "#FFF" }}>
+    <View style={{ backgroundColor: "#FFF", flex: 1 }}>
       <Header />
       <ScrollView>
         <View style={{ height: 200, backgroundColor: Colors.orange.main }}></View>
@@ -82,7 +85,8 @@ export default function MenuPaketScreen() {
         </View>
 
         <ScrollView
-          contentContainerStyle={{ paddingBottom: 120, gap: 10, paddingHorizontal: 18 }}
+          contentContainerStyle={{ paddingBottom: 44, gap: 10, paddingHorizontal: 18 }}
+          showsHorizontalScrollIndicator={false}
           horizontal
         >
           <Stop />
@@ -92,7 +96,36 @@ export default function MenuPaketScreen() {
           <Stop />
           <Stop />
         </ScrollView>
+
       </ScrollView>
+        <View style={{ backgroundColor: Colors.blue.dark, paddingVertical: 11 }}>
+          <Pressable
+            onPress={() => {router.replace("/home/ringkasan-pembayaran/test")}}
+            onPressIn={() => setTouched(true)}
+            onPressOut={() => setTouched(false)}
+            style={[
+              gs.flexRow,
+              gs.ic,
+              gs.jc,
+              {
+                backgroundColor: touched ? Colors.orange.dark : Colors.orange.main,
+                marginVertical: 2.5,
+                alignSelf: "center",
+                paddingHorizontal: 18,
+                borderRadius: 5,
+                gap: 8,
+              },
+            ]}
+          >
+            <CustomText
+              weight={400}
+              style={[{ color: Colors.blue.dark, fontSize: 18, alignSelf: "center", paddingTop: 3 }]}
+            >
+              Start
+            </CustomText>
+            <Image source={require("@/assets/images/Start.png")} />
+          </Pressable>
+        </View>
     </View>
   );
 }
