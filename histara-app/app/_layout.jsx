@@ -47,7 +47,6 @@ export default function RootLayout() {
 
   const focus = useIsFocused();
   useEffect(() => {
-    console.log("focus effect")
     const navbarPages = ["home", "explore", "points", "profile"];
     if (pathname === "/") return setShowNavbar(false);
     if (pathname.includes("detail")) return setShowNavbar(false)
