@@ -8,10 +8,11 @@ import { Colors } from "@/constants/Colors";
 import { Article, SubArticle } from "@/app/types";
 import { Utilities } from "@/utilities/Utilities";
 const localCafes = require("@/data/localCafe.json") as Article[];
+const accomodation = require("@/data/accomodation.json") as Article[];
 
-const articles = [...localCafes];
+const articles = [...localCafes, ...accomodation];
 
-export default function ArticleScreen() {
+export default function ArticleScreen() { 
   const { title } = useLocalSearchParams();
 
   const [article, setArticle] = useState<Article>({

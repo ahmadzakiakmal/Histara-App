@@ -8,6 +8,7 @@ import { Article } from "../types";
 
 export default function Explore() {
   const localCafes = require("@/data/localCafe.json") as Article[]
+  const accomodation = require("@/data/accomodation.json") as Article[]
 
   return (
     <>
@@ -17,7 +18,7 @@ export default function Explore() {
           <ArticleTray
             trayTitle="Tips Travel"
             trayDesc="Beberapa tips dalam travelling"
-            articles={[]}
+            articles={accomodation}
           />
           <ArticleTray
             trayTitle="Kafe Lokal"
@@ -76,7 +77,6 @@ interface ArticleTrayProps {
   articles: Article[];
 }
 function ArticleTray({ trayTitle, trayDesc, articles = [] }: ArticleTrayProps) {
-  const router = useRouter();
   return (
     <View>
       <View style={[gs.flexRow, gs.ic, { flexShrink: 0}]}>
