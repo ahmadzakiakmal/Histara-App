@@ -1,13 +1,14 @@
 import Button from "@/components/Button";
 import CustomText from "@/components/CustomText";
 import Header from "@/components/Header";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import { Image, Linking, Pressable, View } from "react-native";
 
 export default function Pembayaran() {
   const { id } = useLocalSearchParams();
   const [paymentStatus, setPaymentStatus] = useState<"paid" | "waiting" | "expired">("waiting");
+  const router = useRouter();
   return (
     <>
       <Header />
@@ -46,7 +47,9 @@ export default function Pembayaran() {
               Download Kode QR
             </CustomText>
           </Pressable>
-          <Button text="Cek Status Pembayaran" />
+          <Button text="Cek Status Pembayaran" onPress={() => {
+            router.navigate("/home/pembayaran/success")
+          }} />
         </View>
       </View>
     </>
