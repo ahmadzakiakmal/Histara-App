@@ -1,4 +1,7 @@
 import { Image, Platform, Pressable, View } from "react-native";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setToken } from "@/redux/slice/authSlice";
 import FormTextInput from "../FormTextInput";
 import { Dispatch, useState } from "react";
 import CustomText from "../CustomText";
@@ -9,10 +12,41 @@ import { Colors } from "@/constants/Colors";
 import { useRouter } from "expo-router";
 
 export default function SignInTab() {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const [email, setEmail]: [string, Dispatch<string>] = useState("");
   const [password, setPassword] = useState("");
 
-  const router = useRouter()
+  const handleSignIn = () => {
+    axios
+      .post("https://histara-server.vercel.app/v1/user/login", {
+        email,
+        password
+      })
+      .then((res) => {
+        const cookies = res.headers["set-cookie"];
+
+        if (cookies) {
+          const authTokenCookie = cookies.find((cookie) =>
+            cookie.startsWith("AuthToken=")
+          );
+
+          if (authTokenCookie) {
+            const authToken = authTokenCookie.split("=")[1].split(";")[0];
+            dispatch(setToken(authToken));
+            router.navigate("home");
+            console.log(authToken);
+          } else {
+            console.log("AuthToken not found");
+          }
+        } else {
+          console.log("Cookies not found in the response");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <View style={{ paddingHorizontal: 24, width: "100%", gap: 10, paddingBottom: 40 }}>
@@ -31,7 +65,7 @@ export default function SignInTab() {
         }}
         type="password"
       />
-      <Button text="SIGN IN" onPress={() => router.navigate("home")} />
+      <Button text="SIGN IN" onPress={() => handleSignIn()} />
 
       <View
         style={{
