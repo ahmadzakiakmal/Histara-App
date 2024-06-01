@@ -20,16 +20,16 @@ export default function Tour() {
       <WebView
         containerStyle={{ width: "auto" }}
         source={{
-          uri: "http://192.168.137.1:5500",
+          uri: "https://histara-map-git-main-ahmadzaki2975s-projects.vercel.app",
         }}
       />
       <View style={{ backgroundColor: Colors.blue.dark, paddingTop: 50 }}>
-        <CustomText
+        {/* <CustomText
           weight={700}
           style={[{ color: "#FFF" }]}
         >
-          Nama Paket Tur
-        </CustomText>
+          
+        </CustomText> */}
       </View>
     </View>
   );
