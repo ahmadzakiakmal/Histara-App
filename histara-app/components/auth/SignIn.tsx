@@ -19,7 +19,7 @@ export default function SignInTab() {
 
   const handleSignIn = () => {
     axios
-      .post("https://histara-server.vercel.app/v1/user/login", {
+      .post(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/user/login", {
         email,
         password
       })
@@ -35,7 +35,7 @@ export default function SignInTab() {
             const authToken = authTokenCookie.split("=")[1].split(";")[0];
             dispatch(setToken(authToken));
             router.navigate("home");
-            console.log(authToken);
+            console.log("Login success!");
           } else {
             console.log("AuthToken not found");
           }

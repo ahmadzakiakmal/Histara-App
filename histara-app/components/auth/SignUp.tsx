@@ -7,6 +7,7 @@ import FormDropdown from "../FormDropdown";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Colors } from "@/constants/Colors";
 import { Link, useRouter } from "expo-router";
+import axios from "axios";
 
 export default function SignUpTab() {
   const [name, setName]: [string, Dispatch<string>] = useState("");
@@ -21,6 +22,32 @@ export default function SignUpTab() {
   const [open, setOpen] = useState(false);
 
   const router = useRouter()
+
+  const handleClick = () => {
+    // SAMPLE HANDLER FOR PASSWORD MISSMATCH
+    if(password !== confirmPassword) {
+      console.log("Password not match!")
+      return
+    }
+
+    axios.post(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/user/register", {
+      name,
+      email,
+      phoneNumber,
+      birthday,
+      gender,
+      work,
+      password,
+    })
+    .then((res) => {
+      console.log(res);
+      console.log("Register success!")
+      router.navigate("home")
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
 
   return (
     <View style={{ paddingHorizontal: 24, width: "100%", gap: 10, paddingBottom: 40 }}>
@@ -38,6 +65,7 @@ export default function SignUpTab() {
           setEmail(text);
         }}
       />
+      {/* TODO: ADDING CONSTRAINT TO FORCE ONLY NUMBER AND NOT STARTING WITH 0 */}
       <FormTextInput
         placeholder="Phone Number"
         state={phoneNumber}
@@ -86,19 +114,29 @@ export default function SignUpTab() {
 
       <FormDropdown
         state={gender}
-        setState={(newValue: any) => setGender(newValue)}
+        setState={(newValue: any) => setGender(newValue.value)}
         options={[
-          { title: "Laki-Laki", value: "Laki-Laki" },
-          { title: "Perempuan", value: "Perempuan" },
+          { title: "Laki-Laki", value: "LAKI-LAKI" },
+          { title: "Perempuan", value: "PEREMPUAN" },
         ]}
         placeholder="Gender"
       />
-      <FormTextInput
+      <FormDropdown
         placeholder="Work"
         state={work}
-        setState={(text) => {
-          setWork(text);
+        setState={(newValue: any) => {
+          setWork(newValue.value);
         }}
+        options={[
+          { title: "Mahasiswa", value: "MAHASISWA" },
+          { title: "SMA", value: "SMA" },
+          { title: "SMP", value: "SMP" },
+          { title: "SD", value: "SD" },
+          { title: "Pengajar", value: "PENGAJAR" },
+          { title: "Wiraswasta", value: "WIRASWASTA" },
+          { title: "Karyawan", value: "KARYAWAN" },
+          { title: "Lainnya", value: "LAINNYA" },
+        ]}
       />
       <FormTextInput
         placeholder="Password"
@@ -116,7 +154,7 @@ export default function SignUpTab() {
         }}
         type="password"
       />
-      <Button text="SIGN UP" style={[{flex: 1}]} onPress={() => {router.navigate("home")}} />
+      <Button text="SIGN UP" style={[{flex: 1}]} onPress={() => {handleClick()}} />
 
       <View
         style={{
