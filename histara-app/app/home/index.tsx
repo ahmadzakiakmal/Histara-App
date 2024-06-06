@@ -4,6 +4,8 @@ import Header from "@/components/Header";
 import CustomText from "@/components/CustomText";
 import { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
+import { Utilities } from "@/utilities/Utilities";
+import { Colors } from "@/constants/Colors";
 
 interface Place {
   id: number;
@@ -49,6 +51,7 @@ export default function HomeScreen() {
   ];
 
   useEffect(() => {
+    console.log(placesRaw)
     const pairedPlaces: [Place, Place][] = [];
     placesRaw.forEach((place, index) => {
       if (index % 2 !== 1) {
@@ -59,9 +62,19 @@ export default function HomeScreen() {
     setPlaces(pairedPlaces);
   }, []);
 
-  const Item = ({ title }: { title: string }) => (
-    <View>
-      <Text>{title}</Text>
+  const Item = ({ item }: { item: { image: string; title: string } }) => (
+    <View style={{ height: 200, width: Utilities.getScreenWidth(), backgroundColor: "#727272", position: "relative" }}>
+      <Image
+        source={{ uri: item.image }}
+        style={{ height: 200, width: "100%"}}
+      />
+      <View style={{position: "absolute", width: "100%", height: "100%", backgroundColor: Colors.orange.main, opacity: .2}} />
+      {/* <CustomText
+        weight={700}
+        style={[{ position: "absolute" }]}
+      >
+        {item.title}
+      </CustomText> */}
     </View>
   );
 
@@ -85,11 +98,9 @@ export default function HomeScreen() {
           }}
           paginationActiveColor="#FFF"
           paginationDefaultColor="rgba(255,255,255,0.36)"
-          data={colors}
+          data={placesRaw}
           renderItem={({ item }) => (
-            <View style={[styles.child, { backgroundColor: item }]}>
-              <Text style={styles.text}>{item}</Text>
-            </View>
+            <Item item={item} />
           )}
         />
       </View>
