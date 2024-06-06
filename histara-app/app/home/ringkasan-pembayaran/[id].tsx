@@ -4,28 +4,71 @@ import Header from "@/components/Header";
 import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Image, Linking, Pressable, ScrollView, View } from "react-native";
+
+interface TourStop {
+  name: string;
+  image?: string; // Optional property
+  coordinates: [number, number];
+}
+
+interface Tour {
+  id: string;
+  name: string;
+  desc: string;
+  duration: string;
+  points: number;
+  stop: number;
+  stops: TourStop[];
+}
 
 export default function RingkasanPembayaran() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const [touched, setTouched] = useState(false);
+  const allTours = require("@/data/tours.json") as Tour[];
+  const [tour, setTour] = useState<Tour>({
+    id: "",
+    desc: "",
+    duration: "",
+    name: "",
+    points: 0,
+    stop: 0,
+    stops: [],
+  });
+  useEffect(() => {
+    const tourToBeDisplayed = allTours.filter((tour) => {
+      return tour.id === id;
+    })[0];
+    setTour(tourToBeDisplayed);
+  }, [id]);
   return (
     <View style={{ backgroundColor: "#FFF", flex: 1 }}>
       <Header title="Ringkasan Pembayaran" />
       <ScrollView>
         <CustomText
           weight={700}
-          style={[{ fontSize: 20, textAlign: "center", paddingTop: 16 }]}
+          style={[{ fontSize: 20, textAlign: "center", paddingTop: 16, paddingHorizontal: 18 }]}
         >
-          {id}
+          {tour.name}
         </CustomText>
         <CustomText
           weight={400}
           style={[{ fontSize: 16, textAlign: "center", paddingBottom: 12 }]}
         >
-          Nama Kota
+          {
+            id?.includes("YG") && "Yogyakarta"
+          }
+          {
+            id?.includes("MG") && "Magelang"
+          }
+          {
+            id?.includes("AM") && "Ambarawa"
+          }
+          {
+            id?.includes("SM") && "Semarang"
+          }
         </CustomText>
         <View style={{ height: 200, backgroundColor: Colors.orange.main }}></View>
 
@@ -37,7 +80,7 @@ export default function RingkasanPembayaran() {
               weight={700}
               style={[{ color: Colors.orange.main }]}
             >
-              5-7 hrs
+              {tour.duration} hrs
             </CustomText>
           </View>
           <View style={[gs.ic, { minWidth: 80 }]}>
@@ -47,7 +90,7 @@ export default function RingkasanPembayaran() {
               weight={700}
               style={[{ color: Colors.orange.main }]}
             >
-              50
+              {tour.points}
             </CustomText>
           </View>
           <View style={[gs.ic, { minWidth: 80 }]}>
@@ -57,7 +100,7 @@ export default function RingkasanPembayaran() {
               weight={700}
               style={[{ color: Colors.orange.main }]}
             >
-              8
+              {tour.stops.length}
             </CustomText>
           </View>
         </View>
@@ -82,19 +125,19 @@ export default function RingkasanPembayaran() {
             >
               Harga Paket Tur
             </CustomText>
-            <CustomText weight={400}>Rp 300.000,-</CustomText>
+            <CustomText weight={400}>Rp 30.000,-</CustomText>
           </View>
           <View style={{ marginTop: 12 }}>
             <CustomText weight={700}>Metode Pembayaran</CustomText>
             <Pressable
               onPress={() => {
-                router.navigate("/home/pembayaran/623123")
+                router.navigate("/home/pembayaran/" + id);
               }}
               onPressIn={() => setTouched(true)}
               onPressOut={() => setTouched(false)}
               style={{
                 borderColor: "#000",
-                marginTop:5,
+                marginTop: 5,
                 borderWidth: 1,
                 alignSelf: "flex-start",
                 paddingHorizontal: 10,

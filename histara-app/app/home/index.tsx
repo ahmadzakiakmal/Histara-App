@@ -1,4 +1,4 @@
-import { Dimensions, ScrollView, StyleSheet, Text, View, FlatList, Pressable } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, Text, View, FlatList, Pressable, Image } from "react-native";
 import { SwiperFlatList } from "react-native-swiper-flatlist";
 import Header from "@/components/Header";
 import CustomText from "@/components/CustomText";
@@ -8,6 +8,7 @@ import { useRouter } from "expo-router";
 interface Place {
   id: number;
   title: string;
+  image: string;
 }
 
 export default function HomeScreen() {
@@ -24,23 +25,31 @@ export default function HomeScreen() {
     {
       id: 1,
       title: "Yogyakarta",
+      image:
+        "https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihb0ej6m-bfpUnDsSpFoy-imw4Og8x2J-WbaJqLAsVy2MYCJGcNG4pslyzARjGKgrbXNwSXkFwK6A7UVopdp7x0MDjAyRIunmiw=w1879-h931-rw-v1",
     },
     {
       id: 2,
       title: "Ambarawa",
+      image:
+        "https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihaW1fsUY6dEd3SG82t9ApLbDh41haFXFmP92WXwWX5z1AtgWpzcCNS60lb2qcvgfGpsRHnAqWC7VSQSZEe0rm6Ru3rbt2zvads=w1879-h931-rw-v1",
     },
     {
       id: 3,
       title: "Magelang",
+      image:
+        "https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihbpx39-jyuXG6XDgHiFGROX4Os0aA-6_SX_1pYS8PITqpwgx2QucAKJ6oF578jNSXSNJ3pTTbDSFybh88MllRey46gF7ynpzg=w1879-h931-rw-v1",
     },
     {
       id: 5,
       title: "Semarang",
+      image:
+        "https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihbfZIY0YFudxPqTKNmtGQlkV-_bhZLgDcxUpMlM-fIgNDVoQt4ifNg0Jwc99X0-OQKzRchPcAxh78hshrExJAn9ktW-9wPv3JA=w1879-h931-rw-v1",
     },
   ];
 
   useEffect(() => {
-    const pairedPlaces:[Place, Place][] = [];
+    const pairedPlaces: [Place, Place][] = [];
     placesRaw.forEach((place, index) => {
       if (index % 2 !== 1) {
         const pairPlaces: [Place, Place] = [place, placesRaw[index + 1]];
@@ -50,7 +59,7 @@ export default function HomeScreen() {
     setPlaces(pairedPlaces);
   }, []);
 
-  const Item = ({ title }: {title: string}) => (
+  const Item = ({ title }: { title: string }) => (
     <View>
       <Text>{title}</Text>
     </View>
@@ -107,11 +116,14 @@ export default function HomeScreen() {
   );
 }
 
-function PlacesPairItem({ pairPlace }: {pairPlace: [Place, Place]}) {
+function PlacesPairItem({ pairPlace }: { pairPlace: [Place, Place] }) {
   const router = useRouter();
   return (
     <View style={{ flexDirection: "row", gap: 23, marginBottom: 13 }}>
-      <Pressable onPress={() => router.navigate("/home/menu-paket/" + pairPlace[0]?.title)} style={{ flex: 1, gap: 8 }}>
+      <Pressable
+        onPress={() => router.navigate("/home/menu-paket/" + pairPlace[0]?.title)}
+        style={{ flex: 1, gap: 8 }}
+      >
         <View
           style={{
             height: 163,
@@ -120,8 +132,16 @@ function PlacesPairItem({ pairPlace }: {pairPlace: [Place, Place]}) {
             shadowColor: "#000",
             shadowOffset: { width: 10, height: 5 },
             elevation: 6,
+            overflow: "hidden",
           }}
-        ></View>
+        >
+          {pairPlace[0]?.image && (
+            <Image
+              source={{ uri: pairPlace[0]?.image }}
+              style={{ height: 163, width: "auto" }}
+            />
+          )}
+        </View>
         <CustomText
           style={[{ textAlign: "center" }]}
           weight={700}
@@ -130,7 +150,10 @@ function PlacesPairItem({ pairPlace }: {pairPlace: [Place, Place]}) {
         </CustomText>
       </Pressable>
       {pairPlace[1] !== undefined && (
-        <Pressable onPress={() => router.navigate("/home/menu-paket/" + pairPlace[1]?.title)} style={{ flex: 1, gap: 8 }}>
+        <Pressable
+          onPress={() => router.navigate("/home/menu-paket/" + pairPlace[1]?.title)}
+          style={{ flex: 1, gap: 8 }}
+        >
           <View
             style={{
               height: 163,
@@ -139,8 +162,16 @@ function PlacesPairItem({ pairPlace }: {pairPlace: [Place, Place]}) {
               shadowColor: "#000",
               shadowOffset: { width: 10, height: 5 },
               elevation: 6,
+              overflow: "hidden",
             }}
-          ></View>
+          >
+            {pairPlace[1]?.image && (
+              <Image
+                source={{ uri: pairPlace[1]?.image }}
+                style={{ height: 163, width: "auto" }}
+              />
+            )}
+          </View>
           <CustomText
             style={[{ textAlign: "center" }]}
             weight={700}

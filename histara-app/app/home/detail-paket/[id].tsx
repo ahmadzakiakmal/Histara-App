@@ -133,7 +133,7 @@ export default function MenuPaketScreen() {
       </ScrollView>
         <View style={{ backgroundColor: Colors.blue.dark, paddingVertical: 11 }}>
           <Pressable
-            onPress={() => {router.replace("/home/ringkasan-pembayaran/Test")}}
+            onPress={() => {router.replace("/home/ringkasan-pembayaran/" + id)}}
             onPressIn={() => setTouched(true)}
             onPressOut={() => setTouched(false)}
             style={[
