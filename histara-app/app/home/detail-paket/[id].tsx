@@ -169,7 +169,7 @@ function Stop({name, image} : {name: string, image: string}) {
       <View style={{ width: 200, height: 145, backgroundColor: Colors.orange.main, borderRadius: 20 }} />
       <CustomText
         weight={700}
-        style={[{ textAlign: "center", fontSize: 18, maxWidth: 175 }]}
+        style={[{ textAlign: "center", fontSize: 18, maxWidth: 200 }]}
       >
         {name}
       </CustomText>
