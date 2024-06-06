@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, ScrollView, Image, Pressable, Animated } from "react-native";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import CustomText from "@/components/CustomText";
 import { gs } from "@/constants/Styles";
 import { Colors } from "@/constants/Colors";
@@ -12,6 +12,25 @@ export default function AuthScreen() {
   const router = useRouter();
   const [onTab1, setOnTab1] = useState(true);
   const [translateX] = useState(new Animated.Value(0));
+  const { tab } = useLocalSearchParams();
+
+    useEffect(() => {
+    if (tab === "signin") {
+      setOnTab1(false);
+      Animated.timing(translateX, {
+        toValue: Utilities.getScreenWidth() / 2,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      setOnTab1(true);
+      Animated.timing(translateX, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [tab]);
 
   return (
     <>

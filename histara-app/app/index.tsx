@@ -42,7 +42,7 @@ export default function HomeScreen() {
       </View>
 
       <View style={{ width: "100%", marginTop: 42, gap: 16 }}>
-        <Button text="Create Account" onPress={() => router.navigate("auth")} />
+        <Button text="Create Account" onPress={() => router.navigate("auth/signup")} />
         <View style={{ alignItems: "center", flexDirection: "row", justifyContent: "center" }}>
           <CustomText
             weight={400}
@@ -50,7 +50,7 @@ export default function HomeScreen() {
           >
             Already have an account?{" "}
           </CustomText>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => router.navigate("/auth/signin")}>
             <CustomText
               weight={700}
               italic={true}
