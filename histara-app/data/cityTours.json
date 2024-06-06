@@ -9,6 +9,16 @@
       "id": "YG02",
       "name": "Adhikari Cycling Tour at Kota Gede",
       "desc": "Eksplor Saksi Bisu Kerajaan Mataram Islam Zaman Dahulu"
+    },
+    {
+      "id": "YG03",
+      "name": "Kastara Riding Tour at Yogyakarta",
+      "desc": "Nikmati sensasi menjelajah waktu dengan wisata candi!"
+    },
+    {
+      "id": "YG04",
+      "name": "Niscala Riding Tour at Yogyakarta",
+      "desc": "Melihat keindahan matahari terbit dan terbenam di pelataran candi"
     }
   ],
   "Magelang": [
@@ -35,6 +45,11 @@
       "id": "SM01",
       "name": "Abra Walking Tour at Kota Tua Semarang",
       "desc": "Rasakan keajaiban masa lalu melalui bangunan bersejarah, museum, dan pasar yang memukau, sambil menikmati pesona budaya dan tradisi yang hidup di jantung kota."
+    },
+    {
+      "id": "SM02",
+      "name": "Wirasana Walking Tour at Pandanaran Semarang",
+      "desc": "Temukan berbagai cerita sejarah dalam bangunan-bangunan autentik di Kota Semarang!"
     }
   ]
 }
