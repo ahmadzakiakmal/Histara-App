@@ -54,7 +54,7 @@ export default function MenuPaketScreen() {
         <View style={{ height: 200, backgroundColor: Colors.orange.main }}></View>
         <CustomText
           weight={700}
-          style={[{ fontSize: 20, textAlign: "center", paddingVertical: 12 }]}
+          style={[{ fontSize: 20, textAlign: "center", paddingVertical: 12, paddingHorizontal: 18 }]}
         >
           {tour.name}
         </CustomText>
