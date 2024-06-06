@@ -4,6 +4,7 @@ import CustomText from "./CustomText";
 import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
 import { Dispatch } from "react";
+import { Utilities } from "@/utilities/Utilities";
 
 interface Props {
   state: any;
@@ -35,6 +36,7 @@ export default function FormDropdown({
   return (
     <SelectDropdown
       data={options}
+      dropdownStyle={{marginTop: -200}}
       onSelect={(selectedItem, index) => {
         console.log(selectedItem, index);
         setState(selectedItem);
