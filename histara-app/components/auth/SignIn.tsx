@@ -14,8 +14,8 @@ import { useRouter } from "expo-router";
 export default function SignInTab() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [email, setEmail]: [string, Dispatch<string>] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail]: [string, Dispatch<string>] = useState("poc@histara.id");
+  const [password, setPassword] = useState("esempe");
 
   const handleSignIn = () => {
     axios
