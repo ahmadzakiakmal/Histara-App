@@ -65,7 +65,7 @@ function Paket({ title, desc, id }: { title: string; desc: string; id: string })
           style={[{ width: "auto", paddingHorizontal: 16, flexShrink: 0 }]}
           textStyle={[{ fontFamily: "PoppinsRegular" }]}
           text="See detail"
-          onPress={() => router.navigate("/home/detail-paket/" + title)}
+          onPress={() => router.navigate("/home/detail-paket/" + id)}
         />
       </View>
       <CustomText

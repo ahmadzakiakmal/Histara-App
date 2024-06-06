@@ -1,0 +1,378 @@
+[
+  {
+    "id": "YG01",
+    "name": "Adara Cycling Tour at Kota Baru",
+    "desc": "Kawasan Elit Belanda yang autentik di tengah Kota Jogja",
+    "duration": "2-3",
+    "points": 40,
+    "stop": 10,
+    "stops": [
+      {
+        "name": "Rumah Sakit Bethesda",
+        "image": "Rs bethesda.jpg",
+        "coordinates": [-7.783507314574553, 110.3777906951027]
+      },
+
+      {
+        "name": "Rumah Sakit DKT. Dr. Soetarto",
+        "image": "RS DKT Dr Soetarto.jpg",
+        "coordinates": [-7.7860679, 110.3768441]
+      },
+      {
+        "name": "SMA Bopkri 1 Yogyakarta",
+        "image": "Sma bokpri.jpg",
+        "coordinates": [-7.7868186, 110.3766597]
+      },
+      {
+        "name": "Asrama Kompi Kotabaru",
+        "coordinates": [-7.787672298425395, 110.37631549685648]
+      },
+      {
+        "name": "SMP Negeri 5 Yogyakarta",
+        "image": "SMP Negeri 5.jpg",
+        "coordinates": [-7.7873757, 110.3755527]
+      },
+      {
+        "name": "Babon Aniem",
+        "image": "Babon Aniem.jpg",
+        "coordinates": [-7.7867987, 110.3721449]
+      },
+      {
+        "name": "SDN Unggaran 1",
+        "image": "SDN Ungaran 1 .jpg",
+        "coordinates": [-7.786325, 110.37112]
+      },
+      {
+        "name": "Masjid Syuhada",
+        "image": "Masjid Syuhada.jpg",
+        "coordinates": [-7.786334, 110.3693527]
+      },
+      {
+        "name": "Museum Sandi",
+        "image": "Museum sandi.jpg",
+        "coordinates": [-7.7846132, 110.3711706]
+      },
+      {
+        "name": "Gedung Markas Komando",
+        "image": "Gedung markas komando.jpg"
+      }
+    ]
+  },
+  {
+    "id": "MG01",
+    "name": "Danadyaksa Riding Tour at Magelang",
+    "desc": "Jelajahi keajaiban Candi Magelang sebagai warisan budaya yang menakjubkan!",
+    "duration": "2-3",
+    "points": 35,
+    "stop": 5,
+    "stops": [
+      {
+        "name": "Candi Gunung Sari",
+        "coordinates": [-7.6021298, 110.2832397]
+      },
+      {
+        "name": "Candi Ngawen",
+        "image": "candi ngawen.png",
+        "coordinates": [-7.6040311, 110.2724247]
+      },
+      {
+        "name": "Candi Mendut",
+        "coordinates": [-7.6047436, 110.2299677]
+      },
+      {
+        "name": "Candi Pawon",
+        "coordinates": [-7.6061184, 110.2195272]
+      },
+      {
+        "name": "Candi Borobudur",
+        "coordinates": [-7.608038633071076, 110.20384249510818]
+      }
+    ]
+  },
+  {
+    "id": "YG02",
+    "name": "Adhikari Cycling Tour at Kota Gede",
+    "desc": "Eksplor Saksi Bisu Kerajaan Mataram Islam Zaman Dahulu",
+    "duration": "2-3",
+    "points": 45,
+    "stop": 10,
+    "stops": [
+      {
+        "name": "Pasar Legi Kotagede",
+        "coordinates": [-7.827865, 110.3999145]
+      },
+      {
+        "name": "Masjid Gede Mataram",
+        "coordinates": [-7.8292906, 110.3981439]
+      },
+      {
+        "name": "Sendang",
+        "coordinates": [-7.8298636774534165, 110.39782254202203]
+      },
+      {
+        "name": "Makam Panembahan Senopati",
+        "coordinates": [-7.8293457, 110.3977701]
+      },
+      {
+        "name": "Kampung Alun-alun",
+        "coordinates": [-7.830918554062269, 110.39909936746855]
+      },
+      {
+        "name": "Makam Hasta Renggo",
+        "coordinates": [-7.8320013, 110.3991819]
+      },
+      {
+        "name": "Situs Watu Gilang & Gatheng",
+        "coordinates": [-7.8320991728151474, 110.39919933351024]
+      },
+      {
+        "name": "Situs Bokong Semar (Bekas Benteng Karaton)",
+        "coordinates": [-7.833482828505818, 110.40002604094516]
+      },
+      {
+        "name": "Rumah Kalang (Restoran) - Heritage",
+        "coordinates": [-7.826788283890553, 110.39298252754546]
+      },
+      {
+        "name": "Museum Kotagede",
+        "coordinates": [-7.8263122, 110.3921136]
+      }
+    ]
+  },
+  {
+    "id": "YG03",
+    "name": "Kastara Riding Tour at Yogyakarta",
+    "desc": "Nikmati sensasi menjelajah waktu dengan wisata candi!",
+    "duration": "3-4",
+    "points": 50,
+    "stop": 6,
+    "stops": [
+      {
+        "name": "Candi Plaosan",
+        "image": "candi plaosan.jpg",
+        "coordinates": [-7.741607392949931, 110.50434229191514]
+      },
+      {
+        "name": "Candi Gana",
+        "coordinates": [-7.743956534859717, 110.49610443958223]
+      },
+      {
+        "name": "Candi Prambanan",
+        "coordinates": [-7.752025310182392, 110.49139879429016]
+      },
+      {
+        "name": "Candi Lumbung",
+        "coordinates": [-7.748118414983243, 110.49293914161629]
+      },
+      {
+        "name": "Candi Bubrah",
+        "coordinates": [-7.7464990603686195, 110.49290784254902]
+      },
+      {
+        "name": "Candi Sewu",
+        "coordinates": [-7.743870533220043, 110.49284985602297]
+      }
+    ]
+  },
+  {
+    "id": "YG04",
+    "name": "Niscala Riding Tour at Yogyakarta",
+    "desc": "Melihat keindahan matahari terbit dan terbenam di pelataran candi",
+    "duration": "3-4",
+    "points": 55,
+    "stop": 5,
+    "stops": [
+      {
+        "name": "Candi Sojiwan",
+        "coordinates": [-7.761044153758847, 110.4961070518608]
+      },
+      {
+        "name": "Candi Ratu Boko",
+        "coordinates": [-7.770638894865246, 110.48601207135462]
+      },
+      {
+        "name": "Candi Barong",
+        "image": "candi barong.jpg",
+        "coordinates": [-7.7750809922049084, 110.49751965055466]
+      },
+      {
+        "name": "Candi Banyunibo",
+        "image": "candi banyunibo.jpg",
+        "coordinates": [-7.777997137599033, 110.49401798158385]
+      },
+      {
+        "name": "Candi Ijo",
+        "image": "candi Ijo.png",
+        "coordinates": [-7.78410629669363, 110.51148425251785]
+      }
+    ]
+  },
+  {
+    "id": "MG02",
+    "name": "Sadajiwa Riding Tour at Kota Magelang",
+    "desc": "Jelajahi pesona Magelang dengan tempat ibadah yang menenangkan, ikon kota yang megah, dan museum penuh pengetahuan yang memperkaya wawasan sejarah!",
+    "duration": "2-3",
+    "points": 30,
+    "stop": 9,
+    "stops": [
+      {
+        "name": "Gerbang Kerkhof",
+        "coordinates": [-7.4892447, 110.2217575]
+      },
+      {
+        "name": "Gereja Kristen Jawa (GKJ) Magelang",
+        "coordinates": [-7.483832, 110.2157155]
+      },
+      {
+        "name": "Masjid Agung Magelang (parkir)",
+        "coordinates": [-7.4772337, 110.2171347]
+      },
+      {
+        "name": "Alun-alun Magelang - Water Toren",
+        "coordinates": [-7.4768235, 110.2178096]
+      },
+      {
+        "name": "Gereja GPIB Beth-El Magelang",
+        "coordinates": [-7.4760393, 110.2180238]
+      },
+      {
+        "name": "Klenteng Liok Hok Bio",
+        "coordinates": [-7.4782739, 110.2191819]
+      },
+      {
+        "name": "Museum BPK RI",
+        "coordinates": [-7.4744902, 110.2141705]
+      },
+      {
+        "name": "Museum Diponegoro",
+        "coordinates": [-7.4747625, 110.2128036]
+      },
+      {
+        "name": "Eks Kampus UGM Cabang Magelang",
+        "coordinates": [-7.4751115, 110.2115436]
+      }
+    ]
+  },
+  {
+    "id": "AM01",
+    "name": "Bramanty Riding or Cycling Tour at Ambarawa",
+    "desc": "Menelusuri jejak heroik rakyat Ambarawa sembari menghayati perjalanan sejarah!",
+    "duration": "2-3",
+    "points": 45,
+    "stop": 7,
+    "stops": [
+      {
+        "name": "Monumen Palagan Ambarawa",
+        "coordinates": [-7.2598825, 110.4025069]
+      },
+      {
+        "name": "Museum Isdiman",
+        "coordinates": [-7.2599852, 110.4021528]
+      },
+      {
+        "name": "Gereja Kristen Ambarawa (GKJ)",
+        "coordinates": [-7.2601422, 110.4020133]
+      },
+      {
+        "name": "Gereja Protestan di Indonesia bagian Barat (BPIB) Ambarawa",
+        "coordinates": [-7.260214, 110.4018477]
+      },
+      {
+        "name": "Museum Kereta Api Ambarawa",
+        "coordinates": [-7.2648619, 110.4027938]
+      },
+      {
+        "name": "Benteng Fort Willem I (Benteng Pendem)",
+        "coordinates": [-7.2706495, 110.4101468]
+      },
+      {
+        "name": "Eling Bening",
+        "coordinates": [-7.2677195, 110.4452482]
+      }
+    ]
+  },
+  {
+    "id": "SM01",
+    "name": "Abra Walking Tour at Kota Tua Semarang",
+    "desc": "Rasakan keajaiban masa lalu melalui bangunan bersejarah, museum, dan pasar yang memukau, sambil menikmati pesona budaya dan tradisi yang hidup di jantung kota.",
+    "duration": "2-3",
+    "points": 40,
+    "stop": 8,
+    "stops": [
+      {
+        "name": "Stasiun Tawang",
+        "coordinates": [-6.964469, 110.4279795]
+      },
+      {
+        "name": "Kota Lama Semarang",
+        "coordinates": [-6.968411320276323, 110.42760139863123]
+      },
+      {
+        "name": "GPIB Immanuel Semarang (Gereja Blenduk)",
+        "coordinates": [-6.9683022, 110.4274688]
+      },
+      {
+        "name": "POS Indonesia KCU Semarang",
+        "coordinates": [-6.9699459, 110.424217]
+      },
+      {
+        "name": "Alun-Alun Semarang",
+        "coordinates": [-6.971914811465167, 110.42385489888301]
+      },
+      {
+        "name": "Pasar Johar",
+        "coordinates": [-6.9714691, 110.424623]
+      },
+      {
+        "name": "Museum Kota Lama Semarang",
+        "coordinates": [-6.9693845, 110.4307086]
+      },
+      {
+        "name": "Kampung Batik",
+        "coordinates": [-6.9691585, 110.4311451]
+      }
+    ]
+  },
+  {
+    "id": "SM02",
+    "name": "Wirasana Walking Tour at Pandanaran Semarang",
+    "desc": "Temukan berbagai cerita sejarah dalam bangunan-bangunan autentik di Kota Semarang!",
+    "duration": "2-3",
+    "points": 35,
+    "stop": 8,
+    "stops": [
+      {
+        "name": "Lawang Sewu",
+        "coordinates": [-6.9833715, 110.4106866]
+      },
+      {
+        "name": "Tugu Muda Semarang",
+        "coordinates": [-6.9842817, 110.4093361]
+      },
+      {
+        "name": "Gereja Katedral Santa Perawan Maria",
+        "coordinates": [-6.9854654, 110.4097408]
+      },
+      {
+        "name": "Kompleks SD SMP Pangudi Luhur",
+        "coordinates": [-6.9859466, 110.4100589]
+      },
+      {
+        "name": "Museum Perjuangan Mandala Bhakti",
+        "coordinates": [-6.9847655, 110.4088245]
+      },
+      {
+        "name": "Pasar Bulu Semarang",
+        "coordinates": [-6.9841658, 110.4080993]
+      },
+      {
+        "name": "Wisma Perdamaian",
+        "coordinates": [-6.9835365, 110.4085355]
+      },
+      {
+        "name": "Gedung Juang 45 Semarang",
+        "coordinates": [-6.9822333, 110.4112891]
+      }
+    ]
+  }
+]

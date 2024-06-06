@@ -5,13 +5,48 @@ import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
 import { Utilities } from "@/utilities/Utilities";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Image, Pressable, ScrollView, View } from "react-native";
+
+interface TourStop {
+  name: string;
+  image?: string; // Optional property
+  coordinates: [number, number];
+}
+
+interface Tour {
+  id: string;
+  name: string;
+  desc: string;
+  duration: string;
+  points: number;
+  stop: number;
+  stops: TourStop[];
+}
 
 export default function MenuPaketScreen() {
   const { id } = useLocalSearchParams();
   const [touched, setTouched] = useState(false);
   const router = useRouter();
+  const allTours = require("@/data/tours.json") as Tour[]
+
+  const [tour, setTour] = useState<Tour>({
+    id: "",
+    desc: "",
+    duration: "",
+    name: "",
+    points: 0,
+    stop: 0,
+    stops: []
+  })
+
+  useEffect(() => {
+    const tourToBeDisplayed = allTours.filter((tour) => {
+      return tour.id === id
+    })[0];
+    setTour(tourToBeDisplayed);
+  }, [id])
+
   return (
     <View style={{ backgroundColor: "#FFF", flex: 1 }}>
       <Header />
@@ -21,7 +56,7 @@ export default function MenuPaketScreen() {
           weight={700}
           style={[{ fontSize: 20, textAlign: "center", paddingVertical: 12 }]}
         >
-          {id}
+          {tour.name}
         </CustomText>
 
         <View style={[gs.flexRow, gs.ic, gs.jc, { gap: 50, marginTop: 12 }]}>
@@ -32,7 +67,7 @@ export default function MenuPaketScreen() {
               weight={700}
               style={[{ color: Colors.orange.main }]}
             >
-              5-7 hrs
+              {tour.duration} hrs
             </CustomText>
           </View>
           <View style={[gs.ic, { minWidth: 80 }]}>
@@ -42,7 +77,7 @@ export default function MenuPaketScreen() {
               weight={700}
               style={[{ color: Colors.orange.main }]}
             >
-              50
+              {tour.points}
             </CustomText>
           </View>
           <View style={[gs.ic, { minWidth: 80 }]}>
@@ -52,7 +87,7 @@ export default function MenuPaketScreen() {
               weight={700}
               style={[{ color: Colors.orange.main }]}
             >
-              8
+              {tour.stops.length}
             </CustomText>
           </View>
         </View>
@@ -68,8 +103,7 @@ export default function MenuPaketScreen() {
             weight={400}
             style={[{ fontSize: 14 }]}
           >
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae optio, atque quis ad voluptate praesentium
-            nulla fuga laudantium cumque sunt!
+            {tour.desc}
           </CustomText>
         </View>
 
@@ -89,12 +123,11 @@ export default function MenuPaketScreen() {
           showsHorizontalScrollIndicator={false}
           horizontal
         >
-          <Stop />
-          <Stop />
-          <Stop />
-          <Stop />
-          <Stop />
-          <Stop />
+          {
+            tour.stops.map((stop, index) => {
+              return <Stop name={stop.name} image="" key={index} />
+            })
+          }
         </ScrollView>
 
       </ScrollView>
@@ -130,15 +163,15 @@ export default function MenuPaketScreen() {
   );
 }
 
-function Stop() {
+function Stop({name, image} : {name: string, image: string}) {
   return (
     <View>
       <View style={{ width: 200, height: 145, backgroundColor: Colors.orange.main, borderRadius: 20 }} />
       <CustomText
         weight={700}
-        style={[{ textAlign: "center", fontSize: 18 }]}
+        style={[{ textAlign: "center", fontSize: 18, maxWidth: 175 }]}
       >
-        Stop Name
+        {name}
       </CustomText>
     </View>
   );
