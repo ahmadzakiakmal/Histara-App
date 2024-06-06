@@ -1,0 +1,40 @@
+{
+  "Yogyakarta": [
+    {
+      "id": "YG01",
+      "name": "Adara Cycling Tour at Kota Baru",
+      "desc": "Kawasan Elit Belanda yang autentik di tengah Kota Jogja"
+    },
+    {
+      "id": "YG02",
+      "name": "Adhikari Cycling Tour at Kota Gede",
+      "desc": "Eksplor Saksi Bisu Kerajaan Mataram Islam Zaman Dahulu"
+    }
+  ],
+  "Magelang": [
+    {
+      "id": "MG01",
+      "name": "Danadyaksa Riding Tour at Magelang",
+      "desc": "Jelajahi keajaiban Candi Magelang sebagai warisan budaya yang menakjubkan!"
+    },
+    {
+      "id": "MG02",
+      "name": "Sadajiwa Riding Tour at Kota Magelang",
+      "desc": "Jelajahi pesona Magelang dengan tempat ibadah yang menenangkan, ikon kota yang megah, dan museum penuh pengetahuan yang memperkaya wawasan sejarah!"
+    }
+  ],
+  "Ambarawa": [
+    {
+      "id": "AM01",
+      "name": "Bramanty Riding or Cycling Tour at Ambarawa",
+      "desc": "Menelusuri jejak heroik rakyat Ambarawa sembari menghayati perjalanan sejarah!"
+    }
+  ],
+  "Semarang": [
+    {
+      "id": "SM01",
+      "name": "Abra Walking Tour at Kota Tua Semarang",
+      "desc": "Rasakan keajaiban masa lalu melalui bangunan bersejarah, museum, dan pasar yang memukau, sambil menikmati pesona budaya dan tradisi yang hidup di jantung kota."
+    }
+  ]
+}

@@ -5,11 +5,19 @@ import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
 import { Utilities } from "@/utilities/Utilities";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { useEffect, useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
 import { panHandlerName } from "react-native-gesture-handler/lib/typescript/handlers/PanGestureHandler";
 
 export default function MenuPaketScreen() {
+  const allTours = require("@/data/cityTours.json");
   const { city } = useLocalSearchParams();
+  const [tours, setTours] = useState([]);
+
+  useEffect(() => {
+    const filterTours = allTours[city as string];
+    setTours(filterTours);
+  }, [city]);
   return (
     <View style={{ backgroundColor: "#FFF" }}>
       <Header />
@@ -23,29 +31,24 @@ export default function MenuPaketScreen() {
           Let&apos;s Explore: {city}
         </CustomText>
         <View style={{ paddingBottom: 120 }}>
-          <Paket
-            title="Paket Keraton Apa Gitu Ngabs"
-            desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga quibusdam cum assumenda esse vel delectus quos aut odit cupiditate? Sapiente!"
-            id="1"
-          />
-          <Paket
-            title="Paket Keraton"
-            desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga quibusdam cum assumenda esse vel delectus quos aut odit cupiditate? Sapiente!"
-            id="2"
-          />
-          <Paket
-            title="Paket Keraton"
-            desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga quibusdam cum assumenda esse vel delectus quos aut odit cupiditate? Sapiente!"
-            id="3"
-          />
+          {tours.map((tour: { name: string; id: string; desc: string }) => {
+            return (
+              <Paket
+                title={tour.name}
+                key={tour.id}
+                desc={tour.desc}
+                id={tour.id}
+              />
+            );
+          })}
         </View>
       </ScrollView>
     </View>
   );
 }
 
-function Paket({ title, desc, id }: { title: string; desc: string, id:string }) {
-  const router = useRouter()
+function Paket({ title, desc, id }: { title: string; desc: string; id: string }) {
+  const router = useRouter();
   return (
     <View style={{ padding: 18 }}>
       <View style={{ backgroundColor: Colors.orange.main, height: 143, borderRadius: 20 }} />
@@ -62,7 +65,7 @@ function Paket({ title, desc, id }: { title: string; desc: string, id:string }) 
           style={[{ width: "auto", paddingHorizontal: 16, flexShrink: 0 }]}
           textStyle={[{ fontFamily: "PoppinsRegular" }]}
           text="See detail"
-          onPress={() => router.navigate("/home/detail-paket/" + title)} 
+          onPress={() => router.navigate("/home/detail-paket/" + title)}
         />
       </View>
       <CustomText

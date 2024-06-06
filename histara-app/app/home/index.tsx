@@ -34,10 +34,6 @@ export default function HomeScreen() {
       title: "Magelang",
     },
     {
-      id: 4,
-      title: "Surabaya",
-    },
-    {
       id: 5,
       title: "Semarang",
     },
