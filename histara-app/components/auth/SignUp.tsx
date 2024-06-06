@@ -8,6 +8,8 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { Colors } from "@/constants/Colors";
 import { Link, useRouter } from "expo-router";
 import axios from "axios";
+import { gs } from "@/constants/Styles";
+import { Utilities } from "@/utilities/Utilities";
 
 export default function SignUpTab() {
   const [name, setName]: [string, Dispatch<string>] = useState("");
@@ -21,36 +23,37 @@ export default function SignUpTab() {
 
   const [open, setOpen] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const handleClick = () => {
     // SAMPLE HANDLER FOR PASSWORD MISSMATCH
-    if(password !== confirmPassword) {
-      console.log("Password not match!")
-      return
+    if (password !== confirmPassword) {
+      console.log("Password not match!");
+      return;
     }
 
-    axios.post(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/user/register", {
-      name,
-      email,
-      phoneNumber,
-      birthday,
-      gender,
-      work,
-      password,
-    })
-    .then((res) => {
-      console.log(res);
-      console.log("Register success!")
-      router.navigate("home")
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+    axios
+      .post(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/user/register", {
+        name,
+        email,
+        phoneNumber,
+        birthday,
+        gender,
+        work,
+        password,
+      })
+      .then((res) => {
+        console.log(res);
+        console.log("Register success!");
+        router.navigate("home");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
-    <View style={{ paddingHorizontal: 24, width: "100%", gap: 10, paddingBottom: 40 }}>
+    <View style={{ paddingHorizontal: 24, width: Utilities.getScreenWidth(), gap: 10, paddingBottom: 40 }}>
       <FormTextInput
         placeholder="Name"
         state={name}
@@ -66,13 +69,23 @@ export default function SignUpTab() {
         }}
       />
       {/* TODO: ADDING CONSTRAINT TO FORCE ONLY NUMBER AND NOT STARTING WITH 0 */}
-      <FormTextInput
-        placeholder="Phone Number"
-        state={phoneNumber}
-        setState={(text) => {
-          setPhoneNumber(text);
-        }}
-      />
+      <View style={[gs.flexRow, gs.ic, { width: "auto", alignSelf: "stretch" }]}>
+        <CustomText
+          weight={700}
+          style={[{ width: "10%", textAlign: "center" }]}
+        >
+          62
+        </CustomText>
+        <View style={{ width: "90%" }}>
+          <FormTextInput
+            placeholder="Phone Number"
+            state={phoneNumber}
+            setState={(text) => {
+              setPhoneNumber(text);
+            }}
+          />
+        </View>
+      </View>
       <Pressable
         style={{
           borderColor: Colors.orange.main,
@@ -88,14 +101,20 @@ export default function SignUpTab() {
         <CustomText
           weight={700}
           style={[
-            { color: new Date(birthday).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0) ? "#DADADA" : "#000", flex: 1 },
+            {
+              color: new Date(birthday).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0) ? "#DADADA" : "#000",
+              flex: 1,
+            },
           ]}
         >
           {new Date(birthday).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0)
             ? "Birthday"
             : birthday.toDateString()}
         </CustomText>
-        <Image source={require("@/assets/images/CeretDown.png")} style={{width: 30 }} />
+        <Image
+          source={require("@/assets/images/CeretDown.png")}
+          style={{ width: 30 }}
+        />
       </Pressable>
       {open && (
         <DateTimePicker
@@ -154,7 +173,13 @@ export default function SignUpTab() {
         }}
         type="password"
       />
-      <Button text="SIGN UP" style={[{flex: 1}]} onPress={() => {handleClick()}} />
+      <Button
+        text="SIGN UP"
+        style={[{ flex: 1 }]}
+        onPress={() => {
+          handleClick();
+        }}
+      />
 
       <View
         style={{
@@ -192,3 +217,4 @@ export default function SignUpTab() {
     </View>
   );
 }
+

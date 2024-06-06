@@ -6,9 +6,8 @@ interface Props {
   setState: (newText: string) => any;
   placeholder?: string;
   type?: "text" | "password" | "email";
+  style?: object;
 }
-
-
 
 export default function FormTextInput({
   state,
@@ -17,6 +16,7 @@ export default function FormTextInput({
   },
   placeholder = "Placeholder",
   type = "text",
+  style,
 }: Props) {
   let keyboardType = "default";
   let autoComplete = "off";
@@ -41,17 +41,20 @@ export default function FormTextInput({
         // keyboardType={keyboardType}
         // autoCapitalize={autoCapitalize}
         // autoComplete={autoCapitalize}
-        style={{
-          borderColor: Colors.orange.main,
-          borderWidth: 2,
-          borderRadius: 8,
-          fontFamily: "PoppinsBold",
-          paddingHorizontal: 8,
-          paddingTop: 10,
-          paddingBottom: 8,
-          fontSize: 16,
-          color: "#000"
-        }}
+        style={[
+          {
+            borderColor: Colors.orange.main,
+            borderWidth: 2,
+            borderRadius: 8,
+            fontFamily: "PoppinsBold",
+            paddingHorizontal: 8,
+            paddingTop: 10,
+            paddingBottom: 8,
+            fontSize: 16,
+            color: "#000",
+          },
+          style,
+        ]}
         placeholderTextColor="#DADADA"
         secureTextEntry={type === "password"}
       />
