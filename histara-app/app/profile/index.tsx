@@ -3,10 +3,12 @@ import Header from "@/components/Header";
 import MiniButton from "@/components/MiniButton";
 import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Image, Linking, Pressable, ScrollView, View } from "react-native";
 
 export default function ProfileScreen() {
+  const router = useRouter()
   return (
     <View style={{ backgroundColor: "#FFF" }}>
       <Header />
@@ -34,7 +36,7 @@ export default function ProfileScreen() {
           <View style={[gs.flexRow, { marginTop: 22.5, gap: 15 }]}>
             <MiniButton
               text="Edit Profile"
-              onPress={() => {}}
+              onPress={() => {router.navigate("/profile/edit")}}
               style={[{ flex: 1 }]}
             />
             <MiniButton
