@@ -102,6 +102,7 @@ export default function HomeScreen() {
           renderItem={({ item }) => (
             <Item item={item} />
           )}
+          autoplayLoop
         />
       </View>
       <View style={{ paddingHorizontal: 18, paddingTop: 12 }}>
