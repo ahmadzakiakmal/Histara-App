@@ -10,6 +10,7 @@ import { Image, Platform, Pressable, ScrollView, View } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import MiniButton from "@/components/MiniButton";
 import Button from "@/components/Button";
+import { useRouter } from "expo-router";
 
 export default function TourHistoryScreen() {
   const profilePictures = [
@@ -36,18 +37,35 @@ export default function TourHistoryScreen() {
       <Header title="Riwayat Tur" />
       <ScrollView contentContainerStyle={{ flex: 1, backgroundColor: "#FFF", paddingTop: 15, paddingHorizontal: 22 }}>
         <View style={[gs.ic, { gap: 10 }]}>
-          <HistoryItem name="Adhyaksa" city="Yogyakarta" date={new Date} />
-          <HistoryItem name="Adara" city="Yogyakarta" date={new Date} />
-          <HistoryItem name="Gamadhira" city="Yogyakarta" date={new Date} />
+          <HistoryItem
+            name="Adhyaksa"
+            city="Yogyakarta"
+            date={new Date()}
+          />
+          <HistoryItem
+            name="Adara"
+            city="Yogyakarta"
+            date={new Date()}
+          />
+          <HistoryItem
+            name="Gamadhira"
+            city="Yogyakarta"
+            date={new Date()}
+          />
         </View>
       </ScrollView>
     </View>
   );
 }
 
-function HistoryItem({ name, city, date }: { name: string; city: string; date: Date }) {
+function HistoryItem({ name, city, date, id }: { name: string; city: string; date: Date; id: string }) {
+  const router = useRouter() ;
+  const [touched, setTouched] = useState<boolean>(false);
   return (
-    <View
+    <Pressable
+      onPress={() => router.navigate("/profile/history/" + "TestID")}
+      onPressIn={() => setTouched(true)}
+      onPressOut={() => setTouched(false)}
       style={[
         gs.flexRow,
         {
@@ -59,6 +77,7 @@ function HistoryItem({ name, city, date }: { name: string; city: string; date: D
           borderRadius: 10,
           justifyContent: "space-between",
         },
+        touched && {backgroundColor: "#DADADA"}
       ]}
     >
       <View>
@@ -82,6 +101,7 @@ function HistoryItem({ name, city, date }: { name: string; city: string; date: D
           Status
         </CustomText>
       </View>
-    </View>
+      
+    </Pressable>
   );
 }
