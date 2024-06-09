@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Image, Linking, Pressable, ScrollView, View } from "react-native";
 
 export default function ProfileScreen() {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <View style={{ backgroundColor: "#FFF" }}>
       <Header />
@@ -36,12 +36,16 @@ export default function ProfileScreen() {
           <View style={[gs.flexRow, { marginTop: 22.5, gap: 15 }]}>
             <MiniButton
               text="Edit Profile"
-              onPress={() => {router.navigate("/profile/edit")}}
+              onPress={() => {
+                router.navigate("/profile/edit");
+              }}
               style={[{ flex: 1 }]}
             />
             <MiniButton
               text="Riwayat Tur"
-              onPress={() => {}}
+              onPress={() => {
+                router.navigate("/profile/history");
+              }}
               style={[{ flex: 1 }]}
             />
           </View>
@@ -145,7 +149,7 @@ interface SocialMediaItemProps {
   image: any;
 }
 function SocialMediaItem({ text, link, image }: SocialMediaItemProps) {
-  const [touched, setTouched] = useState(false)
+  const [touched, setTouched] = useState(false);
   return (
     <Pressable
       style={[
@@ -165,17 +169,17 @@ function SocialMediaItem({ text, link, image }: SocialMediaItemProps) {
           },
           shadowOpacity: 0.9,
           shadowRadius: 5,
-          elevation: 5
+          elevation: 5,
         },
       ]}
       onPress={() => {
         Linking.openURL(link).catch((err) => console.log(err));
       }}
       onPressIn={() => {
-        setTouched(true)
+        setTouched(true);
       }}
       onPressOut={() => {
-        setTouched(false)
+        setTouched(false);
       }}
     >
       {image && <Image source={image} />}
