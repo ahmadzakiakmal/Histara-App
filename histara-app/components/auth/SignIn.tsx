@@ -2,6 +2,7 @@ import { Image, Platform, Pressable, View } from "react-native";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setToken } from "@/redux/slice/authSlice";
+import { setUser } from "@/redux/slice/userSlice";
 import FormTextInput from "../FormTextInput";
 import { Dispatch, useState } from "react";
 import CustomText from "../CustomText";
@@ -34,6 +35,7 @@ export default function SignInTab() {
           if (authTokenCookie) {
             const authToken = authTokenCookie.split("=")[1].split(";")[0];
             dispatch(setToken(authToken));
+            dispatch(setUser(res.data.user));
             router.navigate("home");
             console.log("Login success!");
           } else {
