@@ -4,33 +4,81 @@ import FormTextInput from "@/components/FormTextInput";
 import Header from "@/components/Header";
 import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
-import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { Dispatch, useEffect, useState } from "react";
 import { Image, Platform, Pressable, ScrollView, View } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import MiniButton from "@/components/MiniButton";
 import Button from "@/components/Button";
+import { useSelector } from "react-redux";
+import { getUser } from "@/redux/slice/userSlice";
+import { getToken } from "@/redux/slice/authSlice";
+import axios from "axios";
 
+interface User {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  birthday: string;
+  gender: string;
+  work: string;
+}
+
+/*
+  TODO: MAP BIRTHDAY AND PHONE NUMBER TO INPUT FORM
+*/
 export default function EditProfileScreen() {
+  const user = useSelector(getUser);
+  const token = useSelector(getToken);
   const profilePictures = [
     require("@/assets/images/profile/1.png"),
     require("@/assets/images/profile/2.png"),
     require("@/assets/images/profile/3.png"),
-    require("@/assets/images/profile/4.png"),
+    require("@/assets/images/profile/4.png")
   ];
+
   const [random, setRandom] = useState(0);
   useEffect(() => {
-    setRandom(Math.floor(Math.random() * 3) + 1);
+    setRandom(Math.floor(Math.random() * profilePictures.length));
   }, []);
-  const [name, setName]: [string, Dispatch<string>] = useState("");
-  const [email, setEmail]: [string, Dispatch<string>] = useState("");
-  const [phoneNumber, setPhoneNumber]: [string, Dispatch<string>] = useState("");
-  const [birthday, setBirthday] = useState(new Date());
-  const [gender, setGender] = useState("");
-  const [work, setWork] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [name, setName] = useState(user.name || "");
+  const [email, setEmail] = useState(user.email || "");
+  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber || "");
+  const [birthday, setBirthday] = useState(user.birthday ? new Date(user.birthday) : new Date());
+  const [gender, setGender] = useState(user.gender || "");
+  const [work, setWork] = useState(user.work || "");
   const [open, setOpen] = useState<boolean>(false);
+
+  const handleSave = async () => {
+    const updatedData: Partial<User> = {};
+
+    if (name !== user.name) updatedData.name = name;
+    if (email !== user.email) updatedData.email = email;
+    if (phoneNumber !== user.phoneNumber) updatedData.phoneNumber = phoneNumber;
+    if (birthday.toISOString().split('T')[0] !== user.birthday) updatedData.birthday = birthday.toISOString().split('T')[0];
+    if (gender !== user.gender) updatedData.gender = gender;
+    if (work !== user.work) updatedData.work = work;
+
+    console.log(updatedData);
+    
+    if (Object.keys(updatedData).length > 0) {
+      try {
+        const response = await axios.put(
+          `${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/user/edit`,
+          updatedData,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          }
+        );
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <Header title="Edit Profile" />
@@ -155,7 +203,7 @@ export default function EditProfileScreen() {
               { title: "Lainnya", value: "LAINNYA" },
             ]}
           />
-          <Button onPress={() => {console.log("Save")}} text="Save" />
+          <Button onPress={handleSave} text="Save" />
         </View>
       </ScrollView>
     </View>

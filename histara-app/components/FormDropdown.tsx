@@ -33,9 +33,11 @@ export default function FormDropdown({
     },
   ],
 }: Props) {
+  const initialSelectedItem = options.find(option => option.value === state);
   return (
     <SelectDropdown
       data={options}
+      defaultValue={initialSelectedItem}
       dropdownStyle={{marginTop: -200}}
       onSelect={(selectedItem, index) => {
         console.log(selectedItem, index);
