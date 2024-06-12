@@ -1,69 +1,64 @@
 import CustomText from "@/components/CustomText";
-import FormDropdown from "@/components/FormDropdown";
-import FormTextInput from "@/components/FormTextInput";
 import Header from "@/components/Header";
 import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
-import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { Dispatch, useEffect, useState } from "react";
-import { Image, Platform, Pressable, ScrollView, View } from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import MiniButton from "@/components/MiniButton";
-import Button from "@/components/Button";
+import { ScrollView, View, Pressable } from "react-native";
 import { useRouter } from "expo-router";
+import { useSelector } from "react-redux";
+import { getToken } from "@/redux/slice/authSlice";
+import axios from "axios";
 
 export default function TourHistoryScreen() {
-  const profilePictures = [
-    require("@/assets/images/profile/1.png"),
-    require("@/assets/images/profile/2.png"),
-    require("@/assets/images/profile/3.png"),
-    require("@/assets/images/profile/4.png"),
-  ];
-  const [random, setRandom] = useState(0);
+  const token = useSelector(getToken);
+  const [historyData, setHistoryData] = useState<any[]>([]);
+
   useEffect(() => {
-    setRandom(Math.floor(Math.random() * 3) + 1);
-  }, []);
-  const [name, setName]: [string, Dispatch<string>] = useState("");
-  const [email, setEmail]: [string, Dispatch<string>] = useState("");
-  const [phoneNumber, setPhoneNumber]: [string, Dispatch<string>] = useState("");
-  const [birthday, setBirthday] = useState(new Date());
-  const [gender, setGender] = useState("");
-  const [work, setWork] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [open, setOpen] = useState<boolean>(false);
+    axios.get(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/transaction/all", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+    .then((res) => {
+      const formattedData = res.data.transactions.map((item: any) => ({
+        ...item,
+        transactionTime: new Date(item.transactionTime),
+      }));
+      setHistoryData(formattedData);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  }, [token]);
+
   return (
     <View style={{ flex: 1 }}>
       <Header title="Riwayat Tur" />
       <ScrollView contentContainerStyle={{ flex: 1, backgroundColor: "#FFF", paddingTop: 15, paddingHorizontal: 22 }}>
         <View style={[gs.ic, { gap: 10 }]}>
-          <HistoryItem
-            name="Adhyaksa"
-            city="Yogyakarta"
-            date={new Date()}
-          />
-          <HistoryItem
-            name="Adara"
-            city="Yogyakarta"
-            date={new Date()}
-          />
-          <HistoryItem
-            name="Gamadhira"
-            city="Yogyakarta"
-            date={new Date()}
-          />
+          {historyData.map((item) => (
+            <HistoryItem
+              key={item._id}
+              id={item._id}
+              name={item.tourName}
+              city={item.tourAddress}
+              date={item.transactionTime}
+              status={item.transactionStatus}
+            />
+          ))}
         </View>
       </ScrollView>
     </View>
   );
 }
 
-function HistoryItem({ name, city, date, id }: { name: string; city: string; date: Date; id: string }) {
-  const router = useRouter() ;
+function HistoryItem({ name, city, date, id, status }: { name: string; city: string; date: Date; id: string; status: string }) {
+  const router = useRouter();
   const [touched, setTouched] = useState<boolean>(false);
+
   return (
     <Pressable
-      onPress={() => router.navigate("/profile/history/" + "TestID")}
+      onPress={() => router.navigate("/profile/history/" + id)}
       onPressIn={() => setTouched(true)}
       onPressOut={() => setTouched(false)}
       style={[
@@ -94,14 +89,10 @@ function HistoryItem({ name, city, date, id }: { name: string; city: string; dat
           borderRadius: 8,
         }}
       >
-        <CustomText
-          weight={400}
-          style={[{ color: "#FFF" }]}
-        >
-          Status
+        <CustomText weight={400} style={[{ color: "#FFF" }]}>
+          {status}
         </CustomText>
       </View>
-      
     </Pressable>
   );
 }
