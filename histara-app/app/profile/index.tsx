@@ -6,8 +6,12 @@ import { gs } from "@/constants/Styles";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Image, Linking, Pressable, ScrollView, View } from "react-native";
+import { useSelector } from "react-redux";
+import { getUser, getPoint } from "@/redux/slice/userSlice";
 
 export default function ProfileScreen() {
+  const user = useSelector(getUser);
+  const point = useSelector(getPoint);
   const router = useRouter();
   return (
     <View style={{ backgroundColor: "#FFF" }}>
@@ -20,14 +24,14 @@ export default function ProfileScreen() {
                 weight={700}
                 style={[{ lineHeight: 1 * 20, fontSize: 20 }]}
               >
-                Nama Lengkap
+                {user.name}
               </CustomText>
               <CustomText
                 weight={500}
                 italic={true}
                 style={[{ fontSize: 15, lineHeigth: 1 * 15, marginTop: -5 }]}
               >
-                xy points
+                {point} points
               </CustomText>
             </View>
             <View style={{ backgroundColor: "#DADADA", width: 83, height: 83, borderRadius: 9999 }} />
@@ -53,23 +57,23 @@ export default function ProfileScreen() {
           <View style={{ marginTop: 23, gap: 15 }}>
             <FormDisplay
               label="Email"
-              value="poc@histara.com"
+              value={user.email}
             />
             <FormDisplay
               label="Phone Number"
-              value="0812345678910"
+              value={user.phoneNumber}
             />
             <FormDisplay
               label="Birthday"
-              value="29 Nov 2002"
+              value={user.birthday}
             />
             <FormDisplay
               label="Gender"
-              value="Laki-laki"
+              value={user.gender}
             />
             <FormDisplay
               label="Work"
-              value="Mahasiswa"
+              value={user.work}
             />
           </View>
         </View>
