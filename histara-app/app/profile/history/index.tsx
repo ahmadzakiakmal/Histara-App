@@ -5,13 +5,15 @@ import { gs } from "@/constants/Styles";
 import { Dispatch, useEffect, useState } from "react";
 import { ScrollView, View, Pressable } from "react-native";
 import { useRouter } from "expo-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getToken } from "@/redux/slice/authSlice";
+import { setHistoryData } from "@/redux/slice/historySlice";
 import axios from "axios";
 
 export default function TourHistoryScreen() {
+  const dispatch = useDispatch();
   const token = useSelector(getToken);
-  const [historyData, setHistoryData] = useState<any[]>([]);
+  const [mappedData, setmappedData] = useState<any[]>([]);
 
   useEffect(() => {
     axios.get(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/transaction/all", {
@@ -20,11 +22,12 @@ export default function TourHistoryScreen() {
       },
     })
     .then((res) => {
+      dispatch(setHistoryData(res.data.transactions));
       const formattedData = res.data.transactions.map((item: any) => ({
         ...item,
         transactionTime: new Date(item.transactionTime),
       }));
-      setHistoryData(formattedData);
+      setmappedData(formattedData);
     })
     .catch((err) => {
       console.error(err);
@@ -36,7 +39,7 @@ export default function TourHistoryScreen() {
       <Header title="Riwayat Tur" />
       <ScrollView contentContainerStyle={{ flex: 1, backgroundColor: "#FFF", paddingTop: 15, paddingHorizontal: 22 }}>
         <View style={[gs.ic, { gap: 10 }]}>
-          {historyData.map((item) => (
+          {mappedData.map((item) => (
             <HistoryItem
               key={item._id}
               id={item._id}

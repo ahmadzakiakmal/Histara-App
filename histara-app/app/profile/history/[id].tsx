@@ -3,9 +3,29 @@ import Header from "@/components/Header";
 import { gs } from "@/constants/Styles";
 import { useLocalSearchParams } from "expo-router";
 import { Image, ScrollView, View } from "react-native";
+import { useSelector } from "react-redux";
+import { selectHistoryData } from "@/redux/slice/historySlice";
+
+interface Transaction {
+  _id: string;
+  tourId: string;
+  tourName: string;
+  tourAddress: string;
+  tourPoints: number;
+  tourDuration: number;
+  tourStops: number;
+  transactionTime: string;
+  transactionStatus: string;
+  grossAmount: number;
+  isTransactionFinished: boolean;
+}
 
 export default function HistoryDetail() {
+  const historyData = useSelector(selectHistoryData);
   const { id } = useLocalSearchParams();
+
+  const item = historyData.find((item: Transaction) => item._id === id);
+
   return (
     <View style={{ flex: 1, backgroundColor: "#FFF" }}>
       <Header title="Detail Riwayat Tur" />
@@ -25,7 +45,7 @@ export default function HistoryDetail() {
             weight={400}
             style={[{ marginTop: -5, textAlign: "center", fontSize: 16 }]}
           >
-            Tanggal Transaksi
+            {new Date(item.transactionTime).toLocaleDateString()}
           </CustomText>
 
           <View>
@@ -51,7 +71,7 @@ export default function HistoryDetail() {
               >
                 Harga Paket Tur
               </CustomText>
-              <CustomText weight={400}>Rp 300.000,-</CustomText>
+              <CustomText weight={400}>{item.grossAmount}</CustomText>
             </View>
             <View style={[gs.flexRow, { gap: 80 }]}>
               <CustomText
@@ -60,7 +80,7 @@ export default function HistoryDetail() {
               >
                 Jumlah Point
               </CustomText>
-              <CustomText weight={400}>100 Point</CustomText>
+              <CustomText weight={400}>{item.tourPoints} Points</CustomText>
             </View>
           </View>
 
@@ -96,7 +116,7 @@ export default function HistoryDetail() {
             >
               Nama Paket Tur
             </CustomText>
-            <CustomText weight={400}>Nama</CustomText>
+            <CustomText weight={400}>{item.tourName}</CustomText>
           </View>
           <View style={[gs.flexRow, { gap: 80 }]}>
             <CustomText
@@ -105,7 +125,7 @@ export default function HistoryDetail() {
             >
               Lokasi Paket
             </CustomText>
-            <CustomText weight={400}>Lokasi</CustomText>
+            <CustomText weight={400}>{item.tourAddress}</CustomText>
           </View>
           <View style={[gs.flexRow, { gap: 80 }]}>
             <CustomText
@@ -114,7 +134,7 @@ export default function HistoryDetail() {
             >
               Durasi Tur
             </CustomText>
-            <CustomText weight={400}>Durasi</CustomText>
+            <CustomText weight={400}>{item.tourDuration}</CustomText>
           </View>
           <View style={[gs.flexRow, { gap: 80 }]}>
             <CustomText
@@ -123,7 +143,7 @@ export default function HistoryDetail() {
             >
               Jumlah Stop
             </CustomText>
-            <CustomText weight={400}>8</CustomText>
+            <CustomText weight={400}>{item.tourStops}</CustomText>
           </View>
         </View>
       </View>
