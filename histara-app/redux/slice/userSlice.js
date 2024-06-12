@@ -11,11 +11,15 @@ const userSlice = createSlice({
       gender: null,
       work: null,
       profilePicture: null
-    }
+    },
+    point: 0
   },
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
+    },
+    setPoint: (state, action) => {
+      state.point = action.payload;
     },
     clearUserData: (state) => {
       state.user = {
@@ -32,7 +36,8 @@ const userSlice = createSlice({
 });
 
 export const getUser = (state) => state.user.user;
+export const getPoint = (state) => state.user.point;
 
-export const { setUser, clearUserData } = userSlice.actions;
+export const { setPoint, setUser, clearUserData } = userSlice.actions;
 
 export default userSlice.reducer;

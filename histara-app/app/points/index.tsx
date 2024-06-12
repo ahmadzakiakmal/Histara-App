@@ -5,8 +5,12 @@ import { gs } from "@/constants/Styles";
 import { Image, Pressable, ScrollView, View } from "react-native";
 import CustomText from "@/components/CustomText";
 import Button from "@/components/Button";
+import { useSelector } from "react-redux";
+import { getPoint } from "@/redux/slice/userSlice";
 
 export default function Points() {
+  const point = useSelector(getPoint);
+
   return (
     <>
       <Header />
@@ -26,7 +30,7 @@ export default function Points() {
             color={Colors.orange.main}
             size={200}
             strokeWidth={15}
-            percentage={60}
+            percentage={point}
             duration={800}
           />
         </View>
