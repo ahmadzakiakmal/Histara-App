@@ -142,7 +142,7 @@ export default function Tour() {
 
               <CustomText
                 weight={400}
-                style={[{ paddingHorizontal: 18, fontSize: 18 }]}
+                style={[{ paddingHorizontal: 18, fontSize: 18, textAlign: "justify" }]}
               >
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis vero, sit non soluta aperiam
                 exercitationem laborum dignissimos nulla perspiciatis eligendi.
