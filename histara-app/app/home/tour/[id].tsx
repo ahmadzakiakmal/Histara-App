@@ -84,7 +84,7 @@ export default function Tour() {
         <WebView
           containerStyle={{ width: "auto" }}
           source={{
-            uri: "https://histara-map.vercel.app",
+            uri: "https://histara-map.vercel.app/" + id,
           }}
         />
         <View style={{ backgroundColor: Colors.blue.dark, paddingBottom: 10 }}>
