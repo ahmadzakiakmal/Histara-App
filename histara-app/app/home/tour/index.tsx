@@ -10,6 +10,7 @@ import SlidingUpPanel from "rn-sliding-up-panel";
 import { BackHandler } from "react-native";
 import { Utilities } from "@/utilities/Utilities";
 import { useRouter } from "expo-router";
+import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 
 export default function Tour() {
   const profilePictures = [
@@ -49,7 +50,14 @@ export default function Tour() {
           style={[
             gs.flexRow,
             gs.ic,
-            { backgroundColor: Colors.blue.dark, paddingTop: 50, paddingBottom: 12, paddingHorizontal: 18, gap: 18, justifyContent: "space-between" },
+            {
+              backgroundColor: Colors.blue.dark,
+              paddingTop: 50,
+              paddingBottom: 12,
+              paddingHorizontal: 18,
+              gap: 18,
+              justifyContent: "space-between",
+            },
           ]}
         >
           <View style={{ backgroundColor: "#DEDEDE", width: 57, height: 57, borderRadius: 999, overflow: "hidden" }}>
@@ -63,8 +71,14 @@ export default function Tour() {
             style={[{ color: "#FFF", fontSize: 20 }]}
           >
             Nama Paket Tur
-          </CustomText >
-          <Button text="Selesai" style={[{width: "auto", paddingHorizontal: 10}]} onPress={() => {setShowModal(true)}} />
+          </CustomText>
+          <Button
+            text="Selesai"
+            style={[{ width: "auto", paddingHorizontal: 10 }]}
+            onPress={() => {
+              setShowModal(true);
+            }}
+          />
         </View>
         <WebView
           containerStyle={{ width: "auto" }}
@@ -76,9 +90,10 @@ export default function Tour() {
           <Pressable
             /* @ts-ignore */
             onTouchStart={() => this._panel.show(360)}
-            style={{ paddingVertical: 5, backgroundColor: Colors.blue.dark, paddingHorizontal: 100 }}
+            style={{ paddingTop: 20, paddingBottom: 30, backgroundColor: Colors.blue.dark, paddingHorizontal: 100 }}
           >
             <View style={{ backgroundColor: "#FFF", height: 5, borderRadius: 999 }} />
+            {/* <CustomText weight={400} style={[{color: "#FFF"}]}>Details</CustomText> */}
           </Pressable>
           <AudioPlayer />
         </View>
@@ -89,19 +104,50 @@ export default function Tour() {
               backgroundColor: "white",
               alignItems: "center",
               justifyContent: "flex-start",
-              paddingVertical: 50,
-              paddingHorizontal: 18,
               flex: 1,
             }}
           >
-            <Button
-              text="Hide"
-              onPress={() =>
-                /* @ts-ignore */
-                this._panel.hide()
-              }
-            />
-            <Text>Here is the content inside panel</Text>
+            <View
+              style={{
+                backgroundColor: Colors.blue.dark,
+                paddingTop: 20,
+                paddingBottom: 30,
+                width: "100%",
+                paddingHorizontal: 100,
+              }}
+            >
+              <View style={{ backgroundColor: "#FFF", height: 5, borderRadius: 999 }} />
+            </View>
+
+            <View style={{ paddingTop: 12 }}>
+              <CustomText
+                weight={700}
+                style={[{ fontSize: 20, textAlign: "center" }]}
+              >
+                Nama Stop
+              </CustomText>
+              <GestureHandlerRootView style={{ height: 270 }}>
+                <ScrollView
+                  horizontal
+                  contentContainerStyle={{ gap: 10, paddingVertical: 18, paddingHorizontal: 10 }}
+                  showsHorizontalScrollIndicator={false}
+                >
+                  <View style={{ width: 200, height: 240, backgroundColor: "#D9D9D9", borderRadius: 15 }}></View>
+                  <View style={{ width: 200, height: 240, backgroundColor: "#D9D9D9", borderRadius: 15 }}></View>
+                  <View style={{ width: 200, height: 240, backgroundColor: "#D9D9D9", borderRadius: 15 }}></View>
+                  <View style={{ width: 200, height: 240, backgroundColor: "#D9D9D9", borderRadius: 15 }}></View>
+                  <View style={{ width: 200, height: 240, backgroundColor: "#D9D9D9", borderRadius: 15 }}></View>
+                </ScrollView>
+              </GestureHandlerRootView>
+
+              <CustomText
+                weight={400}
+                style={[{ paddingHorizontal: 18, fontSize: 18, textAlign: "justify" }]}
+              >
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis vero, sit non soluta aperiam
+                exercitationem laborum dignissimos nulla perspiciatis eligendi.
+              </CustomText>
+            </View>
           </View>
         </SlidingUpPanel>
         {/* <View style={{ backgroundColor: Colors.blue.dark, paddingTop: 50 }}>
