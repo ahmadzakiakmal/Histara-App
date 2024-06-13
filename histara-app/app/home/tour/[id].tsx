@@ -112,7 +112,7 @@ export default function Tour() {
               style={{
                 backgroundColor: Colors.blue.dark,
                 paddingTop: 20,
-                paddingBottom: 30,
+                paddingBottom: 20,
                 width: "100%",
                 paddingHorizontal: 100,
               }}
