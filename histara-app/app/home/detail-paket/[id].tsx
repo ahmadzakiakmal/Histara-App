@@ -7,6 +7,9 @@ import { Utilities } from "@/utilities/Utilities";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, Pressable, ScrollView, View } from "react-native";
+import { useSelector } from "react-redux"; 
+import { getToken } from "@/redux/slice/authSlice";
+import axios from "axios";
 
 interface TourStop {
   name: string;
@@ -16,6 +19,7 @@ interface TourStop {
 
 interface Tour {
   id: string;
+  tourId: string;
   name: string;
   desc: string;
   duration: string;
@@ -25,6 +29,7 @@ interface Tour {
 }
 
 export default function MenuPaketScreen() {
+  const token = useSelector(getToken);
   const { id } = useLocalSearchParams();
   const [touched, setTouched] = useState(false);
   const router = useRouter();
@@ -32,6 +37,7 @@ export default function MenuPaketScreen() {
 
   const [tour, setTour] = useState<Tour>({
     id: "",
+    tourId: "",
     desc: "",
     duration: "",
     name: "",
@@ -46,6 +52,30 @@ export default function MenuPaketScreen() {
     })[0];
     setTour(tourToBeDisplayed);
   }, [id])
+
+  const handleClicked = () => {
+    /*
+    AXIOS CALL IS DONE, UNCOMMENT BELOW
+    
+    axios.post(
+      `${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/create`,
+      { tourId: tour.tourId },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    .then(() => {
+      console.log("Transaction created")
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    */
+    
+    router.replace("/home/ringkasan-pembayaran/" + id)
+  };
 
   return (
     <View style={{ backgroundColor: "#FFF", flex: 1 }}>
@@ -133,7 +163,7 @@ export default function MenuPaketScreen() {
       </ScrollView>
         <View style={{ backgroundColor: Colors.blue.dark, paddingVertical: 11 }}>
           <Pressable
-            onPress={() => {router.replace("/home/ringkasan-pembayaran/" + id)}}
+            onPress={() => {handleClicked()}}
             onPressIn={() => setTouched(true)}
             onPressOut={() => setTouched(false)}
             style={[
