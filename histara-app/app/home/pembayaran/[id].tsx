@@ -48,7 +48,7 @@ export default function Pembayaran() {
             </CustomText>
           </Pressable>
           <Button text="Cek Status Pembayaran" onPress={() => {
-            router.navigate("/home/pembayaran/success")
+            router.navigate("/home/pembayaran/success/" + id)
           }} />
         </View>
       </View>

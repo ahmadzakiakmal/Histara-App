@@ -2,7 +2,7 @@ import CustomText from "@/components/CustomText";
 import Header from "@/components/Header";
 import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
-import { router, useRouter } from "expo-router";
+import { router, useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import { Image, Pressable, View } from "react-native";
 
@@ -10,6 +10,7 @@ import { Image, Pressable, View } from "react-native";
 export default function SuccessPayment() {
   const [touched, setTouched] = useState(false);
   const router = useRouter();
+  const { id } = useLocalSearchParams();
   return (
     <View style={{ flex: 1 }}>
       <Header />
@@ -46,7 +47,7 @@ export default function SuccessPayment() {
               >
                 Nomor Transaksi
               </CustomText>
-              <CustomText weight={400}>Nomor</CustomText>
+                <CustomText weight={400}>{id}</CustomText>
             </View>
             <View style={[gs.flexRow, { gap: 80 }]}>
               <CustomText
@@ -134,7 +135,7 @@ export default function SuccessPayment() {
       <View style={{ backgroundColor: Colors.blue.dark, paddingVertical: 11 }}>
         <Pressable
           onPress={() => {
-            router.navigate("/home/tour");
+            router.navigate("/home/tour/" + id);
           }}
           onPressIn={() => setTouched(true)}
           onPressOut={() => setTouched(false)}
