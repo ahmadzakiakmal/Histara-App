@@ -49,7 +49,7 @@ export default function Tour() {
           style={[
             gs.flexRow,
             gs.ic,
-            { backgroundColor: Colors.blue.dark, paddingTop: 50, paddingBottom: 12, paddingHorizontal: 18, gap: 18 },
+            { backgroundColor: Colors.blue.dark, paddingTop: 50, paddingBottom: 12, paddingHorizontal: 18, gap: 18, justifyContent: "space-between" },
           ]}
         >
           <View style={{ backgroundColor: "#DEDEDE", width: 57, height: 57, borderRadius: 999, overflow: "hidden" }}>
@@ -63,7 +63,8 @@ export default function Tour() {
             style={[{ color: "#FFF", fontSize: 20 }]}
           >
             Nama Paket Tur
-          </CustomText>
+          </CustomText >
+          <Button text="Selesai" style={[{width: "auto", paddingHorizontal: 10}]} onPress={() => {setShowModal(true)}} />
         </View>
         <WebView
           containerStyle={{ width: "auto" }}
