@@ -10,7 +10,7 @@ export default function AudioPlayer()  {
   }
 
   return (
-    <View style={[gs.flexRow, gs.jc, { paddingHorizontal: 12, gap: 50, paddingVertical: 12 }]}>
+    <View style={[gs.flexRow, gs.jc, { paddingHorizontal: 12, gap: 50, paddingBottom: 12 }]}>
       <TouchableOpacity
       // onPress={
       //   handleRewind
