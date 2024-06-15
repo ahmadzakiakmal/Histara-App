@@ -10,11 +10,12 @@ type CircularProgressProps = {
   percentage: number;
   duration: number;
   color: string;
+  value: number;
 };
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-const CircularProgress: React.FC<CircularProgressProps> = ({ size, strokeWidth, percentage, duration, color }) => {
+const CircularProgress: React.FC<CircularProgressProps> = ({ size, strokeWidth, percentage, duration, color, value }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
   const halfCircle = radius + strokeWidth / 2;
@@ -71,7 +72,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({ size, strokeWidth, 
         <CustomText
           weight={700}
           style={[{ fontSize: 43, color, lineHeight: 1.1 * 43 }]}
-        >{`${percentage}`}</CustomText>
+        >{`${value}`}</CustomText>
         <CustomText
           weight={400}
           style={[{ fontSize: 28, color: "rgba(233,148,92,.53)", lineHeight: 1.1 * 28 }]}
