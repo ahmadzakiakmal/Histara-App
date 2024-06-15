@@ -111,73 +111,9 @@ export default function Tour() {
           }}
           geolocationEnabled={true}
         />
-        <View style={{ backgroundColor: Colors.blue.dark, paddingBottom: 10 }}>
-          <Pressable
-            /* @ts-ignore */
-            onTouchStart={() => this._panel.show(360)}
-            style={{ paddingTop: 20, paddingBottom: 30, backgroundColor: Colors.blue.dark, paddingHorizontal: 100 }}
-          >
-            <View style={{ backgroundColor: "#FFF", height: 5, borderRadius: 999 }} />
-            {/* <CustomText weight={400} style={[{color: "#FFF"}]}>Details</CustomText> */}
-          </Pressable>
+        <View style={{ backgroundColor: Colors.blue.dark, paddingBottom: 10, paddingTop: 20 }}>
           <AudioPlayer />
         </View>
-        {/* @ts-ignore */}
-        <SlidingUpPanel ref={(c) => (this._panel = c)}>
-          <View
-            style={{
-              backgroundColor: "white",
-              alignItems: "center",
-              justifyContent: "flex-start",
-              flex: 1,
-            }}
-          >
-            <View
-              style={{
-                backgroundColor: Colors.blue.dark,
-                paddingTop: 20,
-                paddingBottom: 20,
-                width: "100%",
-                paddingHorizontal: 100,
-              }}
-            >
-              <View style={{ backgroundColor: "#FFF", height: 5, borderRadius: 999 }} />
-            </View>
-
-            <View style={{ paddingTop: 12 }}>
-              <CustomText
-                weight={700}
-                style={[{ fontSize: 20, textAlign: "center" }]}
-              >
-                Nama Stop
-              </CustomText>
-              <GestureHandlerRootView style={{ height: 270 }}>
-                <ScrollView
-                  horizontal
-                  contentContainerStyle={{ gap: 10, paddingVertical: 18, paddingHorizontal: 10 }}
-                  showsHorizontalScrollIndicator={false}
-                >
-                  <View style={{ width: 200, height: 240, backgroundColor: "#D9D9D9", borderRadius: 15 }}></View>
-                  <View style={{ width: 200, height: 240, backgroundColor: "#D9D9D9", borderRadius: 15 }}></View>
-                  <View style={{ width: 200, height: 240, backgroundColor: "#D9D9D9", borderRadius: 15 }}></View>
-                  <View style={{ width: 200, height: 240, backgroundColor: "#D9D9D9", borderRadius: 15 }}></View>
-                  <View style={{ width: 200, height: 240, backgroundColor: "#D9D9D9", borderRadius: 15 }}></View>
-                </ScrollView>
-              </GestureHandlerRootView>
-
-              <CustomText
-                weight={400}
-                style={[{ paddingHorizontal: 18, fontSize: 18, textAlign: "justify" }]}
-              >
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis vero, sit non soluta aperiam
-                exercitationem laborum dignissimos nulla perspiciatis eligendi.
-              </CustomText>
-            </View>
-          </View>
-        </SlidingUpPanel>
-        {/* <View style={{ backgroundColor: Colors.blue.dark, paddingTop: 50 }}>
-        
-      </View> */}
       </View>
     </>
   );
