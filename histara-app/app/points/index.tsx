@@ -7,14 +7,15 @@ import CustomText from "@/components/CustomText";
 import Button from "@/components/Button";
 import { useSelector } from "react-redux";
 import { getPoint } from "@/redux/slice/userSlice";
-import SlidingUpPanel from "rn-sliding-up-panel";
 import { useState } from "react";
 import SlidingButton from "@/components/SlidingButton";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SlideUp from "@/components/SlideUp";
+import { useRouter } from "expo-router";
 
 export default function Points() {
   const point = useSelector(getPoint);
+  const router = useRouter()
+  const [showModal, setShowModal] = useState(false);
 
   // Slide up display
   const [show, setShow] = useState<boolean>(false);
@@ -125,7 +126,9 @@ export default function Points() {
             paddingBottom: 20,
             paddingHorizontal: 100,
           }}
-          onPressIn={() => setShow(false)}
+          onPressIn={() => {
+            setShow(false);
+          }}
         >
           <View
             style={{ paddingVertical: 2.5, backgroundColor: Colors.blue.dark, paddingHorizontal: 50, borderRadius: 10 }}
@@ -146,8 +149,53 @@ export default function Points() {
             nisi cupiditate id corporis explicabo nobis facilis neque.
           </CustomText>
         </ScrollView>
-        <SlidingButton />
+        <CustomText
+          weight={700}
+          style={[{ width: "100%", fontSize: 21 }]}
+        >
+          Tukar
+        </CustomText>
+        <SlidingButton
+          point={umkmCost}
+          setShowModal={setShowModal}
+        />
       </SlideUp>
+      {showModal && (
+        <View
+          style={{
+            backgroundColor: "rgba(14,26,76, .6)",
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            top: 0,
+            left: 0,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <View style={{ backgroundColor: "#FFF", padding: 20, borderRadius: 16 }}>
+            <Image
+              source={require("@/assets/images/Success.png")}
+              style={{ alignSelf: "center" }}
+            />
+            <CustomText
+              weight={700}
+              style={[{ textAlign: "center" }]}
+            >
+              Point berhasil ditukar
+            </CustomText>
+            <Button
+              text="Tutup"
+              onPress={() => {
+                setShowModal(false)
+                router.navigate("/points/voucher")                
+              }}
+              style={[{ paddingVertical: 8, paddingHorizontal: 20, alignSelf: "center" }]}
+              textStyle={[{fontSize: 14}]}
+            />
+          </View>
+        </View>
+      )}
     </>
   );
 }

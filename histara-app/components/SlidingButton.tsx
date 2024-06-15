@@ -5,29 +5,35 @@ import { Image, View } from "react-native";
 import SlideToConfirm from "rn-slide-to-confirm";
 import CustomText from "./CustomText";
 import { PrivateValueStore } from "@react-navigation/native";
+import { useRouter } from "expo-router";
 
-const SlidingButton = () => {
+const SlidingButton = ({ point, setShowModal }: { point: number, setShowModal: any }) => {
   const [sliderState, setSliderState] = useState(false);
+  const router = useRouter();
 
   return (
     <View>
       <SlideToConfirm
-        unconfimredTipText={"Geser untuk konfirmasi"}
+        unconfimredTipText={point.toString() + " Point"}
         unconfirmedTipTextStyle={{
           color: "white",
           fontSize: 16,
           paddingTop: 4,
-          fontFamily: "PoppinsBold"
+          fontFamily: "PoppinsBold",
         }}
         confirmedTipText={"Terkonfirmasi"}
         confirmedTipTextStyle={{
           color: "white",
           fontSize: 16,
           paddingTop: 4,
-          fontFamily: "PoppinsBold"
+          fontFamily: "PoppinsBold",
         }}
         state={sliderState}
-        onSlideConfirmed={() => setSliderState(true)}
+        onSlideConfirmed={() => {
+          setSliderState(true);
+          setShowModal(true)
+          setSliderState(false);
+        }}
         sliderStyle={{
           justifyContent: "center",
           width: 350,
