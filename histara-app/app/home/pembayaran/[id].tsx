@@ -4,11 +4,46 @@ import Header from "@/components/Header";
 import { router, useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import { Image, Linking, Pressable, View } from "react-native";
+const { useSelector } = require("react-redux");
+const { getToken } = require("@/redux/slice/authSlice");
+const { getTransactionId, getQrLink } = require("@/redux/slice/transactionSlice");
+import axios from "axios";
+
+interface CheckPaymentResponse {
+  success: boolean;
+  message: string;
+}
 
 export default function Pembayaran() {
+  const token = useSelector(getToken);
+  const transactionId = useSelector(getTransactionId);
+  const qrLink = useSelector(getQrLink);
   const { id } = useLocalSearchParams();
   const [paymentStatus, setPaymentStatus] = useState<"paid" | "waiting" | "expired">("waiting");
   const router = useRouter();
+  
+  // TODO: ADD HANDLER WHEN PAYMENT IS EXPIRED
+  const checkPaymentStatus = () => {
+    console.log(transactionId);
+    axios.get(`${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/check-payment?orderId=${transactionId}`, {
+      headers: {
+        Authorization: "Bearer " + token,
+      }
+    })
+    .then((res) => {
+      console.log(res.data);
+      setPaymentStatus(res.data.paymentStatus);
+      if (res.data.paymentStatus === "paid") {
+        router.navigate("/home/pembayaran/success/" + id)
+      } else {
+        console.log("Payment is not paid yet or expired!");
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  };
+
   return (
     <>
       <Header />
@@ -31,12 +66,12 @@ export default function Pembayaran() {
           >
             <Image
               style={{ width: 350, height: 350, alignSelf: "center" }}
-              source={{ uri: "https://api.sandbox.midtrans.com/v2/qris/d8adbc3e-4457-424e-8aa8-2480397528d0/qr-code" }}
+              source={{ uri: qrLink }}
             />
           </View>
           <Pressable
             onPress={() =>
-              Linking.openURL("https://api.sandbox.midtrans.com/v2/qris/d8adbc3e-4457-424e-8aa8-2480397528d0/qr-code")
+              Linking.openURL(qrLink)
             }
           >
             <CustomText
@@ -48,7 +83,7 @@ export default function Pembayaran() {
             </CustomText>
           </Pressable>
           <Button text="Cek Status Pembayaran" onPress={() => {
-            router.navigate("/home/pembayaran/success/" + id)
+            checkPaymentStatus()
           }} />
         </View>
       </View>

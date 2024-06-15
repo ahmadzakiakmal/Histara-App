@@ -6,6 +6,10 @@ import { gs } from "@/constants/Styles";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, Linking, Pressable, ScrollView, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { getTransactionId, setQrLink } from "@/redux/slice/transactionSlice";
+import { getToken } from "@/redux/slice/authSlice";
+import axios from "axios";
 
 interface TourStop {
   name: string;
@@ -24,6 +28,9 @@ interface Tour {
 }
 
 export default function RingkasanPembayaran() {
+  const dispatch = useDispatch();
+  const transactionId = useSelector(getTransactionId);
+  const token = useSelector(getToken);
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const [touched, setTouched] = useState(false);
@@ -37,12 +44,33 @@ export default function RingkasanPembayaran() {
     stop: 0,
     stops: [],
   });
+
   useEffect(() => {
     const tourToBeDisplayed = allTours.filter((tour) => {
       return tour.id === id;
     })[0];
     setTour(tourToBeDisplayed);
   }, [id]);
+
+  const handlePembayaran = () => {
+    axios.post(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/transaction/create-payment", {
+      "orderId": transactionId,
+    }, 
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+    .then((res) => {
+      console.log(res.data);
+      dispatch(setQrLink(res.data.qrLink));
+      router.navigate("/home/pembayaran/" + id);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  };
+
   return (
     <View style={{ backgroundColor: "#FFF", flex: 1 }}>
       <Header title="Ringkasan Pembayaran" />
@@ -116,7 +144,7 @@ export default function RingkasanPembayaran() {
             >
               Nomor Transaksi
             </CustomText>
-            <CustomText weight={400}>Nomor</CustomText>
+            <CustomText weight={400}>{transactionId}</CustomText>
           </View>
           <View style={[gs.flexRow, { gap: 50 }]}>
             <CustomText
@@ -131,7 +159,7 @@ export default function RingkasanPembayaran() {
             <CustomText weight={700}>Metode Pembayaran</CustomText>
             <Pressable
               onPress={() => {
-                router.navigate("/home/pembayaran/" + id);
+                handlePembayaran()
               }}
               onPressIn={() => setTouched(true)}
               onPressOut={() => setTouched(false)}

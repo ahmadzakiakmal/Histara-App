@@ -7,8 +7,9 @@ import { Utilities } from "@/utilities/Utilities";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, Pressable, ScrollView, View } from "react-native";
-import { useSelector } from "react-redux"; 
+import { useSelector, useDispatch } from "react-redux"; 
 import { getToken } from "@/redux/slice/authSlice";
+import { setTransactionId } from "@/redux/slice/transactionSlice";
 import axios from "axios";
 
 interface TourStop {
@@ -29,6 +30,7 @@ interface Tour {
 }
 
 export default function MenuPaketScreen() {
+  const dispatch = useDispatch();
   const token = useSelector(getToken);
   const { id } = useLocalSearchParams();
   const [touched, setTouched] = useState(false);
@@ -54,9 +56,6 @@ export default function MenuPaketScreen() {
   }, [id])
 
   const handleClicked = () => {
-    /*
-    AXIOS CALL IS DONE, UNCOMMENT BELOW
-    
     axios.post(
       `${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/create`,
       { tourId: tour.tourId },
@@ -66,15 +65,15 @@ export default function MenuPaketScreen() {
         },
       }
     )
-    .then(() => {
+    .then((res) => {
+      console.log(res.data)
       console.log("Transaction created")
+      dispatch(setTransactionId(res.data.orderId))
+      router.replace("/home/ringkasan-pembayaran/" + id)
     })
     .catch((err) => {
       console.log(err)
     })
-    */
-    
-    router.replace("/home/ringkasan-pembayaran/" + id)
   };
 
   return (
