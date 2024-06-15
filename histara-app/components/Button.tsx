@@ -7,12 +7,14 @@ interface ButtonProps {
   style?: object[];
   textStyle?: object[];
   onPress?: () => any;
+  disabled?: boolean;
 }
 
 export default function Button({
   style,
   text,
   textStyle,
+  disabled = false,
   onPress = () => {
     console.log("Pressed");
   },
@@ -26,10 +28,14 @@ export default function Button({
         touched && buttonStyles.touched,
       ]}
       onPress={() => {
-        onPress();
+        if(!disabled) {
+          onPress();
+        }
       }}
       onPressIn={() => {
-        setTouched(true);
+        if(!disabled) {
+          setTouched(true);
+        }
       }}
       onPressOut={() => {
         setTouched(false);
