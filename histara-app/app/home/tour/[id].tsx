@@ -4,7 +4,7 @@ import CustomText from "@/components/CustomText";
 import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
-import { Image, Pressable, Text, View } from "react-native";
+import { Image, PermissionsAndroid, Pressable, Text, View } from "react-native";
 import WebView from "react-native-webview";
 import SlidingUpPanel from "rn-sliding-up-panel";
 import { BackHandler } from "react-native";
@@ -23,8 +23,31 @@ export default function Tour() {
   const [showModal, setShowModal] = useState(false);
   const { id } = useLocalSearchParams();
 
+  const requestLocationPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
+        title: "Location Permission",
+        message: "This app needs access to your location.",
+        buttonNeutral: "Ask Me Later",
+        buttonNegative: "Cancel",
+        buttonPositive: "OK",
+      });
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log("You can use the location");
+      } else {
+        console.log("Location permission denied");
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
   useEffect(() => {
     setRandom(Math.floor(Math.random() * 3) + 1);
+  }, []);
+
+  useEffect(() => {
+    requestLocationPermission();
   }, []);
 
   const handleBackButtonPress = () => {
@@ -84,8 +107,9 @@ export default function Tour() {
         <WebView
           containerStyle={{ width: "auto" }}
           source={{
-            uri: "https://histara-map.vercel.app/" + id,
+            uri: "http://192.168.18.40:3000/" + id,
           }}
+          geolocationEnabled={true}
         />
         <View style={{ backgroundColor: Colors.blue.dark, paddingBottom: 10 }}>
           <Pressable
