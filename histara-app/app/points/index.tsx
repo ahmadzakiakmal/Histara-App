@@ -5,14 +5,18 @@ import { gs } from "@/constants/Styles";
 import { Image, Pressable, ScrollView, View } from "react-native";
 import CustomText from "@/components/CustomText";
 import Button from "@/components/Button";
-import { useSelector } from "react-redux";
-import { getPoint } from "@/redux/slice/userSlice";
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getPoint, setPoint } from "@/redux/slice/userSlice";
+import { getToken } from "@/redux/slice/authSlice";
+import { useState, useEffect } from "react";
 import SlidingButton from "@/components/SlidingButton";
 import SlideUp from "@/components/SlideUp";
 import { useRouter } from "expo-router";
+import axios from "axios";
 
 export default function Points() {
+  const dispatch = useDispatch();
+  const token = useSelector(getToken);
   const point = useSelector(getPoint);
   const router = useRouter()
   const [showModal, setShowModal] = useState(false);
@@ -27,6 +31,21 @@ export default function Points() {
     // @ts-ignore
     this._panel.show(360);
   };
+
+  useEffect(() => {
+    axios.get(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/point/check", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+    .then((res) => {
+      console.log(res.data);
+      dispatch(setPoint(res.data.points));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }, [token]);
 
   return (
     <>
