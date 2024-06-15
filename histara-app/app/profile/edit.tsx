@@ -21,10 +21,11 @@ interface User {
   birthday: string;
   gender: string;
   work: string;
+  profilePicture: number;
 }
 
 /*
-  TODO: MAP BIRTHDAY AND PHONE NUMBER TO INPUT FORM
+  TODO: MAP BIRTHDAY AND PHONE NUMBER TO INPUT FORM, ADD HANDLER CHANGE PROFILE PIC (lIMITED 1 TO 4)
 */
 export default function EditProfileScreen() {
   const user = useSelector(getUser);
@@ -36,11 +37,6 @@ export default function EditProfileScreen() {
     require("@/assets/images/profile/4.png")
   ];
 
-  const [random, setRandom] = useState(0);
-  useEffect(() => {
-    setRandom(Math.floor(Math.random() * profilePictures.length));
-  }, []);
-
   const [name, setName] = useState(user.name || "");
   const [email, setEmail] = useState(user.email || "");
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber || "");
@@ -48,6 +44,7 @@ export default function EditProfileScreen() {
   const [gender, setGender] = useState(user.gender || "");
   const [work, setWork] = useState(user.work || "");
   const [open, setOpen] = useState<boolean>(false);
+  const [profilePictureNumber, setProfilePictureNumber] = useState(user.profilePicture || 0);
 
   const handleSave = async () => {
     const updatedData: Partial<User> = {};
@@ -86,7 +83,7 @@ export default function EditProfileScreen() {
         <View style={[gs.ic]}>
           <View style={{ backgroundColor: "#DADADA", width: 83, height: 83, borderRadius: 9999, overflow: "hidden" }}>
             <Image
-              source={profilePictures[random]}
+              source={profilePictures[profilePictureNumber]}
               style={{ width: "100%", height: "100%" }}
             />
           </View>
