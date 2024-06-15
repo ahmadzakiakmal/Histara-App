@@ -3,14 +3,49 @@ import Header from "@/components/Header";
 import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
 import { router, useLocalSearchParams, useRouter } from "expo-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Image, Pressable, View } from "react-native";
+import { useSelector } from "react-redux"; 
+import { getTransactionId } from "@/redux/slice/transactionSlice";
 
+interface Tour {
+  id: string;
+  tourId: string;
+  name: string;
+  desc: string;
+  location: string;
+  duration: string;
+  points: number;
+  stop: number;
+  price: number;
+}
 
 export default function SuccessPayment() {
+  const transactionId = useSelector(getTransactionId);
   const [touched, setTouched] = useState(false);
   const router = useRouter();
   const { id } = useLocalSearchParams();
+  const allTours = require("@/data/tours.json") as Tour[]
+
+  const [tour, setTour] = useState<Tour>({
+    id: "",
+    tourId: "",
+    desc: "",
+    location: "",
+    duration: "",
+    name: "",
+    points: 0,
+    stop: 0,
+    price: 0
+  })
+
+  useEffect(() => {
+    const tourToBeDisplayed = allTours.filter((tour) => {
+      return tour.id === id
+    })[0];
+    setTour(tourToBeDisplayed);
+  }, [id])
+
   return (
     <View style={{ flex: 1 }}>
       <Header />
@@ -47,7 +82,7 @@ export default function SuccessPayment() {
               >
                 Nomor Transaksi
               </CustomText>
-                <CustomText weight={400}>{id}</CustomText>
+                <CustomText weight={400}>{transactionId}</CustomText>
             </View>
             <View style={[gs.flexRow, { gap: 80 }]}>
               <CustomText
@@ -56,7 +91,7 @@ export default function SuccessPayment() {
               >
                 Harga Paket Tur
               </CustomText>
-              <CustomText weight={400}>Rp 300.000,-</CustomText>
+              <CustomText weight={400}>Rp {tour.price}</CustomText>
             </View>
             <View style={[gs.flexRow, { gap: 80 }]}>
               <CustomText
@@ -65,7 +100,7 @@ export default function SuccessPayment() {
               >
                 Jumlah Point
               </CustomText>
-              <CustomText weight={400}>100 Point</CustomText>
+              <CustomText weight={400}>{tour.points}</CustomText>
             </View>
           </View>
 
@@ -101,7 +136,7 @@ export default function SuccessPayment() {
             >
               Nama Paket Tur
             </CustomText>
-            <CustomText weight={400}>Nama</CustomText>
+            <CustomText weight={400}>{tour.name}</CustomText>
           </View>
           <View style={[gs.flexRow, { gap: 80 }]}>
             <CustomText
@@ -110,7 +145,7 @@ export default function SuccessPayment() {
             >
               Lokasi Paket
             </CustomText>
-            <CustomText weight={400}>Lokasi</CustomText>
+            <CustomText weight={400}>{tour.location}</CustomText>
           </View>
           <View style={[gs.flexRow, { gap: 80 }]}>
             <CustomText
@@ -119,7 +154,7 @@ export default function SuccessPayment() {
             >
               Durasi Tur
             </CustomText>
-            <CustomText weight={400}>Durasi</CustomText>
+            <CustomText weight={400}>{tour.duration}</CustomText>
           </View>
           <View style={[gs.flexRow, { gap: 80 }]}>
             <CustomText
@@ -128,7 +163,7 @@ export default function SuccessPayment() {
             >
               Jumlah Stop
             </CustomText>
-            <CustomText weight={400}>8</CustomText>
+            <CustomText weight={400}>{tour.stop}</CustomText>
           </View>
         </View>
       </View>

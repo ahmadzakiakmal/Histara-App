@@ -2,6 +2,8 @@
   {
     "id": "YG01",
     "tourId": "666ac4efafc0764e9cdd96df",
+    "location": "Yogyakarta",
+    "price": 100000,
     "name": "Adara Cycling Tour at Kota Baru",
     "desc": "Kawasan Elit Belanda yang autentik di tengah Kota Jogja",
     "duration": "2-3",
@@ -62,6 +64,8 @@
   {
     "id": "MG01",
     "tourId": "666ac5c0afc0764e9cdd96e3",
+    "location": "Magelang",
+    "price": 100000,
     "name": "Danadyaksa Riding Tour at Magelang",
     "desc": "Jelajahi keajaiban Candi Magelang sebagai warisan budaya yang menakjubkan!",
     "duration": "2-3",
@@ -94,6 +98,8 @@
   {
     "id": "YG02",
     "tourId": "666ac51fafc0764e9cdd96e0",
+    "location": "Yogyakarta",
+    "price": 100000,
     "name": "Adhikari Cycling Tour at Kota Gede",
     "desc": "Eksplor Saksi Bisu Kerajaan Mataram Islam Zaman Dahulu",
     "duration": "2-3",
@@ -145,6 +151,8 @@
   {
     "id": "YG03",
     "tourId": "666ac53fafc0764e9cdd96e1",
+    "location": "Yogyakarta",
+    "price": 100000,
     "name": "Kastara Riding Tour at Yogyakarta",
     "desc": "Nikmati sensasi menjelajah waktu dengan wisata candi!",
     "duration": "3-4",
@@ -181,6 +189,8 @@
   {
     "id": "YG04",
     "tourId": "666ac561afc0764e9cdd96e2",
+    "location": "Yogyakarta",
+    "price": 100000,
     "name": "Niscala Riding Tour at Yogyakarta",
     "desc": "Melihat keindahan matahari terbit dan terbenam di pelataran candi",
     "duration": "3-4",
@@ -215,6 +225,8 @@
   {
     "id": "MG02",
     "tourId": "666ac5daafc0764e9cdd96e4",
+    "location": "Magelang",
+    "price": 100000,
     "name": "Sadajiwa Riding Tour at Kota Magelang",
     "desc": "Jelajahi pesona Magelang dengan tempat ibadah yang menenangkan, ikon kota yang megah, dan museum penuh pengetahuan yang memperkaya wawasan sejarah!",
     "duration": "2-3",
@@ -262,6 +274,8 @@
   {
     "id": "AM01",
     "tourId": "666ac5fcafc0764e9cdd96e5",
+    "location": "Ambarawa",
+    "price": 100000,
     "name": "Bramanty Riding or Cycling Tour at Ambarawa",
     "desc": "Menelusuri jejak heroik rakyat Ambarawa sembari menghayati perjalanan sejarah!",
     "duration": "2-3",
@@ -301,6 +315,8 @@
   {
     "id": "SM01",
     "tourId": "666ac61fafc0764e9cdd96e6",
+    "location": "Semarang",
+    "price": 100000,
     "name": "Abra Walking Tour at Kota Tua Semarang",
     "desc": "Rasakan keajaiban masa lalu melalui bangunan bersejarah, museum, dan pasar yang memukau, sambil menikmati pesona budaya dan tradisi yang hidup di jantung kota.",
     "duration": "2-3",
@@ -344,6 +360,8 @@
   {
     "id": "SM02",
     "tourId": "666ac633afc0764e9cdd96e7",
+    "location": "Semarang",
+    "price": 100000,
     "name": "Wirasana Walking Tour at Pandanaran Semarang",
     "desc": "Temukan berbagai cerita sejarah dalam bangunan-bangunan autentik di Kota Semarang!",
     "duration": "2-3",

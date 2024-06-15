@@ -11,6 +11,10 @@ import { BackHandler } from "react-native";
 import { Utilities } from "@/utilities/Utilities";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
+import { useSelector } from "react-redux";
+import { getToken } from "@/redux/slice/authSlice";
+import { getTransactionId } from "@/redux/slice/transactionSlice";
+import axios from "axios";
 
 export default function Tour() {
   const profilePictures = [
@@ -120,7 +124,25 @@ export default function Tour() {
 }
 
 function ConfirmModal({ setShowModal }: { setShowModal: Dispatch<SetStateAction<boolean>> }) {
+  const token = useSelector(getToken);
+  const transactionId = useSelector(getTransactionId);
   const router = useRouter();
+
+  const handleSelesai = () => {
+    axios.put(`${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/finish?orderId=${transactionId}`, {
+      headers: {
+        Authorization: "Bearer " + token,
+      }
+    })
+    .then((res) => {
+      console.log(res.data);
+      router.navigate("/home")
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  }
+
   return (
     <View
       style={{
@@ -160,7 +182,7 @@ function ConfirmModal({ setShowModal }: { setShowModal: Dispatch<SetStateAction<
             textStyle={[{ fontSize: 14 }]}
             style={[{ width: "49%" }]}
             onPress={() => {
-              router.navigate("/home");
+              handleSelesai()
             }}
           />
           <Button
