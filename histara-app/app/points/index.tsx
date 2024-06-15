@@ -9,11 +9,15 @@ import { useSelector } from "react-redux";
 import { getPoint } from "@/redux/slice/userSlice";
 import SlidingUpPanel from "rn-sliding-up-panel";
 import { useState } from "react";
+import SlidingButton from "@/components/SlidingButton";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import SlideUp from "@/components/SlideUp";
 
 export default function Points() {
   const point = useSelector(getPoint);
 
   // Slide up display
+  const [show, setShow] = useState<boolean>(false);
   const [umkmName, setUmkmName] = useState<string>("");
   const [umkmCost, setUmkmCost] = useState<number>(0);
   const [umkmDesc, setUmkmDesc] = useState<string>("");
@@ -74,7 +78,7 @@ export default function Points() {
               onPress={() => {
                 setUmkmName("Rumah Makan 1");
                 setUmkmCost(15);
-                slideUpPanel();
+                setShow(true);
               }}
             />
             <UmkmItem
@@ -85,7 +89,7 @@ export default function Points() {
               onPress={() => {
                 setUmkmName("Toko Merch 1");
                 setUmkmCost(45);
-                slideUpPanel();
+                setShow(true);
               }}
             />
             <UmkmItem
@@ -96,7 +100,7 @@ export default function Points() {
               onPress={() => {
                 setUmkmName("Rumah Makan 2");
                 setUmkmCost(20);
-                slideUpPanel();
+                setShow(true);
               }}
             />
             <UmkmItem
@@ -107,37 +111,43 @@ export default function Points() {
               onPress={() => {
                 setUmkmName("Toko Merch 2");
                 setUmkmCost(10);
-                slideUpPanel();
+                setShow(true);
               }}
             />
           </ScrollView>
         </View>
       </ScrollView>
-      <SlidingUpPanel
-        // @ts-ignore
-        ref={(c) => (this._panel = c)}
-      >
-        <View
+      <SlideUp show={show}>
+        <Pressable
           style={{
-            backgroundColor: "#FFF",
-            flex: 1,
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-            paddingHorizontal: 20,
+            borderRadius: 10,
+            paddingTop: 10,
+            paddingBottom: 20,
+            paddingHorizontal: 100,
           }}
+          onPressIn={() => setShow(false)}
         >
-          <View style={{ paddingHorizontal: 100, paddingVertical: 12 }}>
-            <View style={{ backgroundColor: Colors.blue.dark, height: 5, borderRadius: 999 }} />
-          </View>
-          <View style={{ paddingTop: 10 }}>
-            <CustomText weight={700} style={[{fontSize: 21}]}>{umkmName}</CustomText>
-            <CustomText weight={400} style={[{fontSize: 16, textAlign: "justify"}]}>{umkmName + " adalah " + " lorem ipsum dolor sit amet"}</CustomText>
-
-            <CustomText weight={700} style={[{fontSize: 21, marginTop: 20}]}>Tukar</CustomText>
-            {/* TODO: add slide to confirm button */}
-          </View>
-        </View>
-      </SlidingUpPanel>
+          <View
+            style={{ paddingVertical: 2.5, backgroundColor: Colors.blue.dark, paddingHorizontal: 50, borderRadius: 10 }}
+          />
+        </Pressable>
+        <CustomText
+          weight={700}
+          style={[{ width: "100%", fontSize: 21 }]}
+        >
+          {umkmName}
+        </CustomText>
+        <ScrollView style={{ flex: 1 }}>
+          <CustomText
+            weight={400}
+            style={[{ width: "100%", fontSize: 16, textAlign: "justify" }]}
+          >
+            {umkmName} adalah Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia at repudiandae excepturi
+            nisi cupiditate id corporis explicabo nobis facilis neque.
+          </CustomText>
+        </ScrollView>
+        <SlidingButton />
+      </SlideUp>
     </>
   );
 }
