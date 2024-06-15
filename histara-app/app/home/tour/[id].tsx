@@ -107,7 +107,7 @@ export default function Tour() {
         <WebView
           containerStyle={{ width: "auto" }}
           source={{
-            uri: "http://192.168.18.40:3000/" + id,
+            uri: "https://histara-map.vercel.app/" + id,
           }}
           geolocationEnabled={true}
         />
