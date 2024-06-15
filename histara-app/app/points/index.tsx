@@ -7,9 +7,21 @@ import CustomText from "@/components/CustomText";
 import Button from "@/components/Button";
 import { useSelector } from "react-redux";
 import { getPoint } from "@/redux/slice/userSlice";
+import SlidingUpPanel from "rn-sliding-up-panel";
+import { useState } from "react";
 
 export default function Points() {
   const point = useSelector(getPoint);
+
+  // Slide up display
+  const [umkmName, setUmkmName] = useState<string>("");
+  const [umkmCost, setUmkmCost] = useState<number>(0);
+  const [umkmDesc, setUmkmDesc] = useState<string>("");
+
+  const slideUpPanel = (): void => {
+    // @ts-ignore
+    this._panel.show(360);
+  };
 
   return (
     <>
@@ -30,7 +42,8 @@ export default function Points() {
             color={Colors.orange.main}
             size={200}
             strokeWidth={15}
-            percentage={point}
+            percentage={point / 1000}
+            value={point}
             duration={800}
           />
         </View>
@@ -50,32 +63,81 @@ export default function Points() {
               marginBottom: 5,
               paddingTop: 8,
               paddingHorizontal: 18,
-              overflow:"visible"
+              overflow: "visible",
             }}
           >
             <UmkmItem
-              title="Nama UMKM"
+              title="Rumah Makan 1"
               city="Yogyakarta"
-              cost={200}
+              cost={15}
+              point={point}
+              onPress={() => {
+                setUmkmName("Rumah Makan 1");
+                setUmkmCost(15);
+                slideUpPanel();
+              }}
             />
             <UmkmItem
-              title="Nama UMKM"
+              title="Toko Merch 1"
               city="Yogyakarta"
-              cost={200}
+              cost={45}
+              point={point}
+              onPress={() => {
+                setUmkmName("Toko Merch 1");
+                setUmkmCost(45);
+                slideUpPanel();
+              }}
             />
             <UmkmItem
-              title="Nama UMKM"
+              title="Rumah Makan 2"
               city="Yogyakarta"
-              cost={200}
+              cost={20}
+              point={point}
+              onPress={() => {
+                setUmkmName("Rumah Makan 2");
+                setUmkmCost(20);
+                slideUpPanel();
+              }}
             />
             <UmkmItem
-              title="Nama UMKM"
+              title="Toko Merch 2"
               city="Yogyakarta"
-              cost={200}
+              cost={10}
+              point={point}
+              onPress={() => {
+                setUmkmName("Toko Merch 2");
+                setUmkmCost(10);
+                slideUpPanel();
+              }}
             />
           </ScrollView>
         </View>
       </ScrollView>
+      <SlidingUpPanel
+        // @ts-ignore
+        ref={(c) => (this._panel = c)}
+      >
+        <View
+          style={{
+            backgroundColor: "#FFF",
+            flex: 1,
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+            paddingHorizontal: 20,
+          }}
+        >
+          <View style={{ paddingHorizontal: 100, paddingVertical: 12 }}>
+            <View style={{ backgroundColor: Colors.blue.dark, height: 5, borderRadius: 999 }} />
+          </View>
+          <View style={{ paddingTop: 10 }}>
+            <CustomText weight={700} style={[{fontSize: 21}]}>{umkmName}</CustomText>
+            <CustomText weight={400} style={[{fontSize: 16, textAlign: "justify"}]}>{umkmName + " adalah " + " lorem ipsum dolor sit amet"}</CustomText>
+
+            <CustomText weight={700} style={[{fontSize: 21, marginTop: 20}]}>Tukar</CustomText>
+            {/* TODO: add slide to confirm button */}
+          </View>
+        </View>
+      </SlidingUpPanel>
     </>
   );
 }
@@ -84,9 +146,11 @@ interface UmkmItemProps {
   title: string;
   city: string;
   cost: number;
+  point: number;
+  onPress: () => void;
 }
 
-function UmkmItem({ title = "Nama UMKM", city = "Nama Kota", cost = 150 }: UmkmItemProps) {
+function UmkmItem({ title = "Nama UMKM", city = "Nama Kota", cost = 150, point = 0, onPress }: UmkmItemProps) {
   const cutTitle = (title: string): string => {
     return title?.length < 35 ? title : title.slice(0, 30) + "...";
   };
@@ -121,8 +185,10 @@ function UmkmItem({ title = "Nama UMKM", city = "Nama Kota", cost = 150 }: UmkmI
       </CustomText>
       <View style={{ paddingHorizontal: 25, marginTop: 10 }}>
         <Button
+          disabled={point < cost}
           text={cost.toString()}
-          style={[{ paddingVertical: 4.5 }]}
+          style={[{ paddingVertical: 4.5, backgroundColor: point > cost ? Colors.orange.main : "#DEDEDE" }]}
+          onPress={onPress}
         />
       </View>
     </View>
