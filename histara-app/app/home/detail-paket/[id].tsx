@@ -7,14 +7,14 @@ import { Utilities } from "@/utilities/Utilities";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, Pressable, ScrollView, View } from "react-native";
-import { useSelector, useDispatch } from "react-redux"; 
+import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "@/redux/slice/authSlice";
 import { setTransactionId } from "@/redux/slice/transactionSlice";
 import axios from "axios";
 
 interface TourStop {
   name: string;
-  image?: string; // Optional property
+  image: string; // Optional property
   coordinates: [number, number];
 }
 
@@ -36,7 +36,7 @@ export default function MenuPaketScreen() {
   const { id } = useLocalSearchParams();
   const [touched, setTouched] = useState(false);
   const router = useRouter();
-  const allTours = require("@/data/tours.json") as Tour[]
+  const allTours = require("@/data/tours.json") as Tour[];
 
   const [tour, setTour] = useState<Tour>({
     id: "",
@@ -47,35 +47,36 @@ export default function MenuPaketScreen() {
     points: 0,
     stop: 0,
     stops: [],
-    cover: "https://google.com"
-  })
+    cover: "https://google.com",
+  });
 
   useEffect(() => {
     const tourToBeDisplayed = allTours.filter((tour) => {
-      return tour.id === id
+      return tour.id === id;
     })[0];
     setTour(tourToBeDisplayed);
-  }, [id])
+  }, [id]);
 
   const handleClicked = () => {
-    axios.post(
-      `${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/create`,
-      { tourId: tour.tourId },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
-    .then((res) => {
-      console.log(res.data)
-      console.log("Transaction created")
-      dispatch(setTransactionId(res.data.orderId))
-      router.replace("/home/ringkasan-pembayaran/" + id)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+    axios
+      .post(
+        `${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/create`,
+        { tourId: tour.tourId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        console.log("Transaction created");
+        dispatch(setTransactionId(res.data.orderId));
+        router.replace("/home/ringkasan-pembayaran/" + id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -83,7 +84,10 @@ export default function MenuPaketScreen() {
       <Header />
       <ScrollView>
         <View style={{ height: 200, backgroundColor: Colors.orange.main }}>
-          <Image source={{uri: tour.cover}} style={{width: "100%", height: 200}} />
+          <Image
+            source={{ uri: tour.cover }}
+            style={{ width: "100%", height: 200 }}
+          />
         </View>
         <CustomText
           weight={700}
@@ -156,50 +160,60 @@ export default function MenuPaketScreen() {
           showsHorizontalScrollIndicator={false}
           horizontal
         >
-          {
-            tour.stops.map((stop, index) => {
-              return <Stop name={stop.name} image="" key={index} />
-            })
-          }
+          {tour.stops.map((stop, index) => {
+            return (
+              <Stop
+                name={stop.name}
+                image={stop.image}
+                key={index}
+              />
+            );
+          })}
         </ScrollView>
-
       </ScrollView>
-        <View style={{ backgroundColor: Colors.blue.dark, paddingVertical: 11 }}>
-          <Pressable
-            onPress={() => {handleClicked()}}
-            onPressIn={() => setTouched(true)}
-            onPressOut={() => setTouched(false)}
-            style={[
-              gs.flexRow,
-              gs.ic,
-              gs.jc,
-              {
-                backgroundColor: touched ? Colors.orange.dark : Colors.orange.main,
-                marginVertical: 2.5,
-                alignSelf: "center",
-                paddingHorizontal: 18,
-                borderRadius: 5,
-                gap: 8,
-              },
-            ]}
+      <View style={{ backgroundColor: Colors.blue.dark, paddingVertical: 11 }}>
+        <Pressable
+          onPress={() => {
+            handleClicked();
+          }}
+          onPressIn={() => setTouched(true)}
+          onPressOut={() => setTouched(false)}
+          style={[
+            gs.flexRow,
+            gs.ic,
+            gs.jc,
+            {
+              backgroundColor: touched ? Colors.orange.dark : Colors.orange.main,
+              marginVertical: 2.5,
+              alignSelf: "center",
+              paddingHorizontal: 18,
+              borderRadius: 5,
+              gap: 8,
+            },
+          ]}
+        >
+          <CustomText
+            weight={400}
+            style={[{ color: Colors.blue.dark, fontSize: 18, alignSelf: "center", paddingTop: 3 }]}
           >
-            <CustomText
-              weight={400}
-              style={[{ color: Colors.blue.dark, fontSize: 18, alignSelf: "center", paddingTop: 3 }]}
-            >
-              Start
-            </CustomText>
-            <Image source={require("@/assets/images/Start.png")} />
-          </Pressable>
-        </View>
+            Start
+          </CustomText>
+          <Image source={require("@/assets/images/Start.png")} />
+        </Pressable>
+      </View>
     </View>
   );
 }
 
-function Stop({name, image} : {name: string, image: string}) {
+function Stop({ name, image }: { name: string; image: string }) {
   return (
     <View>
-      <View style={{ width: 200, height: 145, backgroundColor: Colors.orange.main, borderRadius: 20 }} />
+      <View style={{ width: 200, height: 145, backgroundColor: Colors.orange.main, borderRadius: 20, overflow: "hidden" }}>
+        <Image
+          source={{ uri: image }}
+          style={{ width: 200, height: 145 }}
+        />
+      </View>
       <CustomText
         weight={700}
         style={[{ textAlign: "center", fontSize: 18, maxWidth: 200 }]}
@@ -209,3 +223,4 @@ function Stop({name, image} : {name: string, image: string}) {
     </View>
   );
 }
+

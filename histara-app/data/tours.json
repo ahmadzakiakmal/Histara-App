@@ -13,52 +13,40 @@
     "stops": [
       {
         "name": "Rumah Sakit Bethesda",
-        "image": "https://drive.google.com/uc?export=view&id=1dhy2mj-fc30pPB2giZ_ztvSCINf88FuD",
-        "coordinates": [-7.783507314574553, 110.3777906951027]
+        "image": "https://drive.google.com/uc?export=view&id=1dhy2mj-fc30pPB2giZ_ztvSCINf88FuD"
       },
 
       {
         "name": "Rumah Sakit DKT. Dr. Soetarto",
-        "image": "RS DKT Dr Soetarto.jpg",
-        "coordinates": [-7.7860679, 110.3768441]
+        "image": "https://drive.google.com/uc?export=view&id=1dbvKauF8-doa1wgo73YyIpG8KbE6Rcph"
       },
       {
         "name": "SMA Bopkri 1 Yogyakarta",
-        "image": "Sma bokpri.jpg",
-        "coordinates": [-7.7868186, 110.3766597]
+        "image": "https://drive.google.com/uc?export=view&id=1dp_8IfRKO7B_SlwTkH6FUqPN4EZqA6ML"
       },
       {
         "name": "Asrama Kompi Kotabaru",
-        "coordinates": [-7.787672298425395, 110.37631549685648]
+        "image": "https://drive.google.com/uc?export=view&id=1dp_8IfRKO7B_SlwTkH6FUqP4EZqA6ML"
       },
       {
         "name": "SMP Negeri 5 Yogyakarta",
-        "image": "SMP Negeri 5.jpg",
-        "coordinates": [-7.7873757, 110.3755527]
+        "image": "https://drive.google.com/uc?export=view&id=1dW5zA2shAeoJo5a92p2guRNb_J--u9Am"
       },
       {
         "name": "Babon Aniem",
-        "image": "Babon Aniem.jpg",
-        "coordinates": [-7.7867987, 110.3721449]
+        "image": "https://drive.google.com/uc?export=view&id=1dbz42-KrejXjt3a6JlwQLPdHEkpyPKMz"
       },
       {
         "name": "SDN Unggaran 1",
-        "image": "SDN Ungaran 1 .jpg",
-        "coordinates": [-7.786325, 110.37112]
+        "image": "https://drive.google.com/uc?export=view&id=1dU8qZ-U1MQJZ8ZA0hLHsb8X5lw69z9Zq"
       },
       {
         "name": "Masjid Syuhada",
-        "image": "Masjid Syuhada.jpg",
-        "coordinates": [-7.786334, 110.3693527]
+        "image": "https://drive.google.com/uc?export=view&id=1dd6uPlqfZnyWsNrHS_F22w_R4r-pciUJ"
       },
       {
         "name": "Museum Sandi",
-        "image": "Museum sandi.jpg",
-        "coordinates": [-7.7846132, 110.3711706]
-      },
-      {
-        "name": "Gedung Markas Komando",
-        "image": "Gedung markas komando.jpg"
+        "image": "https://drive.google.com/uc?export=view&id=1dnIxEDpUKUsw8qCIDDGdNNaWf6IlRMUU"
       }
     ]
   },
@@ -75,25 +63,20 @@
     "cover": "https://drive.google.com/uc?export=view&id=1DB2iXzTxSRWQBB5RJWDX_dy4ZExnnoaE",
     "stops": [
       {
-        "name": "Candi Gunung Sari",
-        "coordinates": [-7.6021298, 110.2832397]
+        "name": "Candi Gunung Sari"
       },
       {
         "name": "Candi Ngawen",
-        "image": "candi ngawen.png",
-        "coordinates": [-7.6040311, 110.2724247]
+        "image": "candi ngawen.png"
       },
       {
-        "name": "Candi Mendut",
-        "coordinates": [-7.6047436, 110.2299677]
+        "name": "Candi Mendut"
       },
       {
-        "name": "Candi Pawon",
-        "coordinates": [-7.6061184, 110.2195272]
+        "name": "Candi Pawon"
       },
       {
-        "name": "Candi Borobudur",
-        "coordinates": [-7.608038633071076, 110.20384249510818]
+        "name": "Candi Borobudur"
       }
     ]
   },
@@ -110,44 +93,34 @@
     "cover": "https://drive.google.com/uc?export=view&id=1s75M2pdFKOpW6DJlkVlIzMnDOitEU5bM",
     "stops": [
       {
-        "name": "Pasar Legi Kotagede",
-        "coordinates": [-7.827865, 110.3999145]
+        "name": "Pasar Legi Kotagede"
       },
       {
-        "name": "Masjid Gede Mataram",
-        "coordinates": [-7.8292906, 110.3981439]
+        "name": "Masjid Gede Mataram"
       },
       {
-        "name": "Sendang",
-        "coordinates": [-7.8298636774534165, 110.39782254202203]
+        "name": "Sendang"
       },
       {
-        "name": "Makam Panembahan Senopati",
-        "coordinates": [-7.8293457, 110.3977701]
+        "name": "Makam Panembahan Senopati"
       },
       {
-        "name": "Kampung Alun-alun",
-        "coordinates": [-7.830918554062269, 110.39909936746855]
+        "name": "Kampung Alun-alun"
       },
       {
-        "name": "Makam Hasta Renggo",
-        "coordinates": [-7.8320013, 110.3991819]
+        "name": "Makam Hasta Renggo"
       },
       {
-        "name": "Situs Watu Gilang & Gatheng",
-        "coordinates": [-7.8320991728151474, 110.39919933351024]
+        "name": "Situs Watu Gilang & Gatheng"
       },
       {
-        "name": "Situs Bokong Semar (Bekas Benteng Karaton)",
-        "coordinates": [-7.833482828505818, 110.40002604094516]
+        "name": "Situs Bokong Semar (Bekas Benteng Karaton)"
       },
       {
-        "name": "Rumah Kalang (Restoran) - Heritage",
-        "coordinates": [-7.826788283890553, 110.39298252754546]
+        "name": "Rumah Kalang (Restoran) - Heritage"
       },
       {
-        "name": "Museum Kotagede",
-        "coordinates": [-7.8263122, 110.3921136]
+        "name": "Museum Kotagede"
       }
     ]
   },
@@ -165,28 +138,22 @@
     "stops": [
       {
         "name": "Candi Plaosan",
-        "image": "candi plaosan.jpg",
-        "coordinates": [-7.741607392949931, 110.50434229191514]
+        "image": "candi plaosan.jpg"
       },
       {
-        "name": "Candi Gana",
-        "coordinates": [-7.743956534859717, 110.49610443958223]
+        "name": "Candi Gana"
       },
       {
-        "name": "Candi Prambanan",
-        "coordinates": [-7.752025310182392, 110.49139879429016]
+        "name": "Candi Prambanan"
       },
       {
-        "name": "Candi Lumbung",
-        "coordinates": [-7.748118414983243, 110.49293914161629]
+        "name": "Candi Lumbung"
       },
       {
-        "name": "Candi Bubrah",
-        "coordinates": [-7.7464990603686195, 110.49290784254902]
+        "name": "Candi Bubrah"
       },
       {
-        "name": "Candi Sewu",
-        "coordinates": [-7.743870533220043, 110.49284985602297]
+        "name": "Candi Sewu"
       }
     ]
   },
@@ -203,27 +170,22 @@
     "cover": "https://drive.google.com/uc?export=view&id=1uy2k3BE0MO5IGXeCHhVWnLi5ozCOU9nk",
     "stops": [
       {
-        "name": "Candi Sojiwan",
-        "coordinates": [-7.761044153758847, 110.4961070518608]
+        "name": "Candi Sojiwan"
       },
       {
-        "name": "Candi Ratu Boko",
-        "coordinates": [-7.770638894865246, 110.48601207135462]
+        "name": "Candi Ratu Boko"
       },
       {
         "name": "Candi Barong",
-        "image": "candi barong.jpg",
-        "coordinates": [-7.7750809922049084, 110.49751965055466]
+        "image": "candi barong.jpg"
       },
       {
         "name": "Candi Banyunibo",
-        "image": "candi banyunibo.jpg",
-        "coordinates": [-7.777997137599033, 110.49401798158385]
+        "image": "candi banyunibo.jpg"
       },
       {
         "name": "Candi Ijo",
-        "image": "candi Ijo.png",
-        "coordinates": [-7.78410629669363, 110.51148425251785]
+        "image": "candi Ijo.png"
       }
     ]
   },
@@ -240,40 +202,31 @@
     "cover": "https://drive.google.com/uc?export=view&id=1Ow46_rP88nT81Vdrr4s4g6nfIlXpl6Ds",
     "stops": [
       {
-        "name": "Gerbang Kerkhof",
-        "coordinates": [-7.4892447, 110.2217575]
+        "name": "Gerbang Kerkhof"
       },
       {
-        "name": "Gereja Kristen Jawa (GKJ) Magelang",
-        "coordinates": [-7.483832, 110.2157155]
+        "name": "Gereja Kristen Jawa (GKJ) Magelang"
       },
       {
-        "name": "Masjid Agung Magelang (parkir)",
-        "coordinates": [-7.4772337, 110.2171347]
+        "name": "Masjid Agung Magelang (parkir)"
       },
       {
-        "name": "Alun-alun Magelang - Water Toren",
-        "coordinates": [-7.4768235, 110.2178096]
+        "name": "Alun-alun Magelang - Water Toren"
       },
       {
-        "name": "Gereja GPIB Beth-El Magelang",
-        "coordinates": [-7.4760393, 110.2180238]
+        "name": "Gereja GPIB Beth-El Magelang"
       },
       {
-        "name": "Klenteng Liok Hok Bio",
-        "coordinates": [-7.4782739, 110.2191819]
+        "name": "Klenteng Liok Hok Bio"
       },
       {
-        "name": "Museum BPK RI",
-        "coordinates": [-7.4744902, 110.2141705]
+        "name": "Museum BPK RI"
       },
       {
-        "name": "Museum Diponegoro",
-        "coordinates": [-7.4747625, 110.2128036]
+        "name": "Museum Diponegoro"
       },
       {
-        "name": "Eks Kampus UGM Cabang Magelang",
-        "coordinates": [-7.4751115, 110.2115436]
+        "name": "Eks Kampus UGM Cabang Magelang"
       }
     ]
   },
@@ -290,32 +243,25 @@
     "cover": "https://drive.google.com/uc?export=view&id=1_wIz2HvesyBjr_Xy2WZDI07pA_WMNlYP",
     "stops": [
       {
-        "name": "Monumen Palagan Ambarawa",
-        "coordinates": [-7.2598825, 110.4025069]
+        "name": "Monumen Palagan Ambarawa"
       },
       {
-        "name": "Museum Isdiman",
-        "coordinates": [-7.2599852, 110.4021528]
+        "name": "Museum Isdiman"
       },
       {
-        "name": "Gereja Kristen Ambarawa (GKJ)",
-        "coordinates": [-7.2601422, 110.4020133]
+        "name": "Gereja Kristen Ambarawa (GKJ)"
       },
       {
-        "name": "Gereja Protestan di Indonesia bagian Barat (BPIB) Ambarawa",
-        "coordinates": [-7.260214, 110.4018477]
+        "name": "Gereja Protestan di Indonesia bagian Barat (BPIB) Ambarawa"
       },
       {
-        "name": "Museum Kereta Api Ambarawa",
-        "coordinates": [-7.2648619, 110.4027938]
+        "name": "Museum Kereta Api Ambarawa"
       },
       {
-        "name": "Benteng Fort Willem I (Benteng Pendem)",
-        "coordinates": [-7.2706495, 110.4101468]
+        "name": "Benteng Fort Willem I (Benteng Pendem)"
       },
       {
-        "name": "Eling Bening",
-        "coordinates": [-7.2677195, 110.4452482]
+        "name": "Eling Bening"
       }
     ]
   },
@@ -332,36 +278,28 @@
     "cover": "https://drive.google.com/uc?export=view&id=1TAIY1JbMy7zwBhCGlER86nBNLVeb8lFn",
     "stops": [
       {
-        "name": "Stasiun Tawang",
-        "coordinates": [-6.964469, 110.4279795]
+        "name": "Stasiun Tawang"
       },
       {
-        "name": "Kota Lama Semarang",
-        "coordinates": [-6.968411320276323, 110.42760139863123]
+        "name": "Kota Lama Semarang"
       },
       {
-        "name": "GPIB Immanuel Semarang (Gereja Blenduk)",
-        "coordinates": [-6.9683022, 110.4274688]
+        "name": "GPIB Immanuel Semarang (Gereja Blenduk)"
       },
       {
-        "name": "POS Indonesia KCU Semarang",
-        "coordinates": [-6.9699459, 110.424217]
+        "name": "POS Indonesia KCU Semarang"
       },
       {
-        "name": "Alun-Alun Semarang",
-        "coordinates": [-6.971914811465167, 110.42385489888301]
+        "name": "Alun-Alun Semarang"
       },
       {
-        "name": "Pasar Johar",
-        "coordinates": [-6.9714691, 110.424623]
+        "name": "Pasar Johar"
       },
       {
-        "name": "Museum Kota Lama Semarang",
-        "coordinates": [-6.9693845, 110.4307086]
+        "name": "Museum Kota Lama Semarang"
       },
       {
-        "name": "Kampung Batik",
-        "coordinates": [-6.9691585, 110.4311451]
+        "name": "Kampung Batik"
       }
     ]
   },
@@ -378,36 +316,28 @@
     "cover": "https://drive.google.com/uc?export=view&id=1eBKRRW92rakOyuSUUNJQQrYtrT6CwF3d",
     "stops": [
       {
-        "name": "Lawang Sewu",
-        "coordinates": [-6.9833715, 110.4106866]
+        "name": "Lawang Sewu"
       },
       {
-        "name": "Tugu Muda Semarang",
-        "coordinates": [-6.9842817, 110.4093361]
+        "name": "Tugu Muda Semarang"
       },
       {
-        "name": "Gereja Katedral Santa Perawan Maria",
-        "coordinates": [-6.9854654, 110.4097408]
+        "name": "Gereja Katedral Santa Perawan Maria"
       },
       {
-        "name": "Kompleks SD SMP Pangudi Luhur",
-        "coordinates": [-6.9859466, 110.4100589]
+        "name": "Kompleks SD SMP Pangudi Luhur"
       },
       {
-        "name": "Museum Perjuangan Mandala Bhakti",
-        "coordinates": [-6.9847655, 110.4088245]
+        "name": "Museum Perjuangan Mandala Bhakti"
       },
       {
-        "name": "Pasar Bulu Semarang",
-        "coordinates": [-6.9841658, 110.4080993]
+        "name": "Pasar Bulu Semarang"
       },
       {
-        "name": "Wisma Perdamaian",
-        "coordinates": [-6.9835365, 110.4085355]
+        "name": "Wisma Perdamaian"
       },
       {
-        "name": "Gedung Juang 45 Semarang",
-        "coordinates": [-6.9822333, 110.4112891]
+        "name": "Gedung Juang 45 Semarang"
       }
     ]
   }
