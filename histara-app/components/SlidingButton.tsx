@@ -7,6 +7,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "@/redux/slice/authSlice";
 import { setPoint } from "@/redux/slice/userSlice";
+import Toast from "react-native-toast-message";
 
 const SlidingButton = ({
   point,
@@ -29,7 +30,8 @@ const SlidingButton = ({
   }, [confirmed]);
 
   const handleRedeem = () => {
-    console.log("Attempting to redeem points...");
+    Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+
     axios
       .post(
         `${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/point/spend`,
@@ -43,14 +45,13 @@ const SlidingButton = ({
         }
       )
       .then((res) => {
-        console.log("Redemption successful:", res.data);
         dispatch(setPoint(res.data.points));
         setShowModal(true);
         setSliderState(false);
       })
       .catch((err) => {
-        console.error("Redemption failed:", err);
         setSliderState(false);
+        Toast.show({type: "error", text1: "Error", text2: "Redeem point gagal"})
       })
       .finally(() => {
         setConfirmed(false);
