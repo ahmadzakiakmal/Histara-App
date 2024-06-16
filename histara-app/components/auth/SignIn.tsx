@@ -20,6 +20,8 @@ export default function SignInTab() {
   const [password, setPassword] = useState("esempe");
 
   const handleSignIn = () => {
+    Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+
     axios
       .post(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/user/login", {
         email,
@@ -37,16 +39,16 @@ export default function SignInTab() {
             dispatch(setUser(res.data.user));
             dispatch(setPoint(res.data.points));
             router.navigate("home");
-            console.log("Login success!");
+            Toast.show({ type: "success", text1: "Success", text2: "Login berhasil" });
           } else {
-            console.log("AuthToken not found");
+            Toast.show({type: "error", text1: "Error", text2: "Login gagal"})
           }
         } else {
-          console.log("Cookies not found in the response");
+          Toast.show({type: "error", text1: "Error", text2: "Login gagal"})
         }
       })
       .catch((err) => {
-        console.log(err);
+        Toast.show({type: "error", text1: "Error", text2: "Login gagal"})
       });
   };
 
@@ -70,24 +72,6 @@ export default function SignInTab() {
       <Button
         text="SIGN IN"
         onPress={() => handleSignIn()}
-      />
-      <Button
-        text="Success"
-        onPress={() => {
-          Toast.show({ type: "success", text1: "Success", text2: "Login berhasil" });
-        }}
-      />
-      <Button
-        text="Error"
-        onPress={() => {
-          Toast.show({type: "error", text1: "Error", text2: "Login gagal"})
-        }}
-      />
-      <Button
-        text="Loading"
-        onPress={() => {
-          Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
-        }}
       />
 
       <View

@@ -10,6 +10,7 @@ import { Link, useRouter } from "expo-router";
 import axios from "axios";
 import { gs } from "@/constants/Styles";
 import { Utilities } from "@/utilities/Utilities";
+import Toast from "react-native-toast-message";
 
 export default function SignUpTab() {
   const [name, setName]: [string, Dispatch<string>] = useState("");
@@ -26,9 +27,10 @@ export default function SignUpTab() {
   const router = useRouter();
 
   const handleClick = () => {
-    // SAMPLE HANDLER FOR PASSWORD MISSMATCH
+    Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+
     if (password !== confirmPassword) {
-      console.log("Password not match!");
+      Toast.show({type: "error", text1: "Error", text2: "Password tidak cocok!"})
       return;
     }
 
@@ -43,12 +45,11 @@ export default function SignUpTab() {
         password,
       })
       .then((res) => {
-        console.log(res);
-        console.log("Register success!");
-        router.navigate("home");
+        Toast.show({ type: "success", text1: "Register berhasil!", text2: "Silakan login terlebih dahulu" });
+        router.navigate("/auth/signin")
       })
       .catch((err) => {
-        console.log(err);
+        Toast.show({type: "error", text1: "Error", text2: "Register gagal"})
       });
   };
 

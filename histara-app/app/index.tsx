@@ -61,7 +61,7 @@ export default function HomeScreen() {
             </CustomText>
           </TouchableOpacity>
         </View>
-        <View style={{ width: "100%", flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
+        {/* <View style={{ width: "100%", flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
           <View style={{ flex: 1, width: 20, height: 1, backgroundColor: "#828282" }} />
           <View style={{ marginHorizontal: 5 }}>
             <CustomText
@@ -72,7 +72,7 @@ export default function HomeScreen() {
             </CustomText>
           </View>
           <View style={{ flex: 1, width: 20, height: 1, backgroundColor: "#828282" }} />
-        </View>
+        </View> *
         <TouchableOpacity
           style={[
             {
@@ -117,7 +117,7 @@ export default function HomeScreen() {
           >
             Continue with Google
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
 
       <View
