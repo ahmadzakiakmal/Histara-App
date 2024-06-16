@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { getToken } from "@/redux/slice/authSlice";
 import { getTransactionId } from "@/redux/slice/transactionSlice";
 import axios from "axios";
+import Toast from "react-native-toast-message";
 
 export default function Tour() {
   const profilePictures = [
@@ -129,17 +130,19 @@ function ConfirmModal({ setShowModal }: { setShowModal: Dispatch<SetStateAction<
   const router = useRouter();
 
   const handleSelesai = () => {
+    Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+
     axios.put(`${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/finish?orderId=${transactionId}`, {
       headers: {
         Authorization: "Bearer " + token,
       }
     })
     .then((res) => {
-      console.log(res.data);
+       Toast.show({ type: "success", text1: "Success", text2: "Tour telah selesai!" });
       router.navigate("/home")
     })
     .catch((err) => {
-      console.error(err);
+      Toast.show({type: "error", text1: "Error", text2: "Tour belum selesai!"})
     });
   }
 

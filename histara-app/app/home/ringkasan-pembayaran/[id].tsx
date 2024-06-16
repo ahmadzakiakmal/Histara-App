@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTransactionId, setQrLink } from "@/redux/slice/transactionSlice";
 import { getToken } from "@/redux/slice/authSlice";
 import axios from "axios";
+import Toast from "react-native-toast-message";
 
 interface TourStop {
   name: string;
@@ -53,6 +54,8 @@ export default function RingkasanPembayaran() {
   }, [id]);
 
   const handlePembayaran = () => {
+    Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+
     axios.post(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/transaction/create-payment", {
       "orderId": transactionId,
     }, 
@@ -62,12 +65,12 @@ export default function RingkasanPembayaran() {
       },
     })
     .then((res) => {
-      console.log(res.data);
+      Toast.show({ type: "success", text1: "Success", text2: "QRIS berhasil dibuat!" });
       dispatch(setQrLink(res.data.qrLink));
       router.navigate("/home/pembayaran/" + id);
     })
     .catch((err) => {
-      console.error(err);
+      Toast.show({type: "error", text1: "Error", text2: "QRIS gagal dibuat!"})
     });
   };
 

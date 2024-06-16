@@ -8,11 +8,7 @@ const { useSelector } = require("react-redux");
 const { getToken } = require("@/redux/slice/authSlice");
 const { getTransactionId, getQrLink } = require("@/redux/slice/transactionSlice");
 import axios from "axios";
-
-interface CheckPaymentResponse {
-  success: boolean;
-  message: string;
-}
+import Toast from "react-native-toast-message";
 
 export default function Pembayaran() {
   const token = useSelector(getToken);
@@ -24,7 +20,9 @@ export default function Pembayaran() {
   
   // TODO: ADD HANDLER WHEN PAYMENT IS EXPIRED
   const checkPaymentStatus = () => {
-    console.log(transactionId);
+    console.log(qrLink)
+    Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+
     axios.get(`${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/check-payment?orderId=${transactionId}`, {
       headers: {
         Authorization: "Bearer " + token,
@@ -34,13 +32,15 @@ export default function Pembayaran() {
       console.log(res.data);
       setPaymentStatus(res.data.paymentStatus);
       if (res.data.paymentStatus === "paid") {
+        Toast.show({ type: "success", text1: "Success", text2: "Pembayaran berhasil!" });
         router.navigate("/home/pembayaran/success/" + id)
       } else {
+        Toast.show({ type: "error", text1: "Info", text2: "Pembayaran belum berhasil" });
         console.log("Payment is not paid yet or expired!");
       }
     })
     .catch((err) => {
-      console.error(err);
+      Toast.show({type: "error", text1: "Error", text2: "Pembayaran belum berhasil"})
     });
   };
 

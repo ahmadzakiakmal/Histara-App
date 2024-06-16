@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "@/redux/slice/authSlice";
 import { setTransactionId } from "@/redux/slice/transactionSlice";
 import axios from "axios";
+import Toast from "react-native-toast-message";
 
 interface TourStop {
   name: string;
@@ -58,6 +59,8 @@ export default function MenuPaketScreen() {
   }, [id]);
 
   const handleClicked = () => {
+    Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+
     axios
       .post(
         `${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/create`,
@@ -69,13 +72,12 @@ export default function MenuPaketScreen() {
         }
       )
       .then((res) => {
-        console.log(res.data);
-        console.log("Transaction created");
+        Toast.show({ type: "success", text1: "Success", text2: "Transaksi berhasil dibuat!" });
         dispatch(setTransactionId(res.data.orderId));
         router.replace("/home/ringkasan-pembayaran/" + id);
       })
       .catch((err) => {
-        console.log(err);
+        Toast.show({type: "error", text1: "Error", text2: "Transaksi gagal dibuat!"})
       });
   };
 
