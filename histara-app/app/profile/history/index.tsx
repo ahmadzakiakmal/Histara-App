@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getToken } from "@/redux/slice/authSlice";
 import { setHistoryData } from "@/redux/slice/historySlice";
 import axios from "axios";
+import Toast from "react-native-toast-message";
 
 export default function TourHistoryScreen() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export default function TourHistoryScreen() {
   const [mappedData, setmappedData] = useState<any[]>([]);
 
   useEffect(() => {
+    Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
     axios.get(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/transaction/all", {
       headers: {
         Authorization: "Bearer " + token,
@@ -28,9 +30,11 @@ export default function TourHistoryScreen() {
         transactionTime: new Date(item.transactionTime),
       }));
       setmappedData(formattedData);
+      Toast.show({ type: "success", text1: "Success", text2: "Data transaksi berhasil diupdate!" });
     })
     .catch((err) => {
       console.error(err);
+      Toast.show({ type: "error", text1: "Error", text2: "Data transaksi gagal diupdate!" });
     });
   }, [token]);
 
