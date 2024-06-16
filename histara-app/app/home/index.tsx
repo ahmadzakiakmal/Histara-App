@@ -68,13 +68,6 @@ export default function HomeScreen() {
         source={{ uri: item.image }}
         style={{ height: 200, width: "100%"}}
       />
-      <View style={{position: "absolute", width: "100%", height: "100%", backgroundColor: Colors.orange.main, opacity: .2}} />
-      {/* <CustomText
-        weight={700}
-        style={[{ position: "absolute" }]}
-      >
-        {item.title}
-      </CustomText> */}
     </View>
   );
 
@@ -98,7 +91,12 @@ export default function HomeScreen() {
           }}
           paginationActiveColor="#FFF"
           paginationDefaultColor="rgba(255,255,255,0.36)"
-          data={placesRaw}
+          data={[
+            {image: "https://drive.google.com/uc?export=view&id=1btrml_aPl0KSSCk2CtnfYuuVnELX--Et"},
+            {image: "https://drive.google.com/uc?export=view&id=1s9ngDquJI_qb6gzbyll8fNcpPqeAaFnN"},
+            {image: "https://drive.google.com/uc?export=view&id=1jvosHinD8jP-8nfwmVDUA0hq5cg0yTAD"},
+            {image: "https://drive.google.com/uc?export=view&id=1UWWcKiMjSWOQuhaT7WcYijrNVEK9ZsPR"}
+          ]}
           renderItem={({ item }) => (
             <Item item={item} />
           )}
