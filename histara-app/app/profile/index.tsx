@@ -12,7 +12,17 @@ import { getUser, getPoint } from "@/redux/slice/userSlice";
 export default function ProfileScreen() {
   const user = useSelector(getUser);
   const point = useSelector(getPoint);
+  const profilePicture = user.profilePicture;
   const router = useRouter();
+  console.log(user.profilePicture)
+
+  const profilePictures = [
+    require("@/assets/images/profile/1.png"),
+    require("@/assets/images/profile/2.png"),
+    require("@/assets/images/profile/3.png"),
+    require("@/assets/images/profile/4.png"),
+  ];
+
   return (
     <View style={{ backgroundColor: "#FFF" }}>
       <Header />
@@ -34,7 +44,12 @@ export default function ProfileScreen() {
                 {point} points
               </CustomText>
             </View>
-            <View style={{ backgroundColor: "#DADADA", width: 83, height: 83, borderRadius: 9999 }} />
+            <View style={{ backgroundColor: "#DADADA", width: 83, height: 83, borderRadius: 9999, overflow: "hidden" }}>
+              <Image
+                source={profilePicture ? profilePictures[0] : profilePictures[profilePicture]}
+                style={{ width: 83, height: 84 }}
+              />
+            </View>
           </View>
 
           <View style={[gs.flexRow, { marginTop: 22.5, gap: 15 }]}>
