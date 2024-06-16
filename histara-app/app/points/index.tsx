@@ -26,6 +26,7 @@ export default function Points() {
   const [umkmName, setUmkmName] = useState<string>("");
   const [umkmCost, setUmkmCost] = useState<number>(0);
   const [umkmDesc, setUmkmDesc] = useState<string>("");
+  const [umkmId, setUmkmId] = useState<string>("");
 
   const slideUpPanel = (): void => {
     // @ts-ignore
@@ -102,6 +103,7 @@ export default function Points() {
               cost={50}
               point={point}
               onPress={() => {
+                setUmkmId("666da35c2f1303deffdf3cd3");
                 setUmkmName("Recycled Batik Wallet");
                 setUmkmCost(50);
                 setUmkmDesc(
@@ -117,6 +119,7 @@ export default function Points() {
               point={point}
               image="https://drive.google.com/uc?id=10WDXElLYbbXvxYW1sjU6J9uyG3Asn814&export=download"
               onPress={() => {
+                setUmkmId("666da3a12f1303deffdf3cd4");
                 setUmkmName("Apik Pencil Case");
                 setUmkmCost(50);
                 setUmkmDesc(
@@ -132,6 +135,7 @@ export default function Points() {
               point={point}
               image="https://drive.google.com/uc?id=1f_wQMBaOgy3JvBs_UwohiA88Z27J0OzR&export=download"
               onPress={() => {
+                setUmkmId("666da3b02f1303deffdf3cd5");
                 setUmkmName("Akar Kelapa Keju");
                 setUmkmCost(200);
                 setUmkmDesc(
@@ -147,6 +151,7 @@ export default function Points() {
               point={point}
               image="https://drive.google.com/uc?id=12lbplHqkh_38nzBjs2v3a05NIkw27aZi&export=download"
               onPress={() => {
+                setUmkmId("666da3c12f1303deffdf3cd6");
                 setUmkmName("Heritage Key Chain");
                 setUmkmCost(30);
                 setUmkmDesc(
@@ -197,6 +202,7 @@ export default function Points() {
         <SlidingButton
           point={umkmCost}
           setShowModal={setShowModal}
+          umkmId={umkmId}
         />
       </SlideUp>
       {showModal && (
