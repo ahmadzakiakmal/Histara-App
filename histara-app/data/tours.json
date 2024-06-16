@@ -127,10 +127,10 @@
       {
         "name": "Rumah Kalang (Restoran) - Heritage",
         "image": "https://drive.google.com/uc?export=view&id=1YvErZ6XJmwIHK4wTnK5dbFJomSUk0HJu"
-        },
-        {
-          "name": "Museum Kotagede",
-          "image": "https://drive.google.com/uc?export=view&id=1YvErZ6XJmwIHK4wTnK5dbFJomSUk0HJu"
+      },
+      {
+        "name": "Museum Kotagede",
+        "image": "https://drive.google.com/uc?export=view&id=1YvErZ6XJmwIHK4wTnK5dbFJomSUk0HJu"
       }
     ]
   },
@@ -148,22 +148,27 @@
     "stops": [
       {
         "name": "Candi Plaosan",
-        "image": "candi plaosan.jpg"
+        "image": "https://drive.google.com/uc?export=view&id=19b3cA0cPNqJasvWuVn1LQtCd__uuQ72o"
       },
       {
-        "name": "Candi Gana"
+        "name": "Candi Gana",
+        "image": "https://drive.google.com/uc?export=view&id=1S3bLdZrRIuFgkNsEo5W46gnYr3E37I0Q"
       },
       {
-        "name": "Candi Prambanan"
+        "name": "Candi Prambanan",
+        "image": "https://drive.google.com/uc?export=view&id=1S2OhQNQLjt4JlYl731LKDJXUHnJQ2Ohp"
       },
       {
-        "name": "Candi Lumbung"
+        "name": "Candi Lumbung",
+        "image": "https://drive.google.com/uc?export=view&id=1RfkfjTQc95qLomowxjjeqyoUndWec2XU"
       },
       {
-        "name": "Candi Bubrah"
-      },
-      {
-        "name": "Candi Sewu"
+        "name": "Candi Bubrah",
+        "image": "https://drive.google.com/uc?export=view&id=1RxQUy-tPCIYR-HuskQ1nepb3IJAAfk-W"
+        },
+        {
+          "name": "Candi Sewu",
+          "image": "https://drive.google.com/uc?export=view&id=1S7HtNKnb6LeHdR_5_gK7LYY4b16UqZZe"
       }
     ]
   },
