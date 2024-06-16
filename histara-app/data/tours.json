@@ -165,10 +165,10 @@
       {
         "name": "Candi Bubrah",
         "image": "https://drive.google.com/uc?export=view&id=1RxQUy-tPCIYR-HuskQ1nepb3IJAAfk-W"
-        },
-        {
-          "name": "Candi Sewu",
-          "image": "https://drive.google.com/uc?export=view&id=1S7HtNKnb6LeHdR_5_gK7LYY4b16UqZZe"
+      },
+      {
+        "name": "Candi Sewu",
+        "image": "https://drive.google.com/uc?export=view&id=1S7HtNKnb6LeHdR_5_gK7LYY4b16UqZZe"
       }
     ]
   },
@@ -185,22 +185,24 @@
     "cover": "https://drive.google.com/uc?export=view&id=1v4LpwskotuSAgKFg6kqXZWaHPBdv-VPI",
     "stops": [
       {
-        "name": "Candi Sojiwan"
+        "name": "Candi Sojiwan",
+        "image": "https://drive.google.com/uc?export=view&id=1eWp0Ml42LyGm_RNcQXBgPjr5usOuFEM1"
       },
       {
-        "name": "Candi Ratu Boko"
+        "name": "Candi Ratu Boko",
+        "image": "https://drive.google.com/uc?export=view&id=1n1bUzEZJ0PY_UgV626OkdpgdewNAheiR"
       },
       {
         "name": "Candi Barong",
-        "image": "candi barong.jpg"
+        "image": "https://drive.google.com/uc?export=view&id=1uy2k3BE0MO5IGXeCHhVWnLi5ozCOU9nk"
       },
       {
         "name": "Candi Banyunibo",
-        "image": "candi banyunibo.jpg"
+        "image": "https://drive.google.com/uc?export=view&id=11wKcEOJcLMpa8NE0-7XR7oqScAnA-vz7"
       },
       {
         "name": "Candi Ijo",
-        "image": "candi Ijo.png"
+        "image": "https://drive.google.com/uc?export=view&id=1hFL5g2vqfUqUp8MEEpQHOuv7zXZbQh2a"
       }
     ]
   },
