@@ -46,7 +46,7 @@ export default function HomeScreen() {
       id: 5,
       title: "Semarang",
       image:
-        "https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihbfZIY0YFudxPqTKNmtGQlkV-_bhZLgDcxUpMlM-fIgNDVoQt4ifNg0Jwc99X0-OQKzRchPcAxh78hshrExJAn9ktW-9wPv3JA=w1879-h931-rw-v1",
+        "https://drive.google.com/uc?export=view&id=1_d_uEm6HSLz9IyVhhf0DK0VFwAm0J_vw",
     },
   ];
 

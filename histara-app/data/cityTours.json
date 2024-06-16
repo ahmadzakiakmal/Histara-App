@@ -3,53 +3,62 @@
     {
       "id": "YG01",
       "name": "Adara Cycling Tour at Kota Baru",
-      "desc": "Kawasan Elit Belanda yang autentik di tengah Kota Jogja"
+      "desc": "Kawasan Elit Belanda yang autentik di tengah Kota Jogja",
+      "image": "https://drive.google.com/uc?export=view&id=1dhy2mj-fc30pPB2giZ_ztvSCINf88FuD"
     },
     {
       "id": "YG02",
       "name": "Adhikari Cycling Tour at Kota Gede",
-      "desc": "Eksplor Saksi Bisu Kerajaan Mataram Islam Zaman Dahulu"
+      "desc": "Eksplor Saksi Bisu Kerajaan Mataram Islam Zaman Dahulu",
+      "image": "https://drive.google.com/uc?export=view&id=1s75M2pdFKOpW6DJlkVlIzMnDOitEU5bM"
     },
     {
       "id": "YG03",
       "name": "Kastara Riding Tour at Yogyakarta",
-      "desc": "Nikmati sensasi menjelajah waktu dengan wisata candi!"
+      "desc": "Nikmati sensasi menjelajah waktu dengan wisata candi!",
+      "image": "https://drive.google.com/uc?export=view&id=19b3cA0cPNqJasvWuVn1LQtCd__uuQ72o"
     },
     {
       "id": "YG04",
       "name": "Niscala Riding Tour at Yogyakarta",
-      "desc": "Melihat keindahan matahari terbit dan terbenam di pelataran candi"
+      "desc": "Melihat keindahan matahari terbit dan terbenam di pelataran candi",
+      "image": "https://drive.google.com/uc?export=view&id=1uy2k3BE0MO5IGXeCHhVWnLi5ozCOU9nk"
     }
   ],
   "Magelang": [
     {
       "id": "MG01",
       "name": "Danadyaksa Riding Tour at Magelang",
-      "desc": "Jelajahi keajaiban Candi Magelang sebagai warisan budaya yang menakjubkan!"
+      "desc": "Jelajahi keajaiban Candi Magelang sebagai warisan budaya yang menakjubkan!",
+      "image": "https://drive.google.com/uc?export=view&id=1DB2iXzTxSRWQBB5RJWDX_dy4ZExnnoaE"
     },
     {
       "id": "MG02",
       "name": "Sadajiwa Riding Tour at Kota Magelang",
-      "desc": "Jelajahi pesona Magelang dengan tempat ibadah yang menenangkan, ikon kota yang megah, dan museum penuh pengetahuan yang memperkaya wawasan sejarah!"
+      "desc": "Jelajahi pesona Magelang dengan tempat ibadah yang menenangkan, ikon kota yang megah, dan museum penuh pengetahuan yang memperkaya wawasan sejarah!",
+      "image": "https://drive.google.com/uc?export=view&id=1Ow46_rP88nT81Vdrr4s4g6nfIlXpl6Ds"
     }
   ],
   "Ambarawa": [
     {
       "id": "AM01",
       "name": "Bramanty Riding or Cycling Tour at Ambarawa",
-      "desc": "Menelusuri jejak heroik rakyat Ambarawa sembari menghayati perjalanan sejarah!"
+      "desc": "Menelusuri jejak heroik rakyat Ambarawa sembari menghayati perjalanan sejarah!",
+      "image": "https://drive.google.com/uc?export=view&id=1_wIz2HvesyBjr_Xy2WZDI07pA_WMNlYP"
     }
   ],
   "Semarang": [
     {
       "id": "SM01",
       "name": "Abra Walking Tour at Kota Tua Semarang",
-      "desc": "Rasakan keajaiban masa lalu melalui bangunan bersejarah, museum, dan pasar yang memukau, sambil menikmati pesona budaya dan tradisi yang hidup di jantung kota."
+      "desc": "Rasakan keajaiban masa lalu melalui bangunan bersejarah, museum, dan pasar yang memukau, sambil menikmati pesona budaya dan tradisi yang hidup di jantung kota.",
+      "image": "https://drive.google.com/uc?export=view&id=1TAIY1JbMy7zwBhCGlER86nBNLVeb8lFn"
     },
     {
       "id": "SM02",
       "name": "Wirasana Walking Tour at Pandanaran Semarang",
-      "desc": "Temukan berbagai cerita sejarah dalam bangunan-bangunan autentik di Kota Semarang!"
+      "desc": "Temukan berbagai cerita sejarah dalam bangunan-bangunan autentik di Kota Semarang!",
+      "image": "https://drive.google.com/uc?export=view&id=1eBKRRW92rakOyuSUUNJQQrYtrT6CwF3d"
     }
   ]
 }
