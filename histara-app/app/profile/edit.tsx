@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
 import { Dispatch, useEffect, useState } from "react";
-import { Image, Platform, Pressable, ScrollView, View } from "react-native";
+import { Image, Platform, Pressable, ScrollView, TouchableOpacity, View } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import MiniButton from "@/components/MiniButton";
 import Button from "@/components/Button";
@@ -34,7 +34,7 @@ export default function EditProfileScreen() {
     require("@/assets/images/profile/1.png"),
     require("@/assets/images/profile/2.png"),
     require("@/assets/images/profile/3.png"),
-    require("@/assets/images/profile/4.png")
+    require("@/assets/images/profile/4.png"),
   ];
 
   const [name, setName] = useState(user.name || "");
@@ -45,6 +45,7 @@ export default function EditProfileScreen() {
   const [work, setWork] = useState(user.work || "");
   const [open, setOpen] = useState<boolean>(false);
   const [profilePictureNumber, setProfilePictureNumber] = useState(user.profilePicture || 0);
+  const [openPpSelector, setOpenPpSelector] = useState<boolean>(false);
 
   const handleSave = async () => {
     const updatedData: Partial<User> = {};
@@ -52,23 +53,20 @@ export default function EditProfileScreen() {
     if (name !== user.name) updatedData.name = name;
     if (email !== user.email) updatedData.email = email;
     if (phoneNumber !== user.phoneNumber) updatedData.phoneNumber = phoneNumber;
-    if (birthday.toISOString().split('T')[0] !== user.birthday) updatedData.birthday = birthday.toISOString().split('T')[0];
+    if (birthday.toISOString().split("T")[0] !== user.birthday)
+      updatedData.birthday = birthday.toISOString().split("T")[0];
     if (gender !== user.gender) updatedData.gender = gender;
     if (work !== user.work) updatedData.work = work;
 
     console.log(updatedData);
-    
+
     if (Object.keys(updatedData).length > 0) {
       try {
-        const response = await axios.put(
-          `${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/user/edit`,
-          updatedData,
-          {
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          }
-        );
+        const response = await axios.put(`${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/user/edit`, updatedData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         console.log(response.data);
       } catch (error) {
         console.error(error);
@@ -78,22 +76,91 @@ export default function EditProfileScreen() {
 
   return (
     <View style={{ flex: 1 }}>
+      {openPpSelector && (
+        <View
+          style={{
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(14,26,76, .6)",
+            position: "absolute",
+            zIndex: 100,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <View style={{ padding: 15, backgroundColor: "#FFF", borderRadius: 16, width: "auto", gap: 10 }}>
+            <View style={[gs.flexRow, { gap: 10 }]}>
+              <TouchableOpacity
+                onPress={() => {
+                  setProfilePictureNumber(1);
+                  setOpenPpSelector(false);
+                }}
+              >
+                <Image
+                  source={profilePictures[0]}
+                  style={{ width: 150, height: 150 }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setProfilePictureNumber(2);
+                  setOpenPpSelector(false);
+                }}
+              >
+                <Image
+                  source={profilePictures[1]}
+                  style={{ width: 150, height: 150 }}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={[gs.flexRow, { gap: 10 }]}>
+              <TouchableOpacity
+                onPress={() => {
+                  setProfilePictureNumber(3);
+                  setOpenPpSelector(false);
+                }}
+              >
+                <Image
+                  source={profilePictures[2]}
+                  style={{ width: 150, height: 150 }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setProfilePictureNumber(4);
+                  setOpenPpSelector(false);
+                }}
+              >
+                <Image
+                  source={profilePictures[3]}
+                  style={{ width: 150, height: 150 }}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      )}
       <Header title="Edit Profile" />
       <ScrollView contentContainerStyle={{ flex: 1, backgroundColor: "#FFF", paddingTop: 15, paddingHorizontal: 22 }}>
         <View style={[gs.ic]}>
           <View style={{ backgroundColor: "#DADADA", width: 83, height: 83, borderRadius: 9999, overflow: "hidden" }}>
             <Image
-              source={profilePictures[profilePictureNumber]}
+              source={profilePictures[profilePictureNumber - 1]}
               style={{ width: "100%", height: "100%" }}
             />
           </View>
-          <CustomText
-            weight={500}
-            italic={true}
-            style={[{ color: "#0060FF" }]}
+          <Pressable
+            onPress={() => setOpenPpSelector(!openPpSelector)}
+            style={{ paddingVertical: 10 }}
           >
-            Edit Profile
-          </CustomText>
+            <CustomText
+              weight={500}
+              italic={true}
+              style={[{ color: "#0060FF" }]}
+            >
+              Edit Profile
+            </CustomText>
+          </Pressable>
         </View>
         <View style={{ gap: 10, marginTop: 21 }}>
           <FormTextInput
@@ -200,9 +267,13 @@ export default function EditProfileScreen() {
               { title: "Lainnya", value: "LAINNYA" },
             ]}
           />
-          <Button onPress={handleSave} text="Save" />
+          <Button
+            onPress={handleSave}
+            text="Save"
+          />
         </View>
       </ScrollView>
     </View>
   );
 }
+
