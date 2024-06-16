@@ -63,20 +63,24 @@
     "cover": "https://drive.google.com/uc?export=view&id=1DB2iXzTxSRWQBB5RJWDX_dy4ZExnnoaE",
     "stops": [
       {
-        "name": "Candi Gunung Sari"
+        "name": "Candi Gunung Sari",
+        "image": "https://drive.google.com/uc?export=view&id=1cnjyo-Kx27hWEM0mymIMEcjV29JNVY2S"
       },
       {
         "name": "Candi Ngawen",
-        "image": "candi ngawen.png"
+        "image": "https://drive.google.com/uc?export=view&id=1VRQJd85FGpe1Vpvj88CRFtxM058Qsx3z"
       },
       {
-        "name": "Candi Mendut"
+        "name": "Candi Mendut",
+        "image": "https://drive.google.com/uc?export=view&id=1X6VZ7bDPqPefod5dMogOTBnicbfg28aA"
       },
       {
-        "name": "Candi Pawon"
+        "name": "Candi Pawon",
+        "image": "https://drive.google.com/uc?export=view&id=1lIZF4DufOfU0eqM5k0ce2BJD_6HQ6lNt"
       },
       {
-        "name": "Candi Borobudur"
+        "name": "Candi Borobudur",
+        "image": "https://drive.google.com/uc?export=view&id=1vpspvhPC2bN5LIkcfLm5GIpM4s67WJK5"
       }
     ]
   },
