@@ -1,0 +1,337 @@
+[
+  {
+    "tourId": "YG01",
+    "stopName": "Rumah Sakit Bethesda",
+    "index": 0
+  },
+  {
+    "tourId": "YG01",
+    "stopName": "Rumah Sakit DKT. Dr. Soetarto",
+    "index": 1
+  },
+  {
+    "tourId": "YG01",
+    "stopName": "SMA Bopkri 1 Yogyakarta",
+    "index": 2
+  },
+  {
+    "tourId": "YG01",
+    "stopName": "Asrama Kompi Kotabaru",
+    "index": 3
+  },
+  {
+    "tourId": "YG01",
+    "stopName": "SMP Negeri 5 Yogyakarta",
+    "index": 4
+  },
+  {
+    "tourId": "YG01",
+    "stopName": "Babon Aniem",
+    "index": 5
+  },
+  {
+    "tourId": "YG01",
+    "stopName": "SDN Unggaran 1",
+    "index": 6
+  },
+  {
+    "tourId": "YG01",
+    "stopName": "Masjid Syuhada",
+    "index": 7
+  },
+  {
+    "tourId": "YG01",
+    "stopName": "Museum Sandi",
+    "index": 8
+  },
+  {
+    "tourId": "MG01",
+    "stopName": "Candi Gunung Sari",
+    "index": 0
+  },
+  {
+    "tourId": "MG01",
+    "stopName": "Candi Ngawen",
+    "index": 1
+  },
+  {
+    "tourId": "MG01",
+    "stopName": "Candi Mendut",
+    "index": 2
+  },
+  {
+    "tourId": "MG01",
+    "stopName": "Candi Pawon",
+    "index": 3
+  },
+  {
+    "tourId": "MG01",
+    "stopName": "Candi Borobudur",
+    "index": 4
+  },
+  {
+    "tourId": "YG02",
+    "stopName": "Pasar Legi Kotagede",
+    "index": 0
+  },
+  {
+    "tourId": "YG02",
+    "stopName": "Masjid Gede Mataram",
+    "index": 1
+  },
+  {
+    "tourId": "YG02",
+    "stopName": "Sendang",
+    "index": 2
+  },
+  {
+    "tourId": "YG02",
+    "stopName": "Makam Panembahan Senopati",
+    "index": 3
+  },
+  {
+    "tourId": "YG02",
+    "stopName": "Kampung Alun-alun",
+    "index": 4
+  },
+  {
+    "tourId": "YG02",
+    "stopName": "Makam Hasta Renggo",
+    "index": 5
+  },
+  {
+    "tourId": "YG02",
+    "stopName": "Situs Watu Gilang & Gatheng",
+    "index": 6
+  },
+  {
+    "tourId": "YG02",
+    "stopName": "Situs Bokong Semar (Bekas Benteng Karaton)",
+    "index": 7
+  },
+  {
+    "tourId": "YG02",
+    "stopName": "Rumah Kalang (Restoran) - Heritage",
+    "index": 8
+  },
+  {
+    "tourId": "YG02",
+    "stopName": "Museum Kotagede",
+    "index": 9
+  },
+  {
+    "tourId": "YG03",
+    "stopName": "Candi Plaosan",
+    "index": 0
+  },
+  {
+    "tourId": "YG03",
+    "stopName": "Candi Gana",
+    "index": 1
+  },
+  {
+    "tourId": "YG03",
+    "stopName": "Candi Prambanan",
+    "index": 2
+  },
+  {
+    "tourId": "YG03",
+    "stopName": "Candi Lumbung",
+    "index": 3
+  },
+  {
+    "tourId": "YG03",
+    "stopName": "Candi Bubrah",
+    "index": 4
+  },
+  {
+    "tourId": "YG03",
+    "stopName": "Candi Sewu",
+    "index": 5
+  },
+  {
+    "tourId": "YG04",
+    "stopName": "Candi Sojiwan",
+    "index": 0
+  },
+  {
+    "tourId": "YG04",
+    "stopName": "Candi Ratu Boko",
+    "index": 1
+  },
+  {
+    "tourId": "YG04",
+    "stopName": "Candi Barong",
+    "index": 2
+  },
+  {
+    "tourId": "YG04",
+    "stopName": "Candi Banyunibo",
+    "index": 3
+  },
+  {
+    "tourId": "YG04",
+    "stopName": "Candi Ijo",
+    "index": 4
+  },
+  {
+    "tourId": "MG02",
+    "stopName": "Gerbang Kerkhof",
+    "index": 0
+  },
+  {
+    "tourId": "MG02",
+    "stopName": "Gereja Kristen Jawa (GKJ) Magelang",
+    "index": 1
+  },
+  {
+    "tourId": "MG02",
+    "stopName": "Masjid Agung Magelang (parkir)",
+    "index": 2
+  },
+  {
+    "tourId": "MG02",
+    "stopName": "Alun-alun Magelang - Water Toren",
+    "index": 3
+  },
+  {
+    "tourId": "MG02",
+    "stopName": "Gereja GPIB Beth-El Magelang",
+    "index": 4
+  },
+  {
+    "tourId": "MG02",
+    "stopName": "Klenteng Liok Hok Bio",
+    "index": 5
+  },
+  {
+    "tourId": "MG02",
+    "stopName": "Museum BPK RI",
+    "index": 6
+  },
+  {
+    "tourId": "MG02",
+    "stopName": "Museum Diponegoro",
+    "index": 7
+  },
+  {
+    "tourId": "MG02",
+    "stopName": "Eks Kampus UGM Cabang Magelang",
+    "index": 8
+  },
+  {
+    "tourId": "AM01",
+    "stopName": "Monumen Palagan Ambarawa",
+    "index": 0
+  },
+  {
+    "tourId": "AM01",
+    "stopName": "Museum Isdiman",
+    "index": 1
+  },
+  {
+    "tourId": "AM01",
+    "stopName": "Gereja Kristen Ambarawa (GKJ)",
+    "index": 2
+  },
+  {
+    "tourId": "AM01",
+    "stopName": "Gereja Protestan di Indonesia bagian Barat (BPIB) Ambarawa",
+    "index": 3
+  },
+  {
+    "tourId": "AM01",
+    "stopName": "Museum Kereta Api Ambarawa",
+    "index": 4
+  },
+  {
+    "tourId": "AM01",
+    "stopName": "Benteng Fort Willem I (Benteng Pendem)",
+    "index": 5
+  },
+  {
+    "tourId": "AM01",
+    "stopName": "Eling Bening",
+    "index": 6
+  },
+  {
+    "tourId": "SM01",
+    "stopName": "Stasiun Tawang",
+    "index": 0
+  },
+  {
+    "tourId": "SM01",
+    "stopName": "Kota Lama Semarang",
+    "index": 1
+  },
+  {
+    "tourId": "SM01",
+    "stopName": "GPIB Immanuel Semarang (Gereja Blenduk)",
+    "index": 2
+  },
+  {
+    "tourId": "SM01",
+    "stopName": "POS Indonesia KCU Semarang",
+    "index": 3
+  },
+  {
+    "tourId": "SM01",
+    "stopName": "Alun-Alun Semarang",
+    "index": 4
+  },
+  {
+    "tourId": "SM01",
+    "stopName": "Pasar Johar",
+    "index": 5
+  },
+  {
+    "tourId": "SM01",
+    "stopName": "Museum Kota Lama Semarang",
+    "index": 6
+  },
+  {
+    "tourId": "SM01",
+    "stopName": "Kampung Batik",
+    "index": 7
+  },
+  {
+    "tourId": "SM02",
+    "stopName": "Lawang Sewu",
+    "index": 0
+  },
+  {
+    "tourId": "SM02",
+    "stopName": "Tugu Muda Semarang",
+    "index": 1
+  },
+  {
+    "tourId": "SM02",
+    "stopName": "Gereja Katedral Santa Perawan Maria",
+    "index": 2
+  },
+  {
+    "tourId": "SM02",
+    "stopName": "Kompleks SD SMP Pangudi Luhur",
+    "index": 3
+  },
+  {
+    "tourId": "SM02",
+    "stopName": "Museum Perjuangan Mandala Bhakti",
+    "index": 4
+  },
+  {
+    "tourId": "SM02",
+    "stopName": "Pasar Bulu Semarang",
+    "index": 5
+  },
+  {
+    "tourId": "SM02",
+    "stopName": "Wisma Perdamaian",
+    "index": 6
+  },
+  {
+    "tourId": "SM02",
+    "stopName": "Gedung Juang 45 Semarang",
+    "index": 7
+  }
+]

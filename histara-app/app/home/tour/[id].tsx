@@ -51,7 +51,7 @@ export default function Tour() {
   }, []);
 
   useEffect(() => {
-    requestLocationPermission();
+    // requestLocationPermission();
   }, []);
 
   const handleBackButtonPress = () => {
@@ -116,7 +116,7 @@ export default function Tour() {
           geolocationEnabled={true}
         />
         <View style={{ backgroundColor: Colors.blue.dark, paddingBottom: 10, paddingTop: 20 }}>
-          <AudioPlayer />
+          <AudioPlayer id={id as string} />
         </View>
       </View>
     </>
