@@ -26,7 +26,7 @@
       },
       {
         "name": "Asrama Kompi Kotabaru",
-        "image": "https://drive.google.com/uc?export=view&id=1dp_8IfRKO7B_SlwTkH6FUqP4EZqA6ML"
+        "image": "https://drive.google.com/uc?export=view&id=1dh8p6ysy6RsL6zj3iTviZJbZCLy7XDKA"
       },
       {
         "name": "SMP Negeri 5 Yogyakarta",
@@ -93,34 +93,44 @@
     "cover": "https://drive.google.com/uc?export=view&id=1s75M2pdFKOpW6DJlkVlIzMnDOitEU5bM",
     "stops": [
       {
-        "name": "Pasar Legi Kotagede"
+        "name": "Pasar Legi Kotagede",
+        "image": "https://drive.google.com/uc?export=view&id=1s75M2pdFKOpW6DJlkVlIzMnDOitEU5bM"
       },
       {
-        "name": "Masjid Gede Mataram"
+        "name": "Masjid Gede Mataram",
+        "image": "https://drive.google.com/uc?export=view&id=1ryhFYV8eY9ppOlz91gYfpzfYmoQwZ6sy"
       },
       {
-        "name": "Sendang"
+        "name": "Sendang",
+        "image": "https://drive.google.com/uc?export=view&id=1ruZ1erX400tKvt0v01TiwDAjGy2Y5noe"
       },
       {
-        "name": "Makam Panembahan Senopati"
+        "name": "Makam Panembahan Senopati",
+        "image": "https://drive.google.com/uc?export=view&id=1rl8zHfikTrdyDTV2LP8FFKWMjmJYGW_G"
       },
       {
-        "name": "Kampung Alun-alun"
+        "name": "Kampung Alun-alun",
+        "image": "https://drive.google.com/uc?export=view&id=1rl61w9a0u-BVjHjl8hnMa3-flNYIH3u6"
       },
       {
-        "name": "Makam Hasta Renggo"
+        "name": "Makam Hasta Renggo",
+        "image": "https://drive.google.com/uc?export=view&id=1rkIm23vP2fKfHr3n7yS5DZE91HWCcq26"
       },
       {
-        "name": "Situs Watu Gilang & Gatheng"
+        "name": "Situs Watu Gilang & Gatheng",
+        "image": "https://drive.google.com/uc?export=view&id=1rjwFRpQfhAWjHyoLTxMvcQ2PBo-n2yLx"
       },
       {
-        "name": "Situs Bokong Semar (Bekas Benteng Karaton)"
+        "name": "Situs Bokong Semar (Bekas Benteng Karaton)",
+        "image": "https://drive.google.com/uc?export=view&id=1rithvTVpQ-GNVVJNlIK8mcsE7KiBagkW"
       },
       {
-        "name": "Rumah Kalang (Restoran) - Heritage"
-      },
-      {
-        "name": "Museum Kotagede"
+        "name": "Rumah Kalang (Restoran) - Heritage",
+        "image": "https://drive.google.com/uc?export=view&id=1YvErZ6XJmwIHK4wTnK5dbFJomSUk0HJu"
+        },
+        {
+          "name": "Museum Kotagede",
+          "image": "https://drive.google.com/uc?export=view&id=1sDRRXUGdAnE1ImBvWKauhdkPlRdqQ4ff"
       }
     ]
   },
@@ -342,3 +352,4 @@
     ]
   }
 ]
+
