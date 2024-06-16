@@ -11,6 +11,7 @@ import FormDropdown from "../FormDropdown";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Colors } from "@/constants/Colors";
 import { useRouter } from "expo-router";
+import Toast from "react-native-toast-message";
 
 export default function SignInTab() {
   const dispatch = useDispatch();
@@ -22,15 +23,13 @@ export default function SignInTab() {
     axios
       .post(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/user/login", {
         email,
-        password
+        password,
       })
       .then((res) => {
         const cookies = res.headers["set-cookie"];
 
         if (cookies) {
-          const authTokenCookie = cookies.find((cookie) =>
-            cookie.startsWith("AuthToken=")
-          );
+          const authTokenCookie = cookies.find((cookie) => cookie.startsWith("AuthToken="));
 
           if (authTokenCookie) {
             const authToken = authTokenCookie.split("=")[1].split(";")[0];
@@ -68,7 +67,28 @@ export default function SignInTab() {
         }}
         type="password"
       />
-      <Button text="SIGN IN" onPress={() => handleSignIn()} />
+      <Button
+        text="SIGN IN"
+        onPress={() => handleSignIn()}
+      />
+      <Button
+        text="Success"
+        onPress={() => {
+          Toast.show({ type: "success", text1: "Success", text2: "Login berhasil" });
+        }}
+      />
+      <Button
+        text="Error"
+        onPress={() => {
+          Toast.show({type: "error", text1: "Error", text2: "Login gagal"})
+        }}
+      />
+      <Button
+        text="Loading"
+        onPress={() => {
+          Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+        }}
+      />
 
       <View
         style={{

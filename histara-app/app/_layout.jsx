@@ -9,6 +9,8 @@ import { Provider } from "react-redux";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import Navbar from "@/components/Navbar";
+import Toast, {BaseToast} from "react-native-toast-message";
+import { Colors } from "@/constants/Colors";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -62,6 +64,55 @@ export default function RootLayout() {
     return null;
   }
 
+  const toastConfig = {
+    success: (props) => (
+      <BaseToast
+        {...props}
+        style={{ borderLeftColor: '#3BE23B' }}
+        contentContainerStyle={{ paddingHorizontal: 15 }}
+        text1Style={{
+          fontFamily: "PoppinsSemiBold",
+          fontSize: 16,
+        }}
+        text2Style={{
+          fontFamily: "PoppinsRegular",
+          fontSize: 14,
+        }}
+      />
+    ),
+    error: (props) => (
+      <BaseToast
+        {...props}
+        style={{ borderLeftColor: '#FF2400' }}
+        contentContainerStyle={{ paddingHorizontal: 15 }}
+        text1Style={{
+          fontFamily: "PoppinsSemiBold",
+          fontSize: 16,
+        }}
+        text2Style={{
+          fontFamily: "PoppinsRegular",
+          fontSize: 14,
+        }}
+      />
+    ),
+    loading: (props) => (
+      <BaseToast
+        {...props}
+        style={{ borderLeftColor: '#828282' }}
+        contentContainerStyle={{ paddingHorizontal: 15 }}
+        text1Style={{
+          fontFamily: "PoppinsSemiBold",
+          fontSize: 16,
+        }}
+        text2Style={{
+          fontFamily: "PoppinsRegular",
+          fontSize: 14,
+        }}
+      />
+    )
+  };
+  
+
   return (
     <>
       <Provider store={store}>
@@ -70,6 +121,7 @@ export default function RootLayout() {
           <Stack.Screen name="+not-found" />
         </Stack>
         {showNavbar && <Navbar />}
+        <Toast config={toastConfig} />
       </Provider>
     </>
   );
