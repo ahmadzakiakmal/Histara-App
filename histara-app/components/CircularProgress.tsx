@@ -15,7 +15,7 @@ type CircularProgressProps = {
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-const CircularProgress: React.FC<CircularProgressProps> = ({ size, strokeWidth, percentage, duration, color, value }) => {
+const CircularProgress: React.FC<CircularProgressProps> = ({ size, strokeWidth, percentage= 0, duration, color, value }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
   const halfCircle = radius + strokeWidth / 2;
@@ -24,11 +24,11 @@ const CircularProgress: React.FC<CircularProgressProps> = ({ size, strokeWidth, 
 
   useEffect(() => {
     Animated.timing(animatedValue, {
-      toValue: percentage,
+      toValue: percentage > 100 ? 100 : percentage,
       duration: duration,
       useNativeDriver: false, // useNativeDriver: false for non-UI components
     }).start();
-  }, [percentage, duration]);
+  }, [percentage, duration, value]);
 
   const strokeDashoffset = animatedValue.interpolate({
     inputRange: [0, 100],

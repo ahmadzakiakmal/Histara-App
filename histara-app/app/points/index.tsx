@@ -18,7 +18,7 @@ export default function Points() {
   const dispatch = useDispatch();
   const token = useSelector(getToken);
   const point = useSelector(getPoint);
-  const router = useRouter()
+  const router = useRouter();
   const [showModal, setShowModal] = useState(false);
 
   // Slide up display
@@ -33,18 +33,23 @@ export default function Points() {
   };
 
   useEffect(() => {
-    axios.get(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/point/check", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
-    .then((res) => {
-      console.log(res.data);
-      dispatch(setPoint(res.data.points));
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    setShow(false);
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/point/check", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        dispatch(setPoint(res.data.points));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [token]);
 
   return (
@@ -66,7 +71,7 @@ export default function Points() {
             color={Colors.orange.main}
             size={200}
             strokeWidth={15}
-            percentage={point / 1000}
+            percentage={(point / 1000) * 100}
             value={point}
             duration={800}
           />
@@ -91,46 +96,62 @@ export default function Points() {
             }}
           >
             <UmkmItem
-              title="Rumah Makan 1"
+              title="Recycled Batik Wallet"
               city="Yogyakarta"
-              cost={15}
+              image="https://drive.google.com/uc?id=1ek_5VDDcqbXDzri_StdA8KxoGY30Gf3x&export=download"
+              cost={50}
               point={point}
               onPress={() => {
-                setUmkmName("Rumah Makan 1");
-                setUmkmCost(15);
+                setUmkmName("Recycled Batik Wallet");
+                setUmkmCost(50);
+                setUmkmDesc(
+                  "Lia Suvenir, Jl. Dlingo Raya No 27, Meguwo, Maguwoharjo, Kec. Depok, Kab. Sleman, Daerah Istimewa Yogyakarta."
+                );
                 setShow(true);
               }}
             />
             <UmkmItem
-              title="Toko Merch 1"
+              title="Apik Pencil Case"
               city="Yogyakarta"
-              cost={45}
+              cost={50}
               point={point}
+              image="https://drive.google.com/uc?id=10WDXElLYbbXvxYW1sjU6J9uyG3Asn814&export=download"
               onPress={() => {
-                setUmkmName("Toko Merch 1");
-                setUmkmCost(45);
+                setUmkmName("Apik Pencil Case");
+                setUmkmCost(50);
+                setUmkmDesc(
+                  "Lia Suvenir, Jl. Dlingo Raya No 27, Meguwo, Maguwoharjo, Kec. Depok, Kab. Sleman, Daerah Istimewa Yogyakarta."
+                );
                 setShow(true);
               }}
             />
             <UmkmItem
-              title="Rumah Makan 2"
-              city="Yogyakarta"
-              cost={20}
+              title="Akar Kelapa Keju"
+              city="Semarang"
+              cost={200}
               point={point}
+              image="https://drive.google.com/uc?id=1f_wQMBaOgy3JvBs_UwohiA88Z27J0OzR&export=download"
               onPress={() => {
-                setUmkmName("Rumah Makan 2");
-                setUmkmCost(20);
+                setUmkmName("Akar Kelapa Keju");
+                setUmkmCost(200);
+                setUmkmDesc(
+                  "En Snack, Jl. Selomas Timur II No 24, Panggung Lor, Kec. Semarang Utara, Kota Semarang, Jawa Tengah"
+                );
                 setShow(true);
               }}
             />
             <UmkmItem
-              title="Toko Merch 2"
+              title="Heritage Key Chain"
               city="Yogyakarta"
-              cost={10}
+              cost={30}
               point={point}
+              image="https://drive.google.com/uc?id=12lbplHqkh_38nzBjs2v3a05NIkw27aZi&export=download"
               onPress={() => {
-                setUmkmName("Toko Merch 2");
-                setUmkmCost(10);
+                setUmkmName("Heritage Key Chain");
+                setUmkmCost(30);
+                setUmkmDesc(
+                  "Lia Suvenir, Jl. Dlingo Raya No 27, Meguwo, Maguwoharjo, Kec. Depok, Kab. Sleman, Daerah Istimewa Yogyakarta."
+                );
                 setShow(true);
               }}
             />
@@ -164,8 +185,7 @@ export default function Points() {
             weight={400}
             style={[{ width: "100%", fontSize: 16, textAlign: "justify" }]}
           >
-            {umkmName} adalah Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia at repudiandae excepturi
-            nisi cupiditate id corporis explicabo nobis facilis neque.
+            {umkmDesc}
           </CustomText>
         </ScrollView>
         <CustomText
@@ -206,11 +226,11 @@ export default function Points() {
             <Button
               text="Tutup"
               onPress={() => {
-                setShowModal(false)
-                router.navigate("/points/voucher")                
+                setShowModal(false);
+                router.navigate("/points/voucher");
               }}
               style={[{ paddingVertical: 8, paddingHorizontal: 20, alignSelf: "center" }]}
-              textStyle={[{fontSize: 14}]}
+              textStyle={[{ fontSize: 14 }]}
             />
           </View>
         </View>
@@ -225,9 +245,10 @@ interface UmkmItemProps {
   cost: number;
   point: number;
   onPress: () => void;
+  image: string;
 }
 
-function UmkmItem({ title = "Nama UMKM", city = "Nama Kota", cost = 150, point = 0, onPress }: UmkmItemProps) {
+function UmkmItem({ title = "Nama UMKM", city = "Nama Kota", cost = 150, point = 0, onPress, image }: UmkmItemProps) {
   const cutTitle = (title: string): string => {
     return title?.length < 35 ? title : title.slice(0, 30) + "...";
   };
@@ -247,7 +268,9 @@ function UmkmItem({ title = "Nama UMKM", city = "Nama Kota", cost = 150, point =
         borderRadius: 10,
       }}
     >
-      <View style={{ width: "100%", height: 150, backgroundColor: "#D9D9D9" }} />
+      <View style={{ width: "100%", height: 150, backgroundColor: "#D9D9D9" }} >
+        <Image source={{uri: image}} style={{width: "100%", height: 150}} />
+      </View>
       <CustomText
         weight={700}
         style={[{ marginTop: 18 }]}
