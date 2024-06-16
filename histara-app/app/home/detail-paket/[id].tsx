@@ -27,6 +27,7 @@ interface Tour {
   points: number;
   stop: number;
   stops: TourStop[];
+  cover: string;
 }
 
 export default function MenuPaketScreen() {
@@ -45,7 +46,8 @@ export default function MenuPaketScreen() {
     name: "",
     points: 0,
     stop: 0,
-    stops: []
+    stops: [],
+    cover: "https://google.com"
   })
 
   useEffect(() => {
@@ -80,7 +82,9 @@ export default function MenuPaketScreen() {
     <View style={{ backgroundColor: "#FFF", flex: 1 }}>
       <Header />
       <ScrollView>
-        <View style={{ height: 200, backgroundColor: Colors.orange.main }}></View>
+        <View style={{ height: 200, backgroundColor: Colors.orange.main }}>
+          <Image source={{uri: tour.cover}} style={{width: "100%", height: 200}} />
+        </View>
         <CustomText
           weight={700}
           style={[{ fontSize: 20, textAlign: "center", paddingVertical: 12, paddingHorizontal: 18 }]}
