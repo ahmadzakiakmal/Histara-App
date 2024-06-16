@@ -4,15 +4,18 @@ import MiniButton from "@/components/MiniButton";
 import { Colors } from "@/constants/Colors";
 import { gs } from "@/constants/Styles";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Image, Linking, Pressable, ScrollView, View } from "react-native";
-import { useSelector } from "react-redux";
-import { getUser, getPoint } from "@/redux/slice/userSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { getToken } from "@/redux/slice/authSlice";
+import { setUser, getUser, getPoint } from "@/redux/slice/userSlice";
+import axios from "axios";
 
 export default function ProfileScreen() {
+  const dispatch = useDispatch();
+  const token = useSelector(getToken);
   const user = useSelector(getUser);
   const point = useSelector(getPoint);
-  const profilePicture = user.profilePicture;
   const router = useRouter();
   console.log(user.profilePicture)
 
@@ -22,6 +25,21 @@ export default function ProfileScreen() {
     require("@/assets/images/profile/3.png"),
     require("@/assets/images/profile/4.png"),
   ];
+
+  useEffect(() => {
+    axios.get(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/user/details", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+    .then((res) => {
+      console.log(res.data.user);
+      dispatch(setUser(res.data.user));
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  }, [token]);  
 
   return (
     <View style={{ backgroundColor: "#FFF" }}>
@@ -46,7 +64,7 @@ export default function ProfileScreen() {
             </View>
             <View style={{ backgroundColor: "#DADADA", width: 83, height: 83, borderRadius: 9999, overflow: "hidden" }}>
               <Image
-                source={profilePicture ? profilePictures[0] : profilePictures[profilePicture]}
+                source={profilePictures[user.profilePicture - 1]}
                 style={{ width: 83, height: 84 }}
               />
             </View>

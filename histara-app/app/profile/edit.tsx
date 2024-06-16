@@ -9,10 +9,12 @@ import { Image, Platform, Pressable, ScrollView, TouchableOpacity, View } from "
 import DateTimePicker from "@react-native-community/datetimepicker";
 import MiniButton from "@/components/MiniButton";
 import Button from "@/components/Button";
+import { useRouter } from "expo-router";
 import { useSelector } from "react-redux";
 import { getUser } from "@/redux/slice/userSlice";
 import { getToken } from "@/redux/slice/authSlice";
 import axios from "axios";
+import Toast from "react-native-toast-message";
 
 interface User {
   name: string;
@@ -28,6 +30,7 @@ interface User {
   TODO: MAP BIRTHDAY AND PHONE NUMBER TO INPUT FORM, ADD HANDLER CHANGE PROFILE PIC (lIMITED 1 TO 4)
 */
 export default function EditProfileScreen() {
+  const router = useRouter();
   const user = useSelector(getUser);
   const token = useSelector(getToken);
   const profilePictures = [
@@ -57,19 +60,23 @@ export default function EditProfileScreen() {
       updatedData.birthday = birthday.toISOString().split("T")[0];
     if (gender !== user.gender) updatedData.gender = gender;
     if (work !== user.work) updatedData.work = work;
+    if (profilePictureNumber !== user.profilePicture) updatedData.profilePicture = profilePictureNumber;
 
     console.log(updatedData);
 
     if (Object.keys(updatedData).length > 0) {
+      Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+
       try {
         const response = await axios.put(`${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/user/edit`, updatedData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(response.data);
+        router.push("/profile");
+        Toast.show({ type: "success", text1: "Success", text2: "Edit data berhasil!" });
       } catch (error) {
-        console.error(error);
+        Toast.show({ type: "error", text1: "Error", text2: "Edit data gagal!" });
       }
     }
   };
