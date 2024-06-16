@@ -260,25 +260,32 @@
     "cover": "https://drive.google.com/uc?export=view&id=1_wIz2HvesyBjr_Xy2WZDI07pA_WMNlYP",
     "stops": [
       {
-        "name": "Monumen Palagan Ambarawa"
+        "name": "Monumen Palagan Ambarawa",
+        "image": "https://drive.google.com/uc?export=view&id=1RvB9ezuFY5bMp1sr5Mb0_Z2RzM8ruxl1"
       },
       {
-        "name": "Museum Isdiman"
+        "name": "Museum Isdiman",
+        "image": "https://drive.google.com/uc?export=view&id=19AJiS0FGOA6g8jWEImxiN0vcIUYrKtwJ"
       },
       {
-        "name": "Gereja Kristen Ambarawa (GKJ)"
+        "name": "Gereja Kristen Ambarawa (GKJ)",
+        "image": "https://drive.google.com/uc?export=view&id=1lVdqyj-es2PjW28apLWbkNjnXepjQ5ih"
       },
       {
-        "name": "Gereja Protestan di Indonesia bagian Barat (BPIB) Ambarawa"
+        "name": "Gereja Protestan di Indonesia bagian Barat (BPIB) Ambarawa",
+        "image": "https://drive.google.com/uc?export=view&id=1xGYtArk6SBL910leaBkirJDRg7M4VRYY"
       },
       {
-        "name": "Museum Kereta Api Ambarawa"
+        "name": "Museum Kereta Api Ambarawa",
+        "image": "https://drive.google.com/uc?export=view&id=1qH2KQbPQiyWKicSQ_m8AbUodTXxA9G7b"
       },
       {
-        "name": "Benteng Fort Willem I (Benteng Pendem)"
+        "name": "Benteng Fort Willem I (Benteng Pendem)",
+        "image": "https://drive.google.com/uc?export=view&id=15CFCSLBEQlZd5vr03fjmAzJcSWQn-wT-"
       },
       {
-        "name": "Eling Bening"
+        "name": "Eling Bening",
+        "image": "https://drive.google.com/uc?export=view&id=1nMb2TXGeXEIDyojtTZDkvDxd8KhgEaXI"
       }
     ]
   },
