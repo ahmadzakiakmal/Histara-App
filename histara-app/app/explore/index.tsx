@@ -9,6 +9,7 @@ import { Article } from "../types";
 export default function Explore() {
   const localCafes = require("@/data/localCafe.json") as Article[]
   const accomodation = require("@/data/accomodation.json") as Article[]
+  const localDishes = require("@/data/localDish.json") as Article[]
 
   return (
     <>
@@ -28,7 +29,7 @@ export default function Explore() {
           <ArticleTray
             trayTitle="Makanan Lokal & Akomodasi"
             trayDesc="Rekomendasi makanan di beragam daerah"
-            articles={[]}
+            articles={localDishes}
           />
         </View>
       </ScrollView>
@@ -136,7 +137,7 @@ function ArticleTray({ trayTitle, trayDesc, articles = [] }: ArticleTrayProps) {
               title={article?.title}
               content={article.content}
               image={article.image}
-              subarticles={article.subarticles}
+              subarticles={article?.subarticles ?? []}
             />
           );
         })}

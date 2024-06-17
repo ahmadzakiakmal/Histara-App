@@ -9,8 +9,9 @@ import { Article, SubArticle } from "@/app/types";
 import { Utilities } from "@/utilities/Utilities";
 const localCafes = require("@/data/localCafe.json") as Article[];
 const accomodation = require("@/data/accomodation.json") as Article[];
+const localDishes = require("@/data/localDish.json") as Article[];
 
-const articles = [...localCafes, ...accomodation];
+const articles = [...localCafes, ...accomodation, ...localDishes];
 
 export default function ArticleScreen() { 
   const { title } = useLocalSearchParams();
@@ -66,7 +67,7 @@ export default function ArticleScreen() {
         </View>
 
         <View style={{ paddingHorizontal: 13, gap: 10, paddingBottom: 40 }}>
-          {article.subarticles.map((subarticle, index) => {
+          {article?.subarticles?.map((subarticle, index) => {
             return (
               <SubArticleItem
                 title={subarticle.title}
