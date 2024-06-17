@@ -16,18 +16,18 @@ export default function Explore() {
       <ScrollView contentContainerStyle={{ backgroundColor: "#FFF", paddingTop: 20, minHeight: "90%" }}>
         <View style={{ gap: 18, paddingBottom: 30 }}>
           <ArticleTray
-            trayTitle="Tips Travel"
-            trayDesc="Beberapa tips dalam travelling"
-            articles={accomodation}
-          />
-          <ArticleTray
             trayTitle="Kafe Lokal"
             trayDesc="Beberapa rekomendasi kafe lokal"
             articles={localCafes}
           />
           <ArticleTray
+            trayTitle="Akomodasi Unik dan Affordable"
+            trayDesc="Beberapa rekomendasi akomodasi yang keren"
+            articles={accomodation}
+          />
+          <ArticleTray
             trayTitle="Makanan Lokal & Akomodasi"
-            trayDesc="Rekomendasi makanan lokal dan akomodasi "
+            trayDesc="Rekomendasi makanan di beragam daerah"
             articles={[]}
           />
         </View>
