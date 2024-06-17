@@ -10,6 +10,7 @@ export default function Explore() {
   const localCafes = require("@/data/localCafe.json") as Article[]
   const accomodation = require("@/data/accomodation.json") as Article[]
   const localDishes = require("@/data/localDish.json") as Article[]
+  const travelTips = require("@/data/travelTips.json") as Article[]
 
   return (
     <>
@@ -30,6 +31,11 @@ export default function Explore() {
             trayTitle="Makanan Lokal & Akomodasi"
             trayDesc="Rekomendasi makanan di beragam daerah"
             articles={localDishes}
+          />
+          <ArticleTray
+            trayTitle="Tips Travel"
+            trayDesc="Beberapa tips dalam travelling"
+            articles={travelTips}
           />
         </View>
       </ScrollView>

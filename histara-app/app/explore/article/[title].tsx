@@ -10,8 +10,9 @@ import { Utilities } from "@/utilities/Utilities";
 const localCafes = require("@/data/localCafe.json") as Article[];
 const accomodation = require("@/data/accomodation.json") as Article[];
 const localDishes = require("@/data/localDish.json") as Article[];
+const travelTips = require("@/data/travelTips.json") as Article[];
 
-const articles = [...localCafes, ...accomodation, ...localDishes];
+const articles = [...localCafes, ...accomodation, ...localDishes, ...travelTips];
 
 export default function ArticleScreen() { 
   const { title } = useLocalSearchParams();
@@ -56,7 +57,7 @@ export default function ArticleScreen() {
           {article?.content?.map((paragraph, index) => {
             return (
               <CustomText
-                weight={400}
+                weight={paragraph[1] === "." ? 700 : 400}
                 style={[{ textAlign: "justify", marginTop: 10 }]}
                 key={index}
               >
