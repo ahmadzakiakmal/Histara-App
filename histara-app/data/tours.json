@@ -345,7 +345,7 @@
       {
         "image": "https://drive.google.com/uc?export=view&id=1Z71O7xFdPdDo-p5lwVQxs__dv_ma3LJF",
         "name": "Kampung Batik"
-      }
+        }
     ]
   },
   {
@@ -361,27 +361,35 @@
     "cover": "https://drive.google.com/uc?export=view&id=1eBKRRW92rakOyuSUUNJQQrYtrT6CwF3d",
     "stops": [
       {
+        "image": "https://drive.google.com/uc?export=view&id=1OvA_FJ2vV_a02P1X6suxst3jhYlJn2PY",
         "name": "Lawang Sewu"
-      },
-      {
+        },
+        {
+        "image": "https://drive.google.com/uc?export=view&id=1luFn5mr10BjNpzPt2B4IbH2UCn9TXGlS",
         "name": "Tugu Muda Semarang"
-      },
-      {
+        },
+        {
+        "image": "https://drive.google.com/uc?export=view&id=1AGCQWY0bhSMhBC11_eHX-8jRKKhGA3uj",
         "name": "Gereja Katedral Santa Perawan Maria"
-      },
-      {
+        },
+        {
+        "image": "https://drive.google.com/uc?export=view&id=1v3e66zoAsVLTxDHEMiafjG8hTvTOFz1-",
         "name": "Kompleks SD SMP Pangudi Luhur"
-      },
-      {
+        },
+        {
+        "image": "https://drive.google.com/uc?export=view&id=1OvA_FJ2vV_a02P1X6suxst3jhYlJn2PY",
         "name": "Museum Perjuangan Mandala Bhakti"
-      },
-      {
+        },
+        {
+        "image": "https://drive.google.com/uc?export=view&id=1CGevINKWlfChaHTl4Sci0MtWeRRDpgKT",
         "name": "Pasar Bulu Semarang"
-      },
-      {
+        },
+        {
+        "image": "https://drive.google.com/uc?export=view&id=1Hy9m-2NK3TBHhIYy1g-svDwU5zD2nduz",
         "name": "Wisma Perdamaian"
-      },
-      {
+        },
+        {
+        "image": "https://drive.google.com/uc?export=view&id=1_NmX2E_uCAklrpftfK7YOydi3KJuIT7U",
         "name": "Gedung Juang 45 Semarang"
       }
     ]
