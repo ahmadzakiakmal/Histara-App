@@ -41,8 +41,8 @@ export default function TourHistoryScreen() {
   return (
     <View style={{ flex: 1 }}>
       <Header title="Riwayat Tur" />
-      <ScrollView contentContainerStyle={{ flex: 1, backgroundColor: "#FFF", paddingTop: 15, paddingHorizontal: 22 }}>
-        <View style={[gs.ic, { gap: 10 }]}>
+      <View style={{ flex: 1, backgroundColor: "#FFF", paddingTop: 15, paddingHorizontal: 22 }}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[gs.ic, { gap: 10, paddingBottom: 40 }]}>
           {mappedData.map((item) => (
             <HistoryItem
               key={item._id}
@@ -53,8 +53,8 @@ export default function TourHistoryScreen() {
               status={item.transactionStatus}
             />
           ))}
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </View>
   );
 }
@@ -83,7 +83,7 @@ function HistoryItem({ name, city, date, id, status }: { name: string; city: str
       ]}
     >
       <View>
-        <CustomText weight={700}>{name}</CustomText>
+        <CustomText weight={700}>{name.split(" ")[0]}</CustomText>
         <CustomText weight={400}>{city}</CustomText>
         <CustomText weight={400}>{date?.toLocaleDateString()}</CustomText>
       </View>
