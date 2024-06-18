@@ -39,7 +39,7 @@ export default function EditProfileScreen() {
     require("@/assets/images/profile/3.png"),
     require("@/assets/images/profile/4.png"),
   ];
-
+  
   const [name, setName] = useState(user.name || "");
   const [email, setEmail] = useState(user.email || "");
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber || "");
@@ -56,8 +56,7 @@ export default function EditProfileScreen() {
     if (name !== user.name) updatedData.name = name;
     if (email !== user.email) updatedData.email = email;
     if (phoneNumber !== user.phoneNumber) updatedData.phoneNumber = phoneNumber;
-    if (birthday.toISOString().split("T")[0] !== user.birthday)
-      updatedData.birthday = birthday.toISOString().split("T")[0];
+    if (birthday !== user.birthday) updatedData.birthday = birthday.toISOString();
     if (gender !== user.gender) updatedData.gender = gender;
     if (work !== user.work) updatedData.work = work;
     if (profilePictureNumber !== user.profilePicture) updatedData.profilePicture = profilePictureNumber;

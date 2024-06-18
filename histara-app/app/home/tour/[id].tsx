@@ -11,9 +11,9 @@ import { BackHandler } from "react-native";
 import { Utilities } from "@/utilities/Utilities";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "@/redux/slice/authSlice";
-import { getTransactionId } from "@/redux/slice/transactionSlice";
+import { getTransactionId, setTransactionId } from "@/redux/slice/transactionSlice";
 import axios from "axios";
 import Toast from "react-native-toast-message";
 
@@ -125,6 +125,7 @@ export default function Tour() {
 }
 
 function ConfirmModal({ setShowModal }: { setShowModal: Dispatch<SetStateAction<boolean>> }) {
+  const dispatch = useDispatch();
   const token = useSelector(getToken);
   const transactionId = useSelector(getTransactionId);
   const router = useRouter();
@@ -138,7 +139,8 @@ function ConfirmModal({ setShowModal }: { setShowModal: Dispatch<SetStateAction<
       }
     })
     .then((res) => {
-       Toast.show({ type: "success", text1: "Success", text2: "Tour telah selesai!" });
+      Toast.show({ type: "success", text1: "Success", text2: "Tour telah selesai!" });
+      dispatch(setTransactionId(null));
       router.navigate("/home")
     })
     .catch((err) => {

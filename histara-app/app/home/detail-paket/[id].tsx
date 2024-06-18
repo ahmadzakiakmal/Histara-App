@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { Image, Pressable, ScrollView, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "@/redux/slice/authSlice";
-import { setTransactionId } from "@/redux/slice/transactionSlice";
+import { setTransactionId, getTransactionId, setToursId } from "@/redux/slice/transactionSlice";
 import axios from "axios";
 import Toast from "react-native-toast-message";
 
@@ -34,6 +34,7 @@ interface Tour {
 export default function MenuPaketScreen() {
   const dispatch = useDispatch();
   const token = useSelector(getToken);
+  const transactionId = useSelector(getTransactionId);
   const { id } = useLocalSearchParams();
   const [touched, setTouched] = useState(false);
   const router = useRouter();
@@ -61,6 +62,11 @@ export default function MenuPaketScreen() {
   const handleClicked = () => {
     Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
 
+    if(transactionId !== null) {
+      Toast.show({type: "error", text1: "Error", text2: "Selesaikan transaksi aktif!"})
+      return;
+    }
+
     axios
       .post(
         `${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/create`,
@@ -73,6 +79,7 @@ export default function MenuPaketScreen() {
       )
       .then((res) => {
         Toast.show({ type: "success", text1: "Success", text2: "Transaksi berhasil dibuat!" });
+        dispatch(setToursId(id));
         dispatch(setTransactionId(res.data.orderId));
         router.replace("/home/ringkasan-pembayaran/" + id);
       })

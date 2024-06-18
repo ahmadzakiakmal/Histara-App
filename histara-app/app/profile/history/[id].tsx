@@ -5,6 +5,8 @@ import { useLocalSearchParams } from "expo-router";
 import { Image, ScrollView, View } from "react-native";
 import { useSelector } from "react-redux";
 import { selectHistoryData } from "@/redux/slice/historySlice";
+import { useRouter } from "expo-router";
+import { getToursId } from "@/redux/slice/transactionSlice";
 
 interface Transaction {
   _id: string;
@@ -21,10 +23,16 @@ interface Transaction {
 }
 
 export default function HistoryDetail() {
+  const router = useRouter();
+  const toursId = useSelector(getToursId);
   const historyData = useSelector(selectHistoryData);
   const { id } = useLocalSearchParams();
 
   const item = historyData.find((item: Transaction) => item._id === id);
+
+  if(item.transactionStatus == "pending") {
+    router.navigate("/home/ringkasan-pembayaran/" + toursId);
+  }
 
   return (
     <View style={{ flex: 1, backgroundColor: "#FFF" }}>
