@@ -33,7 +33,7 @@ export default function AuthScreen() {
   }, [tab]);
 
   return (
-    <>
+    <View style={{flex: 1}}>
       <View style={{ backgroundColor: Colors.blue.dark, paddingTop: 50, paddingBottom: 3 }}>
         <View style={[gs.flexRow, gs.ic, { paddingHorizontal: 10, gap: 10 }]}>
           <Pressable onPress={() => router.navigate("/")}>
@@ -91,9 +91,9 @@ export default function AuthScreen() {
           style={[{ width: "50%", backgroundColor: "#FFF", height: 4 }, { transform: [{ translateX }] }]}
         />
       </View>
-      <ScrollView contentContainerStyle={{ width: "100%", paddingTop: 40 }}>
+      <ScrollView contentContainerStyle={{ width: "100%", paddingTop: 40, backgroundColor: "#FFF", minHeight: "100%" }}>
         {onTab1 ? <SignUpTab /> : <SignInTab />}
       </ScrollView>
-    </>
+    </View>
   );
 }
