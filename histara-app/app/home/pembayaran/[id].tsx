@@ -7,7 +7,7 @@ import { Image, Linking, Pressable, View } from "react-native";
 const { useSelector, useDispatch } = require("react-redux");
 const { setTransactionId } = require("@/redux/slice/transactionSlice");
 const { getToken } = require("@/redux/slice/authSlice");
-const { getTransactionId, getQrLink } = require("@/redux/slice/transactionSlice");
+const { getTransactionId, getQrLink, setToursId } = require("@/redux/slice/transactionSlice");
 import axios from "axios";
 import Toast from "react-native-toast-message";
 
@@ -38,6 +38,7 @@ export default function Pembayaran() {
         router.navigate("/home/pembayaran/success/" + id)
       } else if (res.data.paymentStatus === "expired") {
         dispatch(setTransactionId(null));
+        dispatch(setToursId(null));
         router.navigate("/home" + id)
         Toast.show({ type: "error", text1: "Pembayaran Expired!", text2: "Buat transaksi baru!" });
       } else {

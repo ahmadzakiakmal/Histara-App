@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { Image, Pressable, ScrollView, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "@/redux/slice/authSlice";
-import { setTransactionId, getTransactionId } from "@/redux/slice/transactionSlice";
+import { setTransactionId, getTransactionId, setToursId } from "@/redux/slice/transactionSlice";
 import axios from "axios";
 import Toast from "react-native-toast-message";
 
@@ -79,6 +79,7 @@ export default function MenuPaketScreen() {
       )
       .then((res) => {
         Toast.show({ type: "success", text1: "Success", text2: "Transaksi berhasil dibuat!" });
+        dispatch(setToursId(id));
         dispatch(setTransactionId(res.data.orderId));
         router.replace("/home/ringkasan-pembayaran/" + id);
       })
