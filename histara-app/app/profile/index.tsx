@@ -17,7 +17,7 @@ export default function ProfileScreen() {
   const user = useSelector(getUser);
   const point = useSelector(getPoint);
   const router = useRouter();
-  console.log(user.profilePicture)
+  console.log(user.profilePicture);
 
   const profilePictures = [
     require("@/assets/images/profile/1.png"),
@@ -27,19 +27,20 @@ export default function ProfileScreen() {
   ];
 
   useEffect(() => {
-    axios.get(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/user/details", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
-    .then((res) => {
-      console.log(res.data.user);
-      dispatch(setUser(res.data.user));
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  }, [token]);  
+    axios
+      .get(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/user/details", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        console.log(res.data.user);
+        dispatch(setUser(res.data.user));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [token]);
 
   return (
     <View style={{ backgroundColor: "#FFF" }}>
@@ -108,6 +109,14 @@ export default function ProfileScreen() {
               label="Work"
               value={user.work}
             />
+            <View style={{ marginTop: 20 }}>
+              <CustomText weight={700}>For More</CustomText>
+              <SocialMediaItem
+                text="Referensi"
+                image={require("@/assets/images/Linktree.png")}
+                link="https://linktr.ee/ReferensiHistara"
+              />
+            </View>
           </View>
         </View>
 
@@ -192,6 +201,7 @@ function SocialMediaItem({ text, link, image }: SocialMediaItemProps) {
       style={[
         gs.flexRow,
         gs.ic,
+        text === "Referensi" && gs.jc,
         {
           backgroundColor: touched ? "#E6E6E6" : "#FFF",
           borderRadius: 6,
@@ -224,3 +234,4 @@ function SocialMediaItem({ text, link, image }: SocialMediaItemProps) {
     </Pressable>
   );
 }
+
