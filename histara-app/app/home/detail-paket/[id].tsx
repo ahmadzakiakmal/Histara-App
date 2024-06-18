@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { Image, Pressable, ScrollView, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "@/redux/slice/authSlice";
-import { setTransactionId } from "@/redux/slice/transactionSlice";
+import { setTransactionId, getTransactionId } from "@/redux/slice/transactionSlice";
 import axios from "axios";
 import Toast from "react-native-toast-message";
 
@@ -34,6 +34,7 @@ interface Tour {
 export default function MenuPaketScreen() {
   const dispatch = useDispatch();
   const token = useSelector(getToken);
+  const transactionId = useSelector(getTransactionId);
   const { id } = useLocalSearchParams();
   const [touched, setTouched] = useState(false);
   const router = useRouter();
@@ -60,6 +61,11 @@ export default function MenuPaketScreen() {
 
   const handleClicked = () => {
     Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+
+    if(transactionId !== null) {
+      Toast.show({type: "error", text1: "Error", text2: "Selesaikan transaksi aktif!"})
+      return;
+    }
 
     axios
       .post(

@@ -4,13 +4,15 @@ import Header from "@/components/Header";
 import { router, useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import { Image, Linking, Pressable, View } from "react-native";
-const { useSelector } = require("react-redux");
+const { useSelector, useDispatch } = require("react-redux");
+const { setTransactionId } = require("@/redux/slice/transactionSlice");
 const { getToken } = require("@/redux/slice/authSlice");
 const { getTransactionId, getQrLink } = require("@/redux/slice/transactionSlice");
 import axios from "axios";
 import Toast from "react-native-toast-message";
 
 export default function Pembayaran() {
+  const dispatch = useDispatch();
   const token = useSelector(getToken);
   const transactionId = useSelector(getTransactionId);
   const qrLink = useSelector(getQrLink);
@@ -34,9 +36,12 @@ export default function Pembayaran() {
       if (res.data.paymentStatus === "paid") {
         Toast.show({ type: "success", text1: "Success", text2: "Pembayaran berhasil!" });
         router.navigate("/home/pembayaran/success/" + id)
+      } else if (res.data.paymentStatus === "expired") {
+        dispatch(setTransactionId(null));
+        router.navigate("/home" + id)
+        Toast.show({ type: "error", text1: "Pembayaran Expired!", text2: "Buat transaksi baru!" });
       } else {
         Toast.show({ type: "error", text1: "Info", text2: "Pembayaran belum berhasil" });
-        console.log("Payment is not paid yet or expired!");
       }
     })
     .catch((err) => {
