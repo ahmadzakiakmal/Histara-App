@@ -194,7 +194,7 @@ export default function EditProfileScreen() {
             <View style={{ width: "90%" }}>
               <FormTextInput
                 placeholder="Phone Number"
-                state={phoneNumber}
+                state={phoneNumber.toString()}
                 setState={(text) => {
                   setPhoneNumber(text);
                 }}
@@ -218,14 +218,12 @@ export default function EditProfileScreen() {
               style={[
                 {
                   color:
-                    new Date(birthday).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0) ? "#DADADA" : "#000",
+                    new Date(birthday).getMilliseconds() >= new Date().getMilliseconds() ? "#DADADA" : "#000",
                   flex: 1,
                 },
               ]}
             >
-              {new Date(birthday).setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0)
-                ? "Birthday"
-                : birthday.toDateString()}
+              {`${new Date(birthday).toLocaleDateString()}`}
             </CustomText>
             <Image
               source={require("@/assets/images/CeretDown.png")}
