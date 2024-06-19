@@ -26,6 +26,7 @@ interface Tour {
   points: number;
   stop: number;
   stops: TourStop[];
+  cover: string;
 }
 
 export default function RingkasanPembayaran() {
@@ -44,6 +45,7 @@ export default function RingkasanPembayaran() {
     points: 0,
     stop: 0,
     stops: [],
+    cover: "https://google.com",
   });
 
   useEffect(() => {
@@ -54,24 +56,28 @@ export default function RingkasanPembayaran() {
   }, [id]);
 
   const handlePembayaran = () => {
-    Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+    Toast.show({ type: "loading", text1: "Loading", text2: "Memproses..." });
 
-    axios.post(process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/transaction/create-payment", {
-      "orderId": transactionId,
-    }, 
-    {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
-    .then((res) => {
-      Toast.show({ type: "success", text1: "Success", text2: "QRIS berhasil dibuat!" });
-      dispatch(setQrLink(res.data.qrLink));
-      router.navigate("/home/pembayaran/" + id);
-    })
-    .catch((err) => {
-      Toast.show({type: "error", text1: "Error", text2: "QRIS gagal dibuat!"})
-    });
+    axios
+      .post(
+        process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/transaction/create-payment",
+        {
+          orderId: transactionId,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then((res) => {
+        Toast.show({ type: "success", text1: "Success", text2: "QRIS berhasil dibuat!" });
+        dispatch(setQrLink(res.data.qrLink));
+        router.navigate("/home/pembayaran/" + id);
+      })
+      .catch((err) => {
+        Toast.show({ type: "error", text1: "Error", text2: "QRIS gagal dibuat!" });
+      });
   };
 
   return (
@@ -88,20 +94,17 @@ export default function RingkasanPembayaran() {
           weight={400}
           style={[{ fontSize: 16, textAlign: "center", paddingBottom: 12 }]}
         >
-          {
-            id?.includes("YG") && "Yogyakarta"
-          }
-          {
-            id?.includes("MG") && "Magelang"
-          }
-          {
-            id?.includes("AM") && "Ambarawa"
-          }
-          {
-            id?.includes("SM") && "Semarang"
-          }
+          {id?.includes("YG") && "Yogyakarta"}
+          {id?.includes("MG") && "Magelang"}
+          {id?.includes("AM") && "Ambarawa"}
+          {id?.includes("SM") && "Semarang"}
         </CustomText>
-        <View style={{ height: 200, backgroundColor: Colors.orange.main }}></View>
+        <View style={{ height: 200, backgroundColor: Colors.orange.main }}>
+          <Image
+            source={{ uri: tour.cover }}
+            style={{ height: 200 }}
+          />
+        </View>
 
         <View style={[gs.flexRow, gs.ic, gs.jc, { gap: 50, marginTop: 40 }]}>
           <View style={[gs.ic, { minWidth: 80 }]}>
@@ -147,7 +150,7 @@ export default function RingkasanPembayaran() {
             >
               Nomor Transaksi
             </CustomText>
-            <CustomText weight={400}>{transactionId}</CustomText>
+            <CustomText weight={400}>{transactionId?.slice(0, 10) + "..."}</CustomText>
           </View>
           <View style={[gs.flexRow, { gap: 50 }]}>
             <CustomText
@@ -162,7 +165,7 @@ export default function RingkasanPembayaran() {
             <CustomText weight={700}>Metode Pembayaran</CustomText>
             <Pressable
               onPress={() => {
-                handlePembayaran()
+                handlePembayaran();
               }}
               onPressIn={() => setTouched(true)}
               onPressOut={() => setTouched(false)}
@@ -190,3 +193,4 @@ export default function RingkasanPembayaran() {
     </View>
   );
 }
+

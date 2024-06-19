@@ -65,7 +65,7 @@ export default function SuccessPayment() {
             weight={400}
             style={[{ marginTop: -5, textAlign: "center", fontSize: 16 }]}
           >
-            Tanggal Transaksi
+            {new Date().toLocaleDateString()}
           </CustomText>
 
           <View>
@@ -82,7 +82,7 @@ export default function SuccessPayment() {
               >
                 Nomor Transaksi
               </CustomText>
-                <CustomText weight={400}>{transactionId}</CustomText>
+                <CustomText weight={400}>{transactionId?.slice(0,10) + "..."}</CustomText>
             </View>
             <View style={[gs.flexRow, { gap: 80 }]}>
               <CustomText
@@ -91,7 +91,7 @@ export default function SuccessPayment() {
               >
                 Harga Paket Tur
               </CustomText>
-              <CustomText weight={400}>Rp {tour.price}</CustomText>
+              <CustomText weight={400}>Rp 30000</CustomText>
             </View>
             <View style={[gs.flexRow, { gap: 80 }]}>
               <CustomText
@@ -136,7 +136,7 @@ export default function SuccessPayment() {
             >
               Nama Paket Tur
             </CustomText>
-            <CustomText weight={400}>{tour.name}</CustomText>
+            <CustomText weight={400}>{tour.name.split(" ")[0]}</CustomText>
           </View>
           <View style={[gs.flexRow, { gap: 80 }]}>
             <CustomText

@@ -16,6 +16,24 @@ import { getToken } from "@/redux/slice/authSlice";
 import { getTransactionId, setTransactionId } from "@/redux/slice/transactionSlice";
 import axios from "axios";
 import Toast from "react-native-toast-message";
+import { getUser } from "@/redux/slice/userSlice";
+
+interface TourStop {
+  name: string;
+  image?: string; // Optional property
+  coordinates: [number, number];
+}
+
+interface Tour {
+  id: string;
+  name: string;
+  desc: string;
+  duration: string;
+  points: number;
+  stop: number;
+  stops: TourStop[];
+  cover: string;
+}
 
 export default function Tour() {
   const profilePictures = [
@@ -27,6 +45,26 @@ export default function Tour() {
   const [random, setRandom] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const { id } = useLocalSearchParams();
+  const user = useSelector(getUser);
+  const allTours = require("@/data/tours.json") as Tour[];
+  const [tour, setTour] = useState<Tour>({
+    id: "",
+    desc: "",
+    duration: "",
+    name: "",
+    points: 0,
+    stop: 0,
+    stops: [],
+    cover: "https://google.com",
+  });
+
+  useEffect(() => {
+    const tourToBeDisplayed = allTours.filter((tour) => {
+      return tour.id === id;
+    })[0];
+    setTour(tourToBeDisplayed);
+  }, [id]);
+
 
   const requestLocationPermission = async () => {
     try {
@@ -73,7 +111,7 @@ export default function Tour() {
 
   return (
     <>
-      {showModal && <ConfirmModal setShowModal={setShowModal} />}
+      {showModal && <ConfirmModal setShowModal={setShowModal} id={tour.id} />}
       <View style={{ flex: 1 }}>
         <View
           style={[
@@ -91,7 +129,7 @@ export default function Tour() {
         >
           <View style={{ backgroundColor: "#DEDEDE", width: 57, height: 57, borderRadius: 999, overflow: "hidden" }}>
             <Image
-              source={profilePictures[random]}
+              source={profilePictures[user.profilePicture - 1]}
               style={{ width: "100%", height: "100%" }}
             />
           </View>
@@ -99,7 +137,7 @@ export default function Tour() {
             weight={700}
             style={[{ color: "#FFF", fontSize: 20, flex: 1 }]}
           >
-            {id}
+            {tour.name?.split(" ")[0] + " Tour " + `[${id}]`}
           </CustomText>
           <Button
             text="Selesai"
@@ -117,14 +155,14 @@ export default function Tour() {
           geolocationEnabled={true}
         />
         <View style={{ backgroundColor: Colors.blue.dark, paddingBottom: 10, paddingTop: 20 }}>
-          <AudioPlayer id={id as string} />
+          <AudioPlayer id={tour.id} />
         </View>
       </View>
     </>
   );
 }
 
-function ConfirmModal({ setShowModal }: { setShowModal: Dispatch<SetStateAction<boolean>> }) {
+function ConfirmModal({ setShowModal, id }: { setShowModal: Dispatch<SetStateAction<boolean>>; id: string }) {
   const dispatch = useDispatch();
   const token = useSelector(getToken);
   const transactionId = useSelector(getTransactionId);
@@ -141,7 +179,8 @@ function ConfirmModal({ setShowModal }: { setShowModal: Dispatch<SetStateAction<
     .then((res) => {
       Toast.show({ type: "success", text1: "Success", text2: "Tour telah selesai!" });
       dispatch(setTransactionId(null));
-      router.navigate("/home")
+      console.log("Redirecting to : /home/tour/summary/" + id)
+      router.navigate("/home/tour/summary/" + id)
     })
     .catch((err) => {
       Toast.show({type: "error", text1: "Error", text2: "Tour belum selesai!"})

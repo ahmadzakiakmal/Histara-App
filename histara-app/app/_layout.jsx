@@ -56,6 +56,8 @@ export default function RootLayout() {
     if (pathname === "/") return setShowNavbar(false);
     if (pathname.includes("detail")) return setShowNavbar(false)
     if (pathname.includes("auth")) return setShowNavbar(false)
+    if (pathname.includes("tour")) return setShowNavbar(false)
+    if (pathname.includes("pembayaran")) return setShowNavbar(false)
     if (pathname.includes("menu-paket")) return setShowNavbar(true)
     if (navbarPages.includes(pathname.slice(1))) {
       setShowNavbar(true);
