@@ -137,7 +137,7 @@ export default function Tour() {
             weight={700}
             style={[{ color: "#FFF", fontSize: 20, flex: 1 }]}
           >
-            {tour.name?.split(" ")[0] + " Tour " + `[${id}]`}
+            {tour.name?.split(" ")[0] + " Tour "}
           </CustomText>
           <Button
             text="Selesai"
