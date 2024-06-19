@@ -11,6 +11,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import Navbar from "@/components/Navbar";
 import Toast, {BaseToast} from "react-native-toast-message";
 import { Colors } from "@/constants/Colors";
+import ChatButton from "@/components/ChatButton";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -54,6 +55,7 @@ export default function RootLayout() {
     const navbarPages = ["home", "explore", "points", "profile"];
     if (pathname === "/") return setShowNavbar(false);
     if (pathname.includes("detail")) return setShowNavbar(false)
+    if (pathname.includes("auth")) return setShowNavbar(false)
     if (pathname.includes("menu-paket")) return setShowNavbar(true)
     if (navbarPages.includes(pathname.slice(1))) {
       setShowNavbar(true);
@@ -121,6 +123,7 @@ export default function RootLayout() {
           <Stack.Screen name="+not-found" />
         </Stack>
         {showNavbar && <Navbar />}
+        {showNavbar && <ChatButton />}
         <Toast config={toastConfig} />
       </Provider>
     </>
