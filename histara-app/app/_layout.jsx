@@ -9,9 +9,10 @@ import { Provider } from "react-redux";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import Navbar from "@/components/Navbar";
-import Toast, {BaseToast} from "react-native-toast-message";
+import Toast, { BaseToast } from "react-native-toast-message";
 import { Colors } from "@/constants/Colors";
 import ChatButton from "@/components/ChatButton";
+import axios from "axios";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -54,11 +55,11 @@ export default function RootLayout() {
   useEffect(() => {
     const navbarPages = ["home", "explore", "points", "profile"];
     if (pathname === "/") return setShowNavbar(false);
-    if (pathname.includes("detail")) return setShowNavbar(false)
-    if (pathname.includes("auth")) return setShowNavbar(false)
-    if (pathname.includes("tour")) return setShowNavbar(false)
-    if (pathname.includes("pembayaran")) return setShowNavbar(false)
-    if (pathname.includes("menu-paket")) return setShowNavbar(true)
+    if (pathname.includes("detail")) return setShowNavbar(false);
+    if (pathname.includes("auth")) return setShowNavbar(false);
+    if (pathname.includes("tour")) return setShowNavbar(false);
+    if (pathname.includes("pembayaran")) return setShowNavbar(false);
+    if (pathname.includes("menu-paket")) return setShowNavbar(true);
     if (navbarPages.includes(pathname.slice(1))) {
       setShowNavbar(true);
     }
@@ -72,7 +73,7 @@ export default function RootLayout() {
     success: (props) => (
       <BaseToast
         {...props}
-        style={{ borderLeftColor: '#3BE23B' }}
+        style={{ borderLeftColor: "#3BE23B" }}
         contentContainerStyle={{ paddingHorizontal: 15 }}
         text1Style={{
           fontFamily: "PoppinsSemiBold",
@@ -87,7 +88,7 @@ export default function RootLayout() {
     error: (props) => (
       <BaseToast
         {...props}
-        style={{ borderLeftColor: '#FF2400' }}
+        style={{ borderLeftColor: "#FF2400" }}
         contentContainerStyle={{ paddingHorizontal: 15 }}
         text1Style={{
           fontFamily: "PoppinsSemiBold",
@@ -102,7 +103,7 @@ export default function RootLayout() {
     loading: (props) => (
       <BaseToast
         {...props}
-        style={{ borderLeftColor: '#828282' }}
+        style={{ borderLeftColor: "#828282" }}
         contentContainerStyle={{ paddingHorizontal: 15 }}
         text1Style={{
           fontFamily: "PoppinsSemiBold",
@@ -113,9 +114,8 @@ export default function RootLayout() {
           fontSize: 14,
         }}
       />
-    )
+    ),
   };
-  
 
   return (
     <>

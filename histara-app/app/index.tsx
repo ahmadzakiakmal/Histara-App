@@ -1,13 +1,25 @@
-import { Image, View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { Image, View, Text, TouchableOpacity, ScrollView, BackHandler } from "react-native";
 import { Colors } from "@/constants/Colors";
 import Button from "@/components/Button";
 import CustomText from "@/components/CustomText";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
+import axios from "axios";
 
 export default function HomeScreen() {
   const router = useRouter()
   const [touched, setTouched] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(process.env.EXPO_PUBLIC_BACKEND_URL + "/version")
+      .then((res) => {
+        if(res.data !== "1.0.0") {         
+          BackHandler.exitApp()
+        }
+      })
+      .catch((err) => console.log(err.data));
+  }, [])
 
   return (
     <ScrollView
