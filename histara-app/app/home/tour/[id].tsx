@@ -17,6 +17,7 @@ import { getTransactionId, setTransactionId } from "@/redux/slice/transactionSli
 import axios from "axios";
 import Toast from "react-native-toast-message";
 import { getUser } from "@/redux/slice/userSlice";
+import * as Location from "expo-location";
 
 interface TourStop {
   name: string;
@@ -57,6 +58,8 @@ export default function Tour() {
     stops: [],
     cover: "https://google.com",
   });
+  const [location, setLocation] = useState<any>();
+  const [errorMsg, setErrorMsg] = useState<string>("");
 
   useEffect(() => {
     const tourToBeDisplayed = allTours.filter((tour) => {
@@ -65,18 +68,22 @@ export default function Tour() {
     setTour(tourToBeDisplayed);
   }, [id]);
 
-
   const requestLocationPermission = async () => {
     try {
-      const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
+      let granted;
+
+      granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
         title: "Location Permission",
         message: "This app needs access to your location.",
-        buttonNeutral: "Ask Me Later",
         buttonNegative: "Cancel",
         buttonPositive: "OK",
       });
+
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         console.log("You can use the location");
+        let location = await Location.getCurrentPositionAsync({});
+        console.log(location);
+        return location;
       } else {
         console.log("Location permission denied");
       }
@@ -90,7 +97,23 @@ export default function Tour() {
   }, []);
 
   useEffect(() => {
-    // requestLocationPermission();
+    const getLocation = async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        Toast.show({
+          type: "error",
+          text1: "Gagal mendapatkan lokasi",
+          text2: "Akses lokasi tidak diizinkan",
+        });
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      console.log(location);
+      setLocation(location);
+    };
+    getLocation();
   }, []);
 
   const handleBackButtonPress = () => {
@@ -111,7 +134,12 @@ export default function Tour() {
 
   return (
     <>
-      {showModal && <ConfirmModal setShowModal={setShowModal} id={tour.id} />}
+      {showModal && (
+        <ConfirmModal
+          setShowModal={setShowModal}
+          id={tour.id}
+        />
+      )}
       <View style={{ flex: 1 }}>
         <View
           style={[
@@ -133,6 +161,12 @@ export default function Tour() {
               style={{ width: "100%", height: "100%" }}
             />
           </View>
+          <CustomText weight={700}>
+            {
+              // @ts-ignore
+              location?.latitude
+            }
+          </CustomText>
           <CustomText
             weight={700}
             style={[{ color: "#FFF", fontSize: 20, flex: 1 }]}
@@ -147,13 +181,21 @@ export default function Tour() {
             }}
           />
         </View>
-        <WebView
-          containerStyle={{ width: "auto" }}
-          source={{
-            uri: "https://histara-map.vercel.app/" + id,
-          }}
-          geolocationEnabled={true}
-        />
+        {location?.coords && (
+          <WebView
+            containerStyle={{ width: "auto" }}
+            source={{
+              uri:
+                "https://histara-map.vercel.app/" +
+                id +
+                "?latitude=" +
+                location?.coords?.latitude +
+                "&longitude=" +
+                location?.coords?.longitude,
+            }}
+            geolocationEnabled={true}
+          />
+        )}
         <View style={{ backgroundColor: Colors.blue.dark, paddingBottom: 10, paddingTop: 20 }}>
           <AudioPlayer id={tour.id} />
         </View>
@@ -169,23 +211,24 @@ function ConfirmModal({ setShowModal, id }: { setShowModal: Dispatch<SetStateAct
   const router = useRouter();
 
   const handleSelesai = () => {
-    Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+    Toast.show({ type: "loading", text1: "Loading", text2: "Memproses..." });
 
-    axios.put(`${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/finish?orderId=${transactionId}`, {
-      headers: {
-        Authorization: "Bearer " + token,
-      }
-    })
-    .then((res) => {
-      Toast.show({ type: "success", text1: "Success", text2: "Tour telah selesai!" });
-      dispatch(setTransactionId(null));
-      console.log("Redirecting to : /home/tour/summary/" + id)
-      router.navigate("/home/tour/summary/" + id)
-    })
-    .catch((err) => {
-      Toast.show({type: "error", text1: "Error", text2: "Tour belum selesai!"})
-    });
-  }
+    axios
+      .put(`${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/finish?orderId=${transactionId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        Toast.show({ type: "success", text1: "Success", text2: "Tour telah selesai!" });
+        dispatch(setTransactionId(null));
+        console.log("Redirecting to : /home/tour/summary/" + id);
+        router.navigate("/home/tour/summary/" + id);
+      })
+      .catch((err) => {
+        Toast.show({ type: "error", text1: "Error", text2: "Tour belum selesai!" });
+      });
+  };
 
   return (
     <View
@@ -226,7 +269,7 @@ function ConfirmModal({ setShowModal, id }: { setShowModal: Dispatch<SetStateAct
             textStyle={[{ fontSize: 14 }]}
             style={[{ width: "49%" }]}
             onPress={() => {
-              handleSelesai()
+              handleSelesai();
             }}
           />
           <Button
