@@ -37,6 +37,7 @@ export default function MenuPaketScreen() {
   const transactionId = useSelector(getTransactionId);
   const { id } = useLocalSearchParams();
   const [touched, setTouched] = useState(false);
+  const [touchedCancel, setTouchedCancel] = useState(false);
   const router = useRouter();
   const allTours = require("@/data/tours.json") as Tour[];
 
@@ -86,6 +87,32 @@ export default function MenuPaketScreen() {
         Toast.show({type: "error", text1: "Error", text2: "Transaksi gagal dibuat!"})
       });
   };
+
+  const handleCancel = () => {
+    Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+
+    if(transactionId == null) {
+      Toast.show({type: "error", text1: "Error", text2: "Tidak ada transaksi aktif!"})
+      return;
+    }
+
+    axios
+      .put(
+        `${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/cancel?orderId=${transactionId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        Toast.show({ type: "success", text1: "Success", text2: "Transaksi berhasil dicancel!" });
+        dispatch(setTransactionId(null));
+      })
+      .catch(() => {
+        Toast.show({type: "error", text1: "Error", text2: "Transaksi gagal dicancel!"})
+      });
+  }
 
   return (
     <View style={{ backgroundColor: "#FFF", flex: 1 }}>
@@ -179,7 +206,34 @@ export default function MenuPaketScreen() {
           })}
         </ScrollView>
       </ScrollView>
-      <View style={{ backgroundColor: Colors.blue.dark, paddingVertical: 11 }}>
+      <View style={{ backgroundColor: Colors.blue.dark, paddingVertical: 11, flexDirection: "row", justifyContent: "center", gap: 8 }}>
+      <Pressable
+          onPress={() => {
+            handleCancel();
+          }}
+          onPressIn={() => setTouchedCancel(true)}
+          onPressOut={() => setTouchedCancel(false)}
+          style={[
+            gs.flexRow,
+            gs.ic,
+            gs.jc,
+            {
+              backgroundColor: touchedCancel ? Colors.orange.dark : Colors.orange.main,
+              marginVertical: 2.5,
+              alignSelf: "center",
+              paddingHorizontal: 18,
+              borderRadius: 5,
+              gap: 8,
+            },
+          ]}
+        >
+          <CustomText
+            weight={400}
+            style={[{ color: Colors.blue.dark, fontSize: 18, alignSelf: "center", paddingTop: 3 }]}
+          >
+            Cancel
+          </CustomText>
+        </Pressable>
         <Pressable
           onPress={() => {
             handleClicked();
