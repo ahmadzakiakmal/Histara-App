@@ -4,11 +4,16 @@ import Button from "@/components/Button";
 import CustomText from "@/components/CustomText";
 import { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
+import { useSelector } from "react-redux";
+import { getToken } from "@/redux/slice/authSlice";
 import axios from "axios";
 
 export default function HomeScreen() {
+  const token = useSelector(getToken);
   const router = useRouter()
   const [touched, setTouched] = useState(false);
+
+  console.log("Token " + token)
 
   useEffect(() => {
     axios
@@ -16,6 +21,10 @@ export default function HomeScreen() {
       .then((res) => {
         if(res.data !== "1.0.0") {         
           BackHandler.exitApp()
+        }
+
+        if(token) {
+          router.navigate("home")
         }
       })
       .catch((err) => console.log(err.data));
