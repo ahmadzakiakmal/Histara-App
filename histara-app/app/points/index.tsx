@@ -291,7 +291,7 @@ function UmkmItem({ title = "Nama UMKM", city = "Nama Kota", cost = 150, point =
       </CustomText>
       <View style={{ paddingHorizontal: 25, marginTop: 10 }}>
         <Button
-          disabled={point < cost}
+          disabled={point <= cost}
           text={cost.toString()}
           style={[{ paddingVertical: 4.5, backgroundColor: point > cost ? Colors.orange.main : "#DEDEDE" }]}
           onPress={onPress}
