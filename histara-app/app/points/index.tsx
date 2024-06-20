@@ -233,7 +233,7 @@ export default function Points() {
               text="Tutup"
               onPress={() => {
                 setShowModal(false);
-                router.navigate("/points/voucher");
+                router.navigate("/points/" + umkmName);
               }}
               style={[{ paddingVertical: 8, paddingHorizontal: 20, alignSelf: "center" }]}
               textStyle={[{ fontSize: 14 }]}
@@ -274,8 +274,11 @@ function UmkmItem({ title = "Nama UMKM", city = "Nama Kota", cost = 150, point =
         borderRadius: 10,
       }}
     >
-      <View style={{ width: "100%", height: 150, backgroundColor: "#D9D9D9" }} >
-        <Image source={{uri: image}} style={{width: "100%", height: 150}} />
+      <View style={{ width: "100%", height: 150, backgroundColor: "#D9D9D9" }}>
+        <Image
+          source={{ uri: image }}
+          style={{ width: "100%", height: 150 }}
+        />
       </View>
       <CustomText
         weight={700}
