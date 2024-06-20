@@ -3,14 +3,16 @@ import Header from "@/components/Header";
 import { gs } from "@/constants/Styles";
 import { useLocalSearchParams } from "expo-router";
 import { Image, ScrollView, View } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectHistoryData } from "@/redux/slice/historySlice";
+import { setTransactionId } from "@/redux/slice/transactionSlice";
 import { useRouter } from "expo-router";
-import { getToursId } from "@/redux/slice/transactionSlice";
+import { useEffect, useState } from "react";
 
 interface Transaction {
   _id: string;
   tourId: string;
+  toursId: string;
   tourName: string;
   tourAddress: string;
   tourPoints: number;
@@ -23,16 +25,22 @@ interface Transaction {
 }
 
 export default function HistoryDetail() {
+  const dispatch = useDispatch();
   const router = useRouter();
-  const toursId = useSelector(getToursId);
   const historyData = useSelector(selectHistoryData);
+  const [item, setItem] = useState<Transaction | null>(null);
   const { id } = useLocalSearchParams();
 
-  const item = historyData.find((item: Transaction) => item._id === id);
+  useEffect(() => {
+    const mappedItem = historyData.find((item: Transaction) => item._id === id);
+    setItem(mappedItem);
+    
+    if(mappedItem.transactionStatus == "pending") {
+      router.push("/home/ringkasan-pembayaran/" + mappedItem.toursId);
+      dispatch(setTransactionId(mappedItem._id));
+    }
 
-  if(item.transactionStatus == "pending") {
-    router.navigate("/home/ringkasan-pembayaran/" + toursId);
-  }
+  }, [historyData, id, dispatch, router]);
 
   return (
     <View style={{ flex: 1, backgroundColor: "#FFF" }}>
@@ -41,19 +49,23 @@ export default function HistoryDetail() {
         <View style={{ paddingHorizontal: 18 }}>
           <Image
             style={{ width: 147, height: 84, alignSelf: "center", marginTop: 25 }}
-            source={require("@/assets/images/Success.png")}
+            source={
+              item?.transactionStatus !== "settlement"
+                ? require("@/assets/images/Error.png")
+                : require("@/assets/images/Success.png")
+            }
           />
           <CustomText
             weight={700}
             style={[{ fontSize: 20, textAlign: "center" }]}
           >
-            Pembayaran Sukses
+            {item?.transactionStatus !== "settlement" ? "Pembayaran Belum Berhasil" : "Pembayaran Sukses"}
           </CustomText>
           <CustomText
             weight={400}
             style={[{ marginTop: -5, textAlign: "center", fontSize: 16 }]}
           >
-            {new Date(item.transactionTime).toLocaleDateString()}
+            {item && new Date(item.transactionTime).toLocaleDateString()}
           </CustomText>
 
           <View>
@@ -79,7 +91,7 @@ export default function HistoryDetail() {
               >
                 Harga Paket Tur
               </CustomText>
-              <CustomText weight={400}>{item.grossAmount}</CustomText>
+              <CustomText weight={400}>{item && item.grossAmount}</CustomText>
             </View>
             <View style={[gs.flexRow, { gap: 80 }]}>
               <CustomText
@@ -88,7 +100,7 @@ export default function HistoryDetail() {
               >
                 Jumlah Point
               </CustomText>
-              <CustomText weight={400}>{item.tourPoints} Points</CustomText>
+              <CustomText weight={400}>{item && item.tourPoints} Points</CustomText>
             </View>
           </View>
 
@@ -124,7 +136,7 @@ export default function HistoryDetail() {
             >
               Nama Paket Tur
             </CustomText>
-            <CustomText weight={400}>{item.tourName}</CustomText>
+            <CustomText weight={400}>{item && item.tourName}</CustomText>
           </View>
           <View style={[gs.flexRow, { gap: 80 }]}>
             <CustomText
@@ -133,7 +145,7 @@ export default function HistoryDetail() {
             >
               Lokasi Paket
             </CustomText>
-            <CustomText weight={400}>{item.tourAddress}</CustomText>
+            <CustomText weight={400}>{item && item.tourAddress}</CustomText>
           </View>
           <View style={[gs.flexRow, { gap: 80 }]}>
             <CustomText
@@ -142,7 +154,7 @@ export default function HistoryDetail() {
             >
               Durasi Tur
             </CustomText>
-            <CustomText weight={400}>{item.tourDuration}</CustomText>
+            <CustomText weight={400}>{item && item.tourDuration}</CustomText>
           </View>
           <View style={[gs.flexRow, { gap: 80 }]}>
             <CustomText
@@ -151,7 +163,7 @@ export default function HistoryDetail() {
             >
               Jumlah Stop
             </CustomText>
-            <CustomText weight={400}>{item.tourStops}</CustomText>
+            <CustomText weight={400}>{item && item.tourStops}</CustomText>
           </View>
         </View>
       </View>
