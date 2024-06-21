@@ -62,10 +62,10 @@ export default function HomeScreen() {
     setPlaces(pairedPlaces);
   }, []);
 
-  const Item = ({ item }: { item: { image: string; title: string } }) => (
+  const Item = ({ item }: { item: any}) => (
     <View style={{ height: 200, width: Utilities.getScreenWidth(), backgroundColor: "#727272", position: "relative" }}>
       <Image
-        source={{ uri: item.image }}
+        source={item}
         style={{ height: 200, width: "100%"}}
       />
     </View>
@@ -92,10 +92,10 @@ export default function HomeScreen() {
           paginationActiveColor="#FFF"
           paginationDefaultColor="rgba(255,255,255,0.36)"
           data={[
-            {image: "https://drive.google.com/uc?export=view&id=1btrml_aPl0KSSCk2CtnfYuuVnELX--Et"},
-            {image: "https://drive.google.com/uc?export=view&id=1s9ngDquJI_qb6gzbyll8fNcpPqeAaFnN"},
-            {image: "https://drive.google.com/uc?export=view&id=1jvosHinD8jP-8nfwmVDUA0hq5cg0yTAD"},
-            {image: "https://drive.google.com/uc?export=view&id=1UWWcKiMjSWOQuhaT7WcYijrNVEK9ZsPR"}
+            require("@/assets/images/Carousel1.png"),
+            require("@/assets/images/Carousel2.png"),
+            require("@/assets/images/Carousel3.png"),
+            require("@/assets/images/Carousel4.png"),
           ]}
           renderItem={({ item }) => (
             <Item item={item} />
