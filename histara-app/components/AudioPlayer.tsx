@@ -244,7 +244,7 @@ export default function AudioPlayer({ id, allowAudio }: { id: string; allowAudio
           weight={700}
           style={[{ color: "#FFF", flex: 1, textAlign: "center" }]}
         >
-          {stops[index]?.stopName} {allowAudio ? "true" : "false"}
+          {stops[index]?.stopName}
         </CustomText>
         <TouchableOpacity onPress={handleNext}>
           <Image source={require("@/assets/images/Next.png")} />
