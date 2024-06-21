@@ -7,7 +7,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, Linking, Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { getTransactionId, setQrLink } from "@/redux/slice/transactionSlice";
+import { getTransactionId, setQrLink, setTransactionId } from "@/redux/slice/transactionSlice";
 import { getToken } from "@/redux/slice/authSlice";
 import axios from "axios";
 import Toast from "react-native-toast-message";
@@ -36,6 +36,7 @@ export default function RingkasanPembayaran() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const [touched, setTouched] = useState(false);
+  const [touchedCancel, setTouchedCancel] = useState(false);
   const allTours = require("@/data/tours.json") as Tour[];
   const [tour, setTour] = useState<Tour>({
     id: "",
@@ -77,6 +78,34 @@ export default function RingkasanPembayaran() {
       })
       .catch((err) => {
         Toast.show({ type: "error", text1: "Error", text2: "QRIS gagal dibuat!" });
+      });
+  };
+
+  const handleCancel = () => {
+    console.log("cancel")
+    Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
+
+    if(transactionId == null) {
+      Toast.show({type: "error", text1: "Error", text2: "Tidak ada transaksi aktif!"})
+      return;
+    }
+
+    axios
+      .put(
+        `${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/cancel?orderId=${transactionId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        Toast.show({ type: "success", text1: "Success", text2: "Transaksi berhasil dicancel!" });
+        dispatch(setTransactionId(null));
+        router.navigate("home");
+      })
+      .catch(() => {
+        Toast.show({type: "error", text1: "Error", text2: "Transaksi gagal dicancel!"})
       });
   };
 
@@ -141,7 +170,7 @@ export default function RingkasanPembayaran() {
 
         <View style={{ height: 1, backgroundColor: "#000", marginVertical: 25 }} />
 
-        <View style={{ paddingHorizontal: 18 }}>
+        <View style={{ paddingHorizontal: 18, paddingVertical: 10 }}>
           <CustomText weight={700}>Detail Transaksi</CustomText>
           <View style={[gs.flexRow, { gap: 50 }]}>
             <CustomText
@@ -190,6 +219,35 @@ export default function RingkasanPembayaran() {
           </View>
         </View>
       </ScrollView>
+      <View style={{ backgroundColor: Colors.blue.dark, paddingVertical: 4 }}>
+        <Pressable
+          onPress={() => {
+            handleCancel();
+          }}
+          onPressIn={() => setTouchedCancel(true)}            
+          onPressOut={() => setTouchedCancel(false)}
+          style={[
+            gs.flexRow,
+            gs.ic,
+            gs.jc,
+            {
+              backgroundColor: touchedCancel ? Colors.orange.dark : Colors.orange.main,
+              marginVertical: 2.5,
+              alignSelf: "center",
+              paddingHorizontal: 8,
+              borderRadius: 4,
+               gap: 8,
+            },
+          ]}
+        >
+          <CustomText
+            weight={400}
+            style={[{ color: Colors.blue.dark, fontSize: 18, alignSelf: "center", paddingTop: 3 }]}
+          >              
+          Cancel Transaction
+          </CustomText>
+        </Pressable>
+      </View>
     </View>
   );
 }
