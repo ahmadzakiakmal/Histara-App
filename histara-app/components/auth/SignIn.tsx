@@ -16,8 +16,8 @@ import Toast from "react-native-toast-message";
 export default function SignInTab() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [email, setEmail]: [string, Dispatch<string>] = useState("poc@histara.id");
-  const [password, setPassword] = useState("esempe");
+  const [email, setEmail]: [string, Dispatch<string>] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSignIn = () => {
     Toast.show({type: "loading", text1: "Loading", text2: "Memproses..."})
