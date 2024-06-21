@@ -191,7 +191,9 @@ export default function Tour() {
                 "?latitude=" +
                 location?.coords?.latitude +
                 "&longitude=" +
-                location?.coords?.longitude,
+                location?.coords?.longitude +
+                "&image=" +
+                user.profilePicture.toString()
             }}
             geolocationEnabled={true}
           />
