@@ -1,10 +1,11 @@
 import { gs } from "@/constants/Styles";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { View, TouchableOpacity, Image } from "react-native";
 import CustomText from "./CustomText";
 import { Colors } from "@/constants/Colors";
 import { Audio } from "expo-av";
 import stopsJson from "@/data/stops.json";
+import { useFocusEffect } from "expo-router";
 
 interface Stop {
   tourId: string;
@@ -12,7 +13,7 @@ interface Stop {
   index: number;
 }
 
-export default function AudioPlayer({ id }: { id: string }) {
+export default function AudioPlayer({ id, allowAudio }: { id: string; allowAudio: boolean }) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [index, setIndex] = useState(0);
@@ -124,11 +125,11 @@ export default function AudioPlayer({ id }: { id: string }) {
       require("@/audio/SM02/AUDIO/08.mp3"),
       require("@/audio/SM02/AUDIO/Closing.mp3"),
     ],
-  };  
+  };
 
   useEffect(() => {
     const filteredStops = stopsRaw.filter((stop) => stop.tourId === id);
-    
+
     const sortedStops = filteredStops.sort((a, b) => a.index - b.index);
     sortedStops.forEach((stop) => {
       stop.index += 1;
@@ -185,6 +186,13 @@ export default function AudioPlayer({ id }: { id: string }) {
     }
   }, [index]);
 
+  useEffect(() => {
+    console.log(allowAudio);
+    if (isPlaying && sound) {
+      pauseSound()
+    }
+  }, [allowAudio]);
+
   function handlePlayPause() {
     if (isPlaying) {
       pauseSound();
@@ -210,7 +218,7 @@ export default function AudioPlayer({ id }: { id: string }) {
       }
     }
   }
-  
+
   async function handleSeekBackward() {
     if (sound) {
       const status = await sound.getStatusAsync();
@@ -223,7 +231,9 @@ export default function AudioPlayer({ id }: { id: string }) {
 
   return (
     <View>
-      <View style={[gs.flexRow, { paddingBottom: 10, gap: 20, justifyContent: "space-between", paddingHorizontal: 20 }]}>
+      <View
+        style={[gs.flexRow, { paddingBottom: 10, gap: 20, justifyContent: "space-between", paddingHorizontal: 20 }]}
+      >
         <TouchableOpacity onPress={handlePrevious}>
           <Image
             source={require("@/assets/images/Next.png")}
@@ -234,7 +244,7 @@ export default function AudioPlayer({ id }: { id: string }) {
           weight={700}
           style={[{ color: "#FFF", flex: 1, textAlign: "center" }]}
         >
-          {stops[index]?.stopName}
+          {stops[index]?.stopName} {allowAudio ? "true" : "false"}
         </CustomText>
         <TouchableOpacity onPress={handleNext}>
           <Image source={require("@/assets/images/Next.png")} />
@@ -242,8 +252,26 @@ export default function AudioPlayer({ id }: { id: string }) {
       </View>
 
       <View style={{ marginBottom: 12, backgroundColor: "#A16C57" }}>
-        <View style={{ height: 8, backgroundColor: Colors.orange.main, width: `${progress * 100}%`, position: "relative", alignItems: "center", justifyContent: "center" }}>
-          <View style={{ width: 20, height: 20, borderRadius: 20, position: "absolute", backgroundColor: "#FFF", left: "100%"}}></View>
+        <View
+          style={{
+            height: 8,
+            backgroundColor: Colors.orange.main,
+            width: `${progress * 100}%`,
+            position: "relative",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <View
+            style={{
+              width: 20,
+              height: 20,
+              borderRadius: 20,
+              position: "absolute",
+              backgroundColor: "#FFF",
+              left: "100%",
+            }}
+          ></View>
         </View>
       </View>
 

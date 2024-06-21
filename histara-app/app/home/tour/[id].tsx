@@ -18,6 +18,7 @@ import axios from "axios";
 import Toast from "react-native-toast-message";
 import { getUser } from "@/redux/slice/userSlice";
 import * as Location from "expo-location";
+import SoundPlayer from "react-native-sound-player";
 
 interface TourStop {
   name: string;
@@ -60,6 +61,7 @@ export default function Tour() {
   });
   const [location, setLocation] = useState<any>();
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const [allowAudio, setAllowAudio] = useState<boolean>(true);
 
   useEffect(() => {
     const tourToBeDisplayed = allTours.filter((tour) => {
@@ -119,6 +121,7 @@ export default function Tour() {
   const handleBackButtonPress = () => {
     // Your function logic here
     setShowModal(true);
+    setAllowAudio(false);
     return true; // Returning true prevents the default back button behavior
   };
 
@@ -138,6 +141,7 @@ export default function Tour() {
         <ConfirmModal
           setShowModal={setShowModal}
           id={tour.id}
+          setAllowAudio={setAllowAudio}
         />
       )}
       <View style={{ flex: 1 }}>
@@ -178,12 +182,13 @@ export default function Tour() {
             style={[{ width: "auto", paddingHorizontal: 10 }]}
             onPress={() => {
               setShowModal(true);
+              setAllowAudio(false);
             }}
           />
         </View>
         {location?.coords && (
           <WebView
-            containerStyle={{ width: "auto" }}
+            containerStyle={{ width: "auto", flex: 1 }}
             source={{
               uri:
                 "https://histara-map.vercel.app/" +
@@ -193,20 +198,23 @@ export default function Tour() {
                 "&longitude=" +
                 location?.coords?.longitude +
                 "&image=" +
-                user.profilePicture.toString()
+                user.profilePicture.toString(),
             }}
             geolocationEnabled={true}
           />
         )}
         <View style={{ backgroundColor: Colors.blue.dark, paddingBottom: 10, paddingTop: 20 }}>
-          <AudioPlayer id={tour.id} />
+          <AudioPlayer
+            id={tour.id}
+            allowAudio={allowAudio}
+          />
         </View>
       </View>
     </>
   );
 }
 
-function ConfirmModal({ setShowModal, id }: { setShowModal: Dispatch<SetStateAction<boolean>>; id: string }) {
+function ConfirmModal({ setShowModal, id, setAllowAudio }: { setShowModal: Dispatch<SetStateAction<boolean>>; id: string, setAllowAudio: Dispatch<SetStateAction<boolean>> }) {
   const dispatch = useDispatch();
   const token = useSelector(getToken);
   const transactionId = useSelector(getTransactionId);
@@ -280,6 +288,7 @@ function ConfirmModal({ setShowModal, id }: { setShowModal: Dispatch<SetStateAct
             style={[{ backgroundColor: "#828282", width: "49%" }]}
             onPress={() => {
               setShowModal(false);
+              setAllowAudio(true)
             }}
           />
         </View>
