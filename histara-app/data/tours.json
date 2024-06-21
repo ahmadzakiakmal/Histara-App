@@ -7,7 +7,7 @@
     "name": "Adara Cycling Tour at Kota Baru",
     "desc": "Kawasan Elit Belanda yang autentik di tengah Kota Jogja",
     "duration": "2-3",
-    "points": 40,
+    "points": 90,
     "stop": 10,
     "cover": "https://drive.google.com/uc?export=view&id=1S9DfNPa7d6OBszpXfT6ROis2tKw3_Vwr",
     "stops": [
@@ -58,7 +58,7 @@
     "name": "Danadyaksa Riding Tour at Magelang",
     "desc": "Jelajahi keajaiban Candi Magelang sebagai warisan budaya yang menakjubkan!",
     "duration": "2-3",
-    "points": 35,
+    "points": 50,
     "stop": 5,
     "cover": "https://drive.google.com/uc?export=view&id=1DB2iXzTxSRWQBB5RJWDX_dy4ZExnnoaE",
     "stops": [
@@ -92,7 +92,7 @@
     "name": "Adhikari Cycling Tour at Kota Gede",
     "desc": "Eksplor Saksi Bisu Kerajaan Mataram Islam Zaman Dahulu",
     "duration": "2-3",
-    "points": 45,
+    "points": 100,
     "stop": 10,
     "cover": "https://drive.google.com/uc?export=view&id=1rz6UkcX6dPRL69fdqo9lcrWNG5j3VOvr",
     "stops": [
@@ -146,7 +146,7 @@
     "name": "Kastara Riding Tour at Yogyakarta",
     "desc": "Nikmati sensasi menjelajah waktu dengan wisata candi!",
     "duration": "3-4",
-    "points": 50,
+    "points": 60,
     "stop": 6,
     "cover": "https://drive.google.com/uc?export=view&id=18kZBT-3_C1Lm5bmYRLZpgPOT_IttpOcH",
     "stops": [
@@ -184,7 +184,7 @@
     "name": "Niscala Riding Tour at Yogyakarta",
     "desc": "Melihat keindahan matahari terbit dan terbenam di pelataran candi",
     "duration": "3-4",
-    "points": 55,
+    "points": 50,
     "stop": 5,
     "cover": "https://drive.google.com/uc?export=view&id=1v4LpwskotuSAgKFg6kqXZWaHPBdv-VPI",
     "stops": [
@@ -218,7 +218,7 @@
     "name": "Sadajiwa Riding Tour at Kota Magelang",
     "desc": "Jelajahi pesona Magelang dengan tempat ibadah yang menenangkan, ikon kota yang megah, dan museum penuh pengetahuan yang memperkaya wawasan sejarah!",
     "duration": "2-3",
-    "points": 30,
+    "points": 80,
     "stop": 9,
     "cover": "https://drive.google.com/uc?export=view&id=1Ow46_rP88nT81Vdrr4s4g6nfIlXpl6Ds",
     "stops": [
@@ -268,7 +268,7 @@
     "name": "Bramanty Riding or Cycling Tour at Ambarawa",
     "desc": "Menelusuri jejak heroik rakyat Ambarawa sembari menghayati perjalanan sejarah!",
     "duration": "2-3",
-    "points": 45,
+    "points": 70,
     "stop": 7,
     "cover": "https://drive.google.com/uc?export=view&id=1_wIz2HvesyBjr_Xy2WZDI07pA_WMNlYP",
     "stops": [
@@ -310,7 +310,7 @@
     "name": "Abra Walking Tour at Kota Tua Semarang",
     "desc": "Rasakan keajaiban masa lalu melalui bangunan bersejarah, museum, dan pasar yang memukau, sambil menikmati pesona budaya dan tradisi yang hidup di jantung kota.",
     "duration": "2-3",
-    "points": 40,
+    "points": 80,
     "stop": 8,
     "cover": "https://drive.google.com/uc?export=view&id=1TAIY1JbMy7zwBhCGlER86nBNLVeb8lFn",
     "stops": [
@@ -356,7 +356,7 @@
     "name": "Wirasana Walking Tour at Pandanaran Semarang",
     "desc": "Temukan berbagai cerita sejarah dalam bangunan-bangunan autentik di Kota Semarang!",
     "duration": "2-3",
-    "points": 35,
+    "points": 80,
     "stop": 8,
     "cover": "https://drive.google.com/uc?export=view&id=1eBKRRW92rakOyuSUUNJQQrYtrT6CwF3d",
     "stops": [
