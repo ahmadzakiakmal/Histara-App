@@ -1,5 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import * as SecureStore from 'expo-secure-store';
+
+export const loadToken = createAsyncThunk('auth/loadToken', async (_, { rejectWithValue }) => {
+  try {
+    const token = await SecureStore.getItemAsync('authToken');
+    if (token) {
+      return token;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Failed to load token from storage', error);
+    return rejectWithValue(error);
+  }
+});
 
 const authSlice = createSlice({
   name: "AuthToken",
@@ -10,16 +24,29 @@ const authSlice = createSlice({
   reducers: {
     setToken: (state, action) => {
       state.token = action.payload;
-      AsyncStorage.setItem('authToken', action.payload).catch(error => {
+      SecureStore.setItemAsync('authToken', action.payload).catch(error => {
         console.error('Failed to save token to storage', error);
       });
     },
     clearToken: (state) => {
       state.token = null;
-      AsyncStorage.removeItem('authToken').catch(error => {
+      SecureStore.deleteItemAsync('authToken').catch(error => {
         console.error('Failed to remove token from storage', error);
       });
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loadToken.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(loadToken.fulfilled, (state, action) => {
+        state.token = action.payload;
+        state.status = 'idle';
+      })
+      .addCase(loadToken.rejected, (state) => {
+        state.status = 'failed';
+      });
   }
 });
 

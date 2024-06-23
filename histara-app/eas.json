@@ -1,0 +1,41 @@
+{
+    "cli": {
+      "version": ">= 7.1.2"
+    },
+    "build": {
+      "development": {
+        "developmentClient": true,
+        "distribution": "internal",
+        "env": {
+          "APP_ICON": "./assets/images/adaptive-icon.png",
+          "APP_NAME": "Histara",
+          "EXPO_PUBLIC_BACKEND_URL": "https://histara-server.vercel.app"
+        }
+      },
+      "preview": {
+        "android": {
+          "buildType": "apk",
+          "env": {
+            "APP_ICON": "./assets/images/adaptive-icon.png",
+            "APP_NAME": "Histara",
+            "EXPO_PUBLIC_BACKEND_URL": "https://histara-server.vercel.app"
+          }
+        }
+      },
+      "preview2": {
+        "android": {
+          "gradleCommand": ":app:assembleRelease"
+        }
+      },
+      "preview3": {
+        "developmentClient": true
+      },
+      "preview4": {
+        "distribution": "internal"
+      },
+      "production": {}
+    },
+    "submit": {
+      "production": {}
+    }
+  }

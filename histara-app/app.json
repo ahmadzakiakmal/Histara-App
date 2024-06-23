@@ -20,8 +20,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#E9945B",
-        "permissions": ["ACCESS_FINE_LOCATION"]
-      }
+        "permissions": [
+          "ACCESS_FINE_LOCATION"
+        ]
+      },
+      "package": "com.aufarhmn.histaraapp"
     },
     "web": {
       "bundler": "metro",
@@ -30,10 +33,19 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "67f12668-513c-428b-892b-1c39f1112cd7"
+      }
     }
   }
 }

@@ -1,23 +1,21 @@
-import { DarkTheme, DefaultTheme, ThemeProvider, useIsFocused, useNavigation } from "@react-navigation/native";
-import { useFonts } from "expo-font";
-import { Stack, useFocusEffect, usePathname } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import { useEffect, useState } from "react";
-import "react-native-reanimated";
+import React, { useEffect, useState } from 'react';
+import { Provider, useDispatch } from 'react-redux';
 import { store } from "@/redux/store/store";
-import { Provider } from "react-redux";
-
+import { loadToken } from "@/redux/slice/authSlice";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { Stack, usePathname } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
 import Navbar from "@/components/Navbar";
 import Toast, { BaseToast } from "react-native-toast-message";
-import { Colors } from "@/constants/Colors";
+import { useFonts } from "expo-font";
 import ChatButton from "@/components/ChatButton";
-import axios from "axios";
+import "react-native-reanimated";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+const AppContent = () => {
+  const dispatch = useDispatch();
   const colorScheme = useColorScheme();
   const pathname = usePathname();
   const [showNavbar, setShowNavbar] = useState(false);
@@ -38,7 +36,6 @@ export default function RootLayout() {
     PoppinsMedium: require("../assets/fonts/Poppins-Medium.ttf"),
     PoppinsMediumItalic: require("../assets/fonts/Poppins-MediumItalic.ttf"),
     PoppinsRegular: require("../assets/fonts/Poppins-Regular.ttf"),
-    // PoppinsRegularItalic: require("../assets/fonts/Poppins-RegularItalic.ttf"),
     PoppinsSemiBold: require("../assets/fonts/Poppins-SemiBold.ttf"),
     PoppinsSemiBoldItalic: require("../assets/fonts/Poppins-SemiBoldItalic.ttf"),
     PoppinsThin: require("../assets/fonts/Poppins-Thin.ttf"),
@@ -64,6 +61,10 @@ export default function RootLayout() {
       setShowNavbar(true);
     }
   }, [pathname, focus]);
+
+  useEffect(() => {
+    dispatch(loadToken());
+  }, [dispatch]);
 
   if (!loaded) {
     return null;
@@ -119,15 +120,21 @@ export default function RootLayout() {
 
   return (
     <>
-      <Provider store={store}>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="index" />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        {showNavbar && <Navbar />}
-        {showNavbar && <ChatButton />}
-        <Toast config={toastConfig} />
-      </Provider>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+      {showNavbar && <Navbar />}
+      {showNavbar && <ChatButton />}
+      <Toast config={toastConfig} />
     </>
+  );
+};
+
+export default function RootLayout() {
+  return (
+    <Provider store={store}>
+      <AppContent />
+    </Provider>
   );
 }
