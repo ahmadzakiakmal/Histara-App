@@ -198,7 +198,7 @@ export default function Tour() {
                 "&longitude=" +
                 location?.coords?.longitude +
                 "&image=" +
-                user.profilePicture.toString(),
+                user.profilePicture?.toString(),
             }}
             geolocationEnabled={true}
           />

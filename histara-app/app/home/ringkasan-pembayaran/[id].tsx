@@ -61,7 +61,7 @@ export default function RingkasanPembayaran() {
 
     axios
       .post(
-        process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/transaction/create-payment",
+        process.env.EXPO_PUBLIC_BACKEND_URL + "/v1/transaction/confirm",
         {
           orderId: transactionId,
         },
@@ -73,7 +73,7 @@ export default function RingkasanPembayaran() {
       )
       .then((res) => {
         Toast.show({ type: "success", text1: "Success", text2: "QRIS berhasil dibuat!" });
-        dispatch(setQrLink(res.data.qrLink));
+        // dispatch(setQrLink(res.data.qrLink));
         router.navigate("/home/pembayaran/" + id);
       })
       .catch((err) => {

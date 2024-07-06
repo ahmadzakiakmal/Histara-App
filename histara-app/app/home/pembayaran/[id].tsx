@@ -12,6 +12,8 @@ import axios from "axios";
 import Toast from "react-native-toast-message";
 import { Utilities } from "@/utilities/Utilities";
 import { gs } from "@/constants/Styles";
+import { opacity } from "react-native-reanimated/lib/typescript/reanimated2/Colors";
+import { Colors } from "@/constants/Colors";
 
 export default function Pembayaran() {
   const dispatch = useDispatch();
@@ -25,35 +27,38 @@ export default function Pembayaran() {
   const [timer, setTimer] = useState(300);
   const formattedMinutes = `0${Math.floor(timer / 60)}`.slice(-2);
   const formattedSeconds = `0${timer % 60}`.slice(-2);
+  const [paidCheck, setPaidCheck] = useState<boolean>(false);
 
   // TODO: ADD HANDLER WHEN PAYMENT IS EXPIRED
   const checkPaymentStatus = () => {
-    console.log(qrLink);
-    Toast.show({ type: "loading", text1: "Loading", text2: "Memproses..." });
+    // console.log(qrLink);
+    // Toast.show({ type: "loading", text1: "Loading", text2: "Memproses..." });
+    Toast.show({ type: "success", text1: "Success", text2: "Pembayaran berhasil!" });
+    router.navigate("/home/pembayaran/success/" + id);
 
-    axios
-      .get(`${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/check-payment?orderId=${transactionId}`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setPaymentStatus(res.data.paymentStatus);
-        if (res.data.paymentStatus === "paid") {
-          Toast.show({ type: "success", text1: "Success", text2: "Pembayaran berhasil!" });
-          router.navigate("/home/pembayaran/success/" + id);
-        } else if (res.data.paymentStatus === "expired") {
-          dispatch(setTransactionId(null));
-          router.navigate("home");
-          Toast.show({ type: "error", text1: "Pembayaran Expired!", text2: "Buat transaksi baru!" });
-        } else {
-          Toast.show({ type: "error", text1: "Info", text2: "Pembayaran belum berhasil" });
-        }
-      })
-      .catch((err) => {
-        Toast.show({ type: "error", text1: "Error", text2: "Pembayaran belum berhasil" });
-      });
+    // axios
+    //   .get(`${process.env.EXPO_PUBLIC_BACKEND_URL}/v1/transaction/check-payment?orderId=${transactionId}`, {
+    //     headers: {
+    //       Authorization: "Bearer " + token,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     setPaymentStatus(res.data.paymentStatus);
+    //     if (res.data.paymentStatus === "paid") {
+    //       Toast.show({ type: "success", text1: "Success", text2: "Pembayaran berhasil!" });
+    //       router.navigate("/home/pembayaran/success/" + id);
+    //     } else if (res.data.paymentStatus === "expired") {
+    //       dispatch(setTransactionId(null));
+    //       router.navigate("home");
+    //       Toast.show({ type: "error", text1: "Pembayaran Expired!", text2: "Buat transaksi baru!" });
+    //     } else {
+    //       Toast.show({ type: "error", text1: "Info", text2: "Pembayaran belum berhasil" });
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     Toast.show({ type: "error", text1: "Error", text2: "Pembayaran belum berhasil" });
+    //   });
   };
 
   const handleBackButtonPress = () => {
@@ -212,8 +217,25 @@ export default function Pembayaran() {
               Download Kode QR
             </CustomText>
           </Pressable>
+
+          <Pressable
+            onPress={() => {
+              setPaidCheck(!paidCheck);
+            }}
+            style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
+          >
+            {paidCheck ? (
+              <Image source={require("@/assets/TickActive.png")} />
+            ) : (
+              <Image source={require("@/assets/TickInactive.png")} />
+            )}
+            <CustomText weight={400}>Saya sudah membayar QRIS</CustomText>
+          </Pressable>
+
           <Button
             text="Cek Status Pembayaran"
+            disabled={!paidCheck}
+            style={[{ opacity: paidCheck ? 1 : 0.6 }]}
             onPress={() => {
               checkPaymentStatus();
             }}
