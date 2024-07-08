@@ -193,7 +193,7 @@ export default function Pembayaran() {
           >
             <Image
               style={{ width: 350, height: 350, alignSelf: "center" }}
-              source={{ uri: qrLink }}
+              source={ require("@/assets/StaticQR.jpeg") }
             />
           </View>
           <CustomText
