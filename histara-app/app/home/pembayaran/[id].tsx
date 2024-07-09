@@ -3,7 +3,7 @@ import CustomText from "@/components/CustomText";
 import Header from "@/components/Header";
 import { router, useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { BackHandler, Image, Linking, Pressable, View } from "react-native";
+import { BackHandler, Image, Linking, Pressable, ScrollView, View } from "react-native";
 const { useSelector, useDispatch } = require("react-redux");
 const { setTransactionId } = require("@/redux/slice/transactionSlice");
 const { getToken } = require("@/redux/slice/authSlice");
@@ -174,7 +174,7 @@ export default function Pembayaran() {
         </View>
       )}
       <Header />
-      <View style={{ backgroundColor: "#FFF", flex: 1 }}>
+      <ScrollView style={{ backgroundColor: "#FFF", paddingBottom: 20 }}>
         <View style={{ paddingHorizontal: 18 }}>
           <CustomText
             weight={700}
@@ -192,7 +192,7 @@ export default function Pembayaran() {
             style={{ borderColor: "#000", borderWidth: 2, borderStyle: "dashed", marginVertical: 25, borderRadius: 8 }}
           >
             <Image
-              style={{ width: 350, height: 350, alignSelf: "center" }}
+              style={{ width: 310, height: 310, alignSelf: "center" }}
               source={ require("@/assets/StaticQR.jpeg") }
             />
           </View>
@@ -233,15 +233,15 @@ export default function Pembayaran() {
           </Pressable>
 
           <Button
-            text="Cek Status Pembayaran"
+            text="Lanjutkan"
             disabled={!paidCheck}
-            style={[{ opacity: paidCheck ? 1 : 0.6 }]}
+            style={[{ opacity: paidCheck ? 1 : 0.6, marginBottom: 50, marginTop: 10 }]}
             onPress={() => {
               checkPaymentStatus();
             }}
           />
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }
