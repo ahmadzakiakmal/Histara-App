@@ -7,7 +7,7 @@
         "developmentClient": true,
         "distribution": "internal",
         "env": {
-          "APP_ICON": "./assets/images/adaptive-icon-2.png",
+          "APP_ICON": "./assets/images/adaptive-icon-3.png",
           "APP_NAME": "Histara",
           "EXPO_PUBLIC_BACKEND_URL": "https://histara-server.vercel.app"
         }
@@ -16,7 +16,7 @@
         "android": {
           "buildType": "apk",
           "env": {
-            "APP_ICON": "./assets/images/adaptive-icon-2.png",
+            "APP_ICON": "./assets/images/adaptive-icon-3.png",
             "APP_NAME": "Histara",
             "EXPO_PUBLIC_BACKEND_URL": "https://histara-server.vercel.app"
           }
