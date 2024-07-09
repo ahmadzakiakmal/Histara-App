@@ -28,19 +28,19 @@ export default function HomeScreen() {
       id: 1,
       title: "Yogyakarta",
       image:
-        "https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihb0ej6m-bfpUnDsSpFoy-imw4Og8x2J-WbaJqLAsVy2MYCJGcNG4pslyzARjGKgrbXNwSXkFwK6A7UVopdp7x0MDjAyRIunmiw=w1879-h931-rw-v1",
+        "https://drive.google.com/uc?export=view&id=1YMvEbFKgixYfczPT0jaLJ1kl--emGJJO",
     },
     {
       id: 2,
       title: "Ambarawa",
       image:
-        "https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihaW1fsUY6dEd3SG82t9ApLbDh41haFXFmP92WXwWX5z1AtgWpzcCNS60lb2qcvgfGpsRHnAqWC7VSQSZEe0rm6Ru3rbt2zvads=w1879-h931-rw-v1",
+        "https://drive.google.com/uc?export=view&id=1droFdeVacbhkPaiRvLPxSzxtE4ACcbYZ",
     },
     {
       id: 3,
       title: "Magelang",
       image:
-        "https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihbpx39-jyuXG6XDgHiFGROX4Os0aA-6_SX_1pYS8PITqpwgx2QucAKJ6oF578jNSXSNJ3pTTbDSFybh88MllRey46gF7ynpzg=w1879-h931-rw-v1",
+        "https://drive.google.com/uc?export=view&id=1f30vGs8Pl0_IMVzwYoQoMnrNjZkR34Lx",
     },
     {
       id: 5,
